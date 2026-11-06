@@ -36,8 +36,9 @@
 
 <script>
   // Este índice lee los archivos del repositorio y arma la lista solo.
-  var USUARIO = "coheeeeens-tech";
-  var REPO = "materiales";
+  // Detecta solo el usuario y el repositorio a partir del link de la página.
+  var USUARIO = location.hostname.split(".")[0];
+  var REPO = location.pathname.split("/")[1];
   var archivos = [];
 
   function bonito(nombre) {
