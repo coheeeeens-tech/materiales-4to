@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inglés — Modal Verbs: could, may, might, should, would</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f0f4f8;--surface:#fff;--border:#c0d0e0;
+  --ink:#061828;--muted:#3a5a78;
+  --a1:#1a4fc4;--a2:#c41a1a;--a3:#1a9a5c;--a4:#b8860b;--a5:#7a1ac4;
+  --a1l:#e8eef9;--a2l:#fdeaea;--a3l:#e3f4e8;--a4l:#fff8e1;--a5l:#f0e8fb;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;line-height:1.7;}
+
+.hero{background:var(--ink);color:#f0f6ff;padding:56px 48px 48px;position:relative;overflow:hidden;}
+.hero::after{content:'🗣️';font-size:220px;position:absolute;right:20px;bottom:-30px;line-height:1;pointer-events:none;opacity:.06;}
+.hero-top{display:flex;align-items:center;gap:16px;margin-bottom:28px;}
+.unit-badge{background:var(--a1);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;padding:4px 14px;border-radius:4px;}
+.subject-tag{font-size:12px;font-weight:500;color:rgba(240,246,255,0.45);letter-spacing:2px;text-transform:uppercase;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,8vw,5rem);line-height:.92;letter-spacing:1px;margin-bottom:16px;}
+.hero h1 span{color:#5cb8f8;}
+.hero-desc{max-width:560px;font-size:15px;color:rgba(240,246,255,0.6);margin-bottom:32px;}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;}
+.pill{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:6px 16px;font-size:13px;font-weight:500;}
+.pill-dot{width:8px;height:8px;border-radius:50%;}
+
+.nav-strip{background:var(--a1);display:flex;overflow-x:auto;position:sticky;top:0;z-index:10;}
+.nav-strip a{color:rgba(255,255,255,.75);text-decoration:none;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:12px 20px;white-space:nowrap;border-right:1px solid rgba(255,255,255,.15);transition:all .2s;}
+.nav-strip a:hover{background:rgba(255,255,255,.12);color:#fff;}
+
+.wrap{max-width:960px;margin:0 auto;padding:0 28px 100px;}
+
+.sec-head{display:flex;align-items:flex-start;margin:56px 0 24px;border-left:5px solid var(--a1);padding-left:18px;}
+.sec-head.red{border-color:var(--a2);} .sec-head.green{border-color:var(--a3);} .sec-head.gold{border-color:var(--a4);} .sec-head.purple{border-color:var(--a5);}
+.sec-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;line-height:1;color:var(--a1);margin-right:14px;flex-shrink:0;}
+.sec-head.red .sec-num{color:var(--a2);} .sec-head.green .sec-num{color:var(--a3);} .sec-head.gold .sec-num{color:var(--a4);} .sec-head.purple .sec-num{color:var(--a5);}
+.sec-info h2{font-family:'Bebas Neue',sans-serif;font-size:1.85rem;letter-spacing:.5px;line-height:1.1;}
+.sec-info p{font-size:13px;color:var(--muted);font-weight:500;}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px 26px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.card-label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+
+.concept-box{border-radius:12px;padding:18px 22px;margin:12px 0;text-align:center;}
+.concept-box.blue{background:linear-gradient(135deg,#061828,#1a4fc4);}
+.concept-box.red{background:linear-gradient(135deg,#2a0a0a,#c41a1a);}
+.concept-box.green{background:linear-gradient(135deg,#0a2a18,#1a9a5c);}
+.concept-box.gold{background:linear-gradient(135deg,#2a1800,#b8860b);}
+.concept-box.purple{background:linear-gradient(135deg,#1a0a2a,#7a1ac4);}
+.concept-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:1px;color:#fff;margin-bottom:6px;}
+.concept-def{font-size:14px;color:rgba(255,255,255,.85);line-height:1.65;}
+
+.tip{border-radius:10px;padding:13px 16px;font-size:13.5px;margin-top:14px;display:flex;gap:10px;align-items:flex-start;}
+.tip.blue{background:rgba(26,79,196,.08);border-left:3px solid var(--a1);}
+.tip.red{background:rgba(196,26,26,.08);border-left:3px solid var(--a2);}
+.tip.green{background:rgba(26,154,92,.08);border-left:3px solid var(--a3);}
+.tip.gold{background:rgba(184,134,11,.08);border-left:3px solid var(--a4);}
+.tip.purple{background:rgba(122,26,196,.08);border-left:3px solid var(--a5);}
+.tip-ico{font-size:18px;flex-shrink:0;margin-top:1px;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;}
+@media(max-width:600px){.two-col,.three-col,.char-grid,.pron-grid{grid-template-columns:1fr;}}
+
+.mini-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.mini-card .mc-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.mini-card .mc-val{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.5px;}
+.mini-card .mc-body{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.55;}
+
+.char-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;}
+.char-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;border-left:4px solid var(--a1);}
+.char-card.red{border-color:var(--a2);}.char-card.green{border-color:var(--a3);}.char-card.gold{border-color:var(--a4);}.char-card.purple{border-color:var(--a5);}
+.char-card .cc-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.5px;margin-bottom:6px;}
+.char-card .cc-title.blue{color:var(--a1);}.char-card .cc-title.red{color:var(--a2);}.char-card .cc-title.green{color:var(--a3);}.char-card .cc-title.gold{color:var(--a4);}.char-card .cc-title.purple{color:var(--a5);}
+.char-card .cc-body{font-size:13px;line-height:1.6;}
+.char-card .cc-ex{font-size:12px;margin-top:8px;padding:6px 10px;border-radius:6px;font-style:italic;display:flex;align-items:center;gap:6px;}
+.char-card .cc-ex.blue{background:var(--a1l);color:var(--a1);}.char-card .cc-ex.red{background:var(--a2l);color:var(--a2);}
+.char-card .cc-ex.green{background:var(--a3l);color:var(--a3);}.char-card .cc-ex.gold{background:var(--a4l);color:var(--a4);}
+.char-card .cc-ex.purple{background:var(--a5l);color:var(--a5);}
+.char-card .cc-es{font-size:11.5px;color:var(--muted);font-style:normal;margin-top:3px;}
+
+.stab{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+.stab th{text-align:left;padding:9px 12px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-bottom:2px solid;background:rgba(0,0,0,.02);}
+.stab.blue th{color:var(--a1);border-color:var(--a1);}
+.stab.red th{color:var(--a2);border-color:var(--a2);}
+.stab.green th{color:var(--a3);border-color:var(--a3);}
+.stab.gold th{color:var(--a4);border-color:var(--a4);}
+.stab.purple th{color:var(--a5);border-color:var(--a5);}
+.stab td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.stab tr:last-child td{border-bottom:none;}
+.stab tr:nth-child(even) td{background:rgba(0,0,0,.015);}
+.stab em{color:var(--muted);}
+.es-sub{display:block;font-size:11.5px;color:var(--muted);font-style:italic;margin-top:2px;}
+
+.bubbles{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+.bubble{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;}
+.bubble .b-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.bubble .b-main{font-weight:600;font-size:14px;margin-bottom:3px;}
+.bubble .b-sub{font-size:12.5px;color:var(--muted);}
+
+.wb-section{background:var(--ink);color:#f0f6ff;border-radius:16px;padding:32px;margin-top:60px;}
+.wb-title{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:1px;margin-bottom:6px;}
+.wb-title span{color:#5cb8f8;}
+.wb-sub{color:rgba(240,246,255,.5);font-size:13.5px;margin-bottom:28px;}
+.wb-group{margin-bottom:28px;}
+.wb-group-title{font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:2px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:12px;}
+.wb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.wb-word{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 12px;}
+.wb-word .en{font-weight:700;font-size:13.5px;margin-bottom:2px;}
+.wb-word .es{font-size:12px;color:rgba(240,246,255,.55);}
+
+footer{text-align:center;padding:28px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--border);margin-top:20px;}
+
+/* ═══ SPEAKER BUTTON (pronunciación) ═══ */
+.spk-btn{background:var(--a1);color:#fff;border:none;border-radius:50%;width:22px;height:22px;font-size:11px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;vertical-align:middle;margin-right:2px;}
+.spk-btn:hover{opacity:.8;transform:scale(1.08);}
+.spk-btn:active{transform:scale(.95);}
+.ex-row{display:flex;align-items:center;gap:8px;}
+
+/* ═══ PRONUNCIACIÓN ═══ */
+.pron-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:14px 0;}
+.pron-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 14px;text-align:center;}
+.pron-card .pron-word{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.5px;}
+.pron-card .pron-ipa{font-size:13px;color:var(--muted);margin:4px 0 6px;}
+.pron-card .pron-sound{font-size:12.5px;font-weight:600;margin-bottom:10px;}
+.pron-card .pron-btn{background:var(--a1);color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
+.pron-card .pron-btn:hover{opacity:.85;}
+.pron-card.red .pron-btn{background:var(--a2);}
+.pron-card.green .pron-btn{background:var(--a3);}
+.pron-card.gold .pron-btn{background:var(--a4);}
+.pron-card.purple .pron-btn{background:var(--a5);}
+
+/* ═══ QUIZ INTERACTIVO ═══ */
+.quiz-box{background:var(--surface);border:2px dashed var(--border);border-radius:14px;padding:20px 22px;margin:8px 0 32px;}
+.quiz-box.blue{border-color:var(--a1);}.quiz-box.red{border-color:var(--a2);}
+.quiz-box.green{border-color:var(--a3);}.quiz-box.gold{border-color:var(--a4);}
+.quiz-box.purple{border-color:var(--a5);}
+.quiz-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.quiz-head .qz-ico{font-size:1.5rem;}
+.quiz-head h4{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.5px;}
+.quiz-head span.qz-sub{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;}
+.quiz-score{font-size:12px;font-weight:700;margin-bottom:14px;color:var(--muted);}
+.qz-question{background:var(--bg);border-radius:10px;padding:14px 16px;margin-bottom:10px;}
+.qz-question:last-child{margin-bottom:0;}
+.qz-qtext{font-weight:600;font-size:13.5px;margin-bottom:10px;display:flex;gap:8px;align-items:flex-start;}
+.qz-qtext .qz-num{font-family:'Bebas Neue',sans-serif;flex-shrink:0;font-size:1.05rem;line-height:1.3;}
+.qz-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:middle;}
+.qz-opts{display:flex;flex-direction:column;gap:6px;}
+.qz-tf-opts{display:flex;gap:8px;}
+.qz-opt{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 13px;font-size:13px;cursor:pointer;text-align:left;transition:all .15s;font-family:inherit;color:var(--ink);}
+.qz-tf-opts .qz-opt{flex:1;text-align:center;font-weight:600;}
+.qz-opt:hover:not(.disabled){background:var(--a1l);border-color:var(--a1);}
+.qz-opt.correct{background:rgba(26,154,92,.18);border-color:var(--a3);font-weight:700;color:#0a4a2a;}
+.qz-opt.incorrect{background:rgba(196,26,26,.18);border-color:var(--a2);font-weight:700;color:#7a1414;}
+.qz-opt.disabled{cursor:default;}
+.qz-explain{font-size:12.5px;margin-top:9px;padding:9px 13px;border-radius:8px;background:rgba(0,0,0,.04);display:none;line-height:1.5;}
+.qz-explain.show{display:block;}
+.qz-explain b{color:var(--a3);}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="unit-badge">UNIT 1</div>
+    <div class="subject-tag">Inglés · 4to Trimestre · Modal Verbs</div>
+  </div>
+  <h1>ENGLISH<br><span>MODAL VERBS</span></h1>
+  <p class="hero-desc">"Could I borrow your pen?" "You should study more." "I would love some tea." Los modal verbs son palabras mágicas en inglés: cambian el significado completo de una oración. Aprenderás a usarlos, a traducirlos y a <strong>pronunciarlos</strong> correctamente.</p>
+  <div class="hero-pills">
+    <div class="pill"><div class="pill-dot" style="background:#5cb8f8"></div>1.1 Modal Verbs — Review</div>
+    <div class="pill"><div class="pill-dot" style="background:#fda4ff"></div>🔊 Pronunciación</div>
+    <div class="pill"><div class="pill-dot" style="background:#ff8fa0"></div>Ability &amp; Possibility: could, may, might</div>
+    <div class="pill"><div class="pill-dot" style="background:#86efac"></div>Permission &amp; Sentence Forms</div>
+    <div class="pill"><div class="pill-dot" style="background:#fcd45c"></div>1.1.2 Advice with should</div>
+    <div class="pill"><div class="pill-dot" style="background:#c4b5fd"></div>1.1.3 Wishes &amp; Requests with would</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-strip">
+  <a href="#review">1.1 Review</a>
+  <a href="#pronunciacion">🔊 Pronunciación</a>
+  <a href="#could-may-might">Could / May / Might</a>
+  <a href="#permission">Permiso y formas</a>
+  <a href="#should">Should</a>
+  <a href="#would">Would</a>
+  <a href="#retos">Retos</a>
+  <a href="#glosario">Glosario</a>
+</div>
+
+<div class="wrap">
+
+<!-- ═══════════════════════════════════
+     1.1 MODAL VERBS — REVIEW
+═══════════════════════════════════ -->
+<div id="review">
+  <div class="sec-head blue">
+    <div class="sec-num">1.1</div>
+    <div class="sec-info">
+      <h2>Modal Verbs — Review</h2>
+      <p>Verbos auxiliares que expresan habilidad, consejo, permiso, posibilidad, obligación y más</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">¿Qué es un modal verb?</div>
+    <div class="concept-box blue">
+      <div class="concept-title">MODAL VERB</div>
+      <div class="concept-def">Verbo auxiliar que se coloca antes de otro verbo para cambiar su significado: obligación, permiso, consejo, habilidad o posibilidad. Siempre va seguido del verbo en infinitivo <strong>sin "to"</strong>.</div>
+    </div>
+    <table class="stab blue">
+      <tr><th>Type</th><th>Modal Verb</th><th>Example</th></tr>
+      <tr><td>Ability<br><span class="es-sub">Habilidad</span></td><td><strong>Can, Could</strong></td><td><div class="ex-row"><button class="spk-btn" onclick="speak('My brother can speak three languages.')">🔊</button><strong>My brother <em>can</em> speak three languages.</strong></div><span class="es-sub">Mi hermano puede hablar tres idiomas.</span></td></tr>
+      <tr><td>Advice<br><span class="es-sub">Consejo</span></td><td><strong>Should</strong></td><td><div class="ex-row"><button class="spk-btn" onclick="speak('Ernest should study for his exam.')">🔊</button><strong>Ernest <em>should</em> study for his exam.</strong></div><span class="es-sub">Ernest debería estudiar para su examen.</span></td></tr>
+      <tr><td>Permission<br><span class="es-sub">Permiso</span></td><td><strong>Can, Could, May</strong></td><td><div class="ex-row"><button class="spk-btn" onclick="speak('May I borrow your book?')">🔊</button><strong><em>May</em> I borrow your book?</strong></div><span class="es-sub">¿Puedo pedir prestado tu libro?</span></td></tr>
+      <tr><td>Possibility<br><span class="es-sub">Posibilidad</span></td><td><strong>Can, Could, May, Might</strong></td><td><div class="ex-row"><button class="spk-btn" onclick="speak('Jack may call me later.')">🔊</button><strong>Jack <em>may</em> call me later.</strong></div><span class="es-sub">Tal vez Jack me llame más tarde.</span></td></tr>
+      <tr><td>Obligation<br><span class="es-sub">Obligación</span></td><td><strong>Must, Have to</strong></td><td><div class="ex-row"><button class="spk-btn" onclick="speak('I must memorize these rules.')">🔊</button><strong>I <em>must</em> memorize these rules.</strong></div><span class="es-sub">Debo memorizar estas reglas.</span></td></tr>
+      <tr><td>Prohibition<br><span class="es-sub">Prohibición</span></td><td><strong>Must not / Mustn't</strong></td><td><div class="ex-row"><button class="spk-btn" onclick="speak('Policemen must not drink on duty.')">🔊</button><strong>Policemen <em>must not</em> drink on duty.</strong></div><span class="es-sub">Los policías no deben beber en servicio.</span></td></tr>
+      <tr><td>Offer, request<br><span class="es-sub">Ofrecer, pedir</span></td><td><strong>Would</strong></td><td><div class="ex-row"><button class="spk-btn" onclick="speak('Would you like a cup of coffee?')">🔊</button><strong><em>Would</em> you like a cup of coffee?</strong></div><span class="es-sub">¿Te gustaría una taza de café?</span></td></tr>
+    </table>
+    <div class="tip blue">
+      <span class="tip-ico">💡</span>
+      <span><strong>Ejemplo fácil:</strong> <button class="spk-btn" onclick="speak('I can swim.')">🔊</button>"I <strong>can</strong> swim" <em>(sé nadar)</em> vs <button class="spk-btn" onclick="speak('I should swim more.')">🔊</button>"I <strong>should</strong> swim more" <em>(debería nadar más)</em> vs <button class="spk-btn" onclick="speak('I must swim today.')">🔊</button>"I <strong>must</strong> swim today" <em>(tengo que nadar hoy)</em>. ¡El modal verb cambia todo el sentido de la oración!</span>
+    </div>
+  </div>
+
+  <div class="quiz-box blue" id="box-review">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Modal Verbs — Review</span></div>
+    <div class="quiz-score" id="score-review"></div>
+    <div class="qz-container" id="qz-review"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     PRONUNCIACIÓN
+═══════════════════════════════════ -->
+<div id="pronunciacion">
+  <div class="sec-head purple">
+    <div class="sec-num">🔊</div>
+    <div class="sec-info">
+      <h2>Pronunciación de los Modal Verbs</h2>
+      <p>Presiona el botón para escuchar cómo suena cada palabra en inglés</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">Los 5 modal verbs principales</div>
+    <div class="pron-grid">
+      <div class="pron-card blue">
+        <div class="pron-word">Could</div>
+        <div class="pron-ipa">/kʊd/</div>
+        <div class="pron-sound">Suena como: <strong>"cud"</strong> (corto, sin acentuar la D)</div>
+        <button class="pron-btn" onclick="speak('could')">🔊 Escuchar</button>
+      </div>
+      <div class="pron-card red">
+        <div class="pron-word">May</div>
+        <div class="pron-ipa">/meɪ/</div>
+        <div class="pron-sound">Suena como: <strong>"méi"</strong></div>
+        <button class="pron-btn" onclick="speak('may')">🔊 Escuchar</button>
+      </div>
+      <div class="pron-card green">
+        <div class="pron-word">Might</div>
+        <div class="pron-ipa">/maɪt/</div>
+        <div class="pron-sound">Suena como: <strong>"máit"</strong></div>
+        <button class="pron-btn" onclick="speak('might')">🔊 Escuchar</button>
+      </div>
+      <div class="pron-card gold">
+        <div class="pron-word">Should</div>
+        <div class="pron-ipa">/ʃʊd/</div>
+        <div class="pron-sound">Suena como: <strong>"shud"</strong> (la "sh" como en "show")</div>
+        <button class="pron-btn" onclick="speak('should')">🔊 Escuchar</button>
+      </div>
+      <div class="pron-card purple">
+        <div class="pron-word">Would</div>
+        <div class="pron-ipa">/wʊd/</div>
+        <div class="pron-sound">Suena como: <strong>"wud"</strong> (la "w" como en "web")</div>
+        <button class="pron-btn" onclick="speak('would')">🔊 Escuchar</button>
+      </div>
+      <div class="pron-card blue">
+        <div class="pron-word">Can</div>
+        <div class="pron-ipa">/kæn/</div>
+        <div class="pron-sound">Suena como: <strong>"can"</strong> (la "a" abierta, como en "cat")</div>
+        <button class="pron-btn" onclick="speak('can')">🔊 Escuchar</button>
+      </div>
+    </div>
+    <div class="tip purple">
+      <span class="tip-ico">🎧</span>
+      <span><strong>Tip para el salón:</strong> estas letras (/kʊd/, /meɪ/...) son el Alfabeto Fonético Internacional (IPA); no necesitas memorizarlo, solo úsalo como guía visual mientras escuchas el audio real dando clic en "Escuchar".</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">Las formas negativas contraídas</div>
+    <div class="pron-grid">
+      <div class="pron-card blue">
+        <div class="pron-word">Couldn't</div>
+        <div class="pron-ipa">/ˈkʊdənt/</div>
+        <div class="pron-sound">Suena como: <strong>"cúdent"</strong></div>
+        <button class="pron-btn" onclick="speak(`couldn't`)">🔊 Escuchar</button>
+      </div>
+      <div class="pron-card green">
+        <div class="pron-word">Mightn't</div>
+        <div class="pron-ipa">/ˈmaɪtənt/</div>
+        <div class="pron-sound">Suena como: <strong>"máitent"</strong></div>
+        <button class="pron-btn" onclick="speak(`mightn't`)">🔊 Escuchar</button>
+      </div>
+      <div class="pron-card gold">
+        <div class="pron-word">Shouldn't</div>
+        <div class="pron-ipa">/ˈʃʊdənt/</div>
+        <div class="pron-sound">Suena como: <strong>"shúdent"</strong></div>
+        <button class="pron-btn" onclick="speak(`shouldn't`)">🔊 Escuchar</button>
+      </div>
+      <div class="pron-card purple">
+        <div class="pron-word">Wouldn't</div>
+        <div class="pron-ipa">/ˈwʊdənt/</div>
+        <div class="pron-sound">Suena como: <strong>"wúdent"</strong></div>
+        <button class="pron-btn" onclick="speak(`wouldn't`)">🔊 Escuchar</button>
+      </div>
+    </div>
+    <div class="tip green">
+      <span class="tip-ico">🗣️</span>
+      <span>Practica repitiendo en voz alta después de escuchar cada botón. Compara tu pronunciación con el audio las veces que necesites.</span>
+    </div>
+  </div>
+
+  <div class="quiz-box purple" id="box-pron">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Pronunciación</span></div>
+    <div class="quiz-score" id="score-pron"></div>
+    <div class="qz-container" id="qz-pron"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     COULD, MAY, MIGHT — ABILITY & POSSIBILITY
+═══════════════════════════════════ -->
+<div id="could-may-might">
+  <div class="sec-head red">
+    <div class="sec-num">1.1.1</div>
+    <div class="sec-info">
+      <h2>Could, May, Might — Ability &amp; Possibility</h2>
+      <p>Expressing ability, permission and possibility</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">Could — past ability</div>
+    <div class="concept-box red">
+      <div class="concept-title">COULD</div>
+      <div class="concept-def">Es el pasado de <strong>can</strong>. Expresa lo que alguien era capaz de hacer en el pasado.</div>
+    </div>
+    <table class="stab red">
+      <tr><th>Present</th><th>Past</th></tr>
+      <tr>
+        <td><div class="ex-row"><button class="spk-btn" onclick="speak('She can speak several languages.')">🔊</button><strong>She <em>can</em> speak several languages.</strong></div><span class="es-sub">Ella puede hablar varios idiomas.</span></td>
+        <td><div class="ex-row"><button class="spk-btn" onclick="speak('She could speak several languages.')">🔊</button><strong>She <em>could</em> speak several languages.</strong></div><span class="es-sub">Ella podía hablar varios idiomas.</span></td>
+      </tr>
+      <tr>
+        <td><div class="ex-row"><button class="spk-btn" onclick="speak('I can swim very well.')">🔊</button><strong>I <em>can</em> swim very well.</strong></div><span class="es-sub">Yo nado muy bien.</span></td>
+        <td><div class="ex-row"><button class="spk-btn" onclick="speak('I could swim very well.')">🔊</button><strong>I <em>could</em> swim very well.</strong></div><span class="es-sub">Yo podía nadar muy bien.</span></td>
+      </tr>
+      <tr>
+        <td><div class="ex-row"><button class="spk-btn" onclick="speak('They can play the guitar.')">🔊</button><strong>They <em>can</em> play the guitar.</strong></div><span class="es-sub">Ellos pueden tocar la guitarra.</span></td>
+        <td><div class="ex-row"><button class="spk-btn" onclick="speak('They could play the guitar.')">🔊</button><strong>They <em>could</em> play the guitar.</strong></div><span class="es-sub">Ellos podían tocar la guitarra.</span></td>
+      </tr>
+    </table>
+    <div class="tip red">
+      <span class="tip-ico">🏊</span>
+      <span><strong>Ejemplo fácil:</strong> <button class="spk-btn" onclick="speak('When my dad was a child, he could ride horses.')">🔊</button>"When my dad was a child, he <strong>could</strong> ride horses" <em>(cuando mi papá era niño, podía/sabía montar caballos)</em>.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">Possibility with may, could, might</div>
+    <div class="concept-def" style="margin-bottom:10px">Se usan cuando no estás seguro de que algo va a pasar. El nivel de certeza cambia según cuál uses:</div>
+    <div class="three-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a2)">May — It is likely</div><div class="mc-val"><button class="spk-btn" onclick="speak('This store may close next week.')">🔊</button></div><div class="mc-body">"This store <strong>may</strong> close." → Es probable que esta tienda cierre.</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a2)">Could — Less likely</div><div class="mc-val"><button class="spk-btn" onclick="speak('This store could close next week.')">🔊</button></div><div class="mc-body">"This store <strong>could</strong> close." → Esta tienda podría cerrar (menos probable).</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a2)">Might — Just a possibility</div><div class="mc-val"><button class="spk-btn" onclick="speak('This store might close next week.')">🔊</button></div><div class="mc-body">"This store <strong>might</strong> close." → Tal vez esta tienda cierre, nada seguro.</div></div>
+    </div>
+    <div class="tip red">
+      <span class="tip-ico">☔</span>
+      <span><strong>Ejemplo fácil:</strong> <button class="spk-btn" onclick="speak('Her umbrella might be in the living room.')">🔊</button>"Her umbrella <strong>might</strong> be in the living room" <em>(su paraguas tal vez esté en la sala, pero no es nada seguro)</em>. Es la opción más "dudosa" de las tres.</span>
+    </div>
+  </div>
+
+  <div class="quiz-box red" id="box-cmm">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Could, May, Might — Ability &amp; Possibility</span></div>
+    <div class="quiz-score" id="score-cmm"></div>
+    <div class="qz-container" id="qz-cmm"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     PERMISSION & SENTENCE FORMS
+═══════════════════════════════════ -->
+<div id="permission">
+  <div class="sec-head green">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Permission with could, may, might — Sentence forms</h2>
+      <p>Cómo pedir permiso y cómo construir afirmaciones, negaciones y preguntas</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">Permission — pidiendo permiso de forma cortés</div>
+    <div class="concept-def" style="margin-bottom:10px">Se usan para pedir o dar permiso de manera formal.</div>
+    <div class="char-grid">
+      <div class="char-card green">
+        <div class="cc-title green">MAY I...?</div>
+        <div class="cc-body">Forma cortés y muy común, tanto al hablar como al escribir.</div>
+        <div class="cc-ex green"><button class="spk-btn" onclick="speak('May I borrow your pencil?')">🔊</button>"May I borrow your pencil?"</div>
+        <div class="cc-es">¿Puedo pedir prestado tu lápiz?</div>
+      </div>
+      <div class="char-card blue">
+        <div class="cc-title blue">MIGHT I...?</div>
+        <div class="cc-body">Es la forma <strong>más</strong> educada de pedir permiso en inglés británico.</div>
+        <div class="cc-ex blue"><button class="spk-btn" onclick="speak('Might I come in?')">🔊</button>"Might I come in?"</div>
+        <div class="cc-es">¿Podría entrar?</div>
+      </div>
+      <div class="char-card gold">
+        <div class="cc-title gold">COULD I...?</div>
+        <div class="cc-body">También cortés; muy usada para pedir algo.</div>
+        <div class="cc-ex gold"><button class="spk-btn" onclick="speak('Could I sit here?')">🔊</button>"Could I sit here?"</div>
+        <div class="cc-es">¿Podría sentarme aquí?</div>
+      </div>
+      <div class="char-card red">
+        <div class="cc-title red">COULD WE...?</div>
+        <div class="cc-body">Igual, pero en plural.</div>
+        <div class="cc-ex red"><button class="spk-btn" onclick="speak('Could we go home?')">🔊</button>"Could we go home?"</div>
+        <div class="cc-es">¿Podríamos irnos a casa?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">Affirmative, negative &amp; interrogative forms</div>
+    <table class="stab green">
+      <tr><th>Form</th><th>Structure</th><th>Example</th></tr>
+      <tr><td>Affirmative</td><td>Subject + could/may/might + verb</td><td><div class="ex-row"><button class="spk-btn" onclick="speak('Jack may come to see us tomorrow.')">🔊</button><strong>Jack <em>may come</em> to see us tomorrow.</strong></div><span class="es-sub">Jack tal vez venga a vernos mañana.</span></td></tr>
+      <tr><td>Negative</td><td>Subject + could/may/might + not + verb</td><td><div class="ex-row"><button class="spk-btn" onclick="speak('Lissa could not be at home.')">🔊</button><strong>Lissa <em>could not be</em> at home.</strong></div><span class="es-sub">Lissa no podía estar en casa.</span></td></tr>
+      <tr><td>Negative (contracted)</td><td><strong>Couldn't</strong> / <em>May not (no contraction)</em> / <strong>Mightn't</strong></td><td><div class="ex-row"><button class="spk-btn" onclick="speak(`That bag mightn't be very expensive.`)">🔊</button><strong>That bag <em>mightn't be</em> very expensive.</strong></div><span class="es-sub">Esa bolsa tal vez no sea muy cara.</span></td></tr>
+      <tr><td>Interrogative</td><td>Could/May/Might + subject + verb + ?</td><td><div class="ex-row"><button class="spk-btn" onclick="speak('Might it rain next week?')">🔊</button><strong><em>Might it rain</em> next week?</strong></div><span class="es-sub">¿Podría llover la próxima semana?</span></td></tr>
+      <tr><td>Wh- questions</td><td>Wh- word + could/may/might + subject + verb</td><td><div class="ex-row"><button class="spk-btn" onclick="speak('Where could I find my keys?')">🔊</button><strong><em>Where could I</em> find my keys?</strong></div><span class="es-sub">¿Dónde podría encontrar mis llaves?</span></td></tr>
+    </table>
+    <div class="tip green">
+      <span class="tip-ico">⚠️</span>
+      <span><strong>Ojo:</strong> "may not" NUNCA se contrae. Sí existen "couldn't" y "mightn't", pero no existe "mayn't" en uso normal.</span>
+    </div>
+  </div>
+
+  <div class="quiz-box green" id="box-permission">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Permission &amp; Sentence Forms</span></div>
+    <div class="quiz-score" id="score-permission"></div>
+    <div class="qz-container" id="qz-permission"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SHOULD
+═══════════════════════════════════ -->
+<div id="should">
+  <div class="sec-head gold">
+    <div class="sec-num">1.1.2</div>
+    <div class="sec-info">
+      <h2>Giving advice with should</h2>
+      <p>Cómo dar consejos, sugerencias y recomendaciones en inglés</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a4)">¿Para qué se usa should?</div>
+    <div class="concept-box gold">
+      <div class="concept-title">SHOULD</div>
+      <div class="concept-def">Se usa para dar consejos, opiniones, sugerencias y recomendaciones — <strong>no</strong> es una obligación estricta como "must".</div>
+    </div>
+    <table class="stab gold">
+      <tr><th>Form</th><th>Structure</th><th>Example</th></tr>
+      <tr><td>Affirmative</td><td>Subject + should + verb</td><td><div class="ex-row"><button class="spk-btn" onclick="speak('You should start eating healthier.')">🔊</button><strong>You <em>should</em> start eating healthier.</strong></div><span class="es-sub">Deberías empezar a comer más saludable.</span></td></tr>
+      <tr><td>Negative</td><td>Subject + should + not + verb</td><td><div class="ex-row"><button class="spk-btn" onclick="speak('You should not call me tomorrow.')">🔊</button><strong>You <em>should not</em> call me tomorrow.</strong></div><span class="es-sub">No deberías llamarme mañana.</span></td></tr>
+      <tr><td>Negative (contracted)</td><td><strong>Shouldn't</strong></td><td><div class="ex-row"><button class="spk-btn" onclick="speak(`She shouldn't behave in that way.`)">🔊</button><strong>She <em>shouldn't</em> behave in that way.</strong></div><span class="es-sub">Ella no debería comportarse así.</span></td></tr>
+      <tr><td>Interrogative</td><td>Should + subject + verb + ?</td><td><div class="ex-row"><button class="spk-btn" onclick="speak('Should we be on time in the meeting?')">🔊</button><strong><em>Should</em> we be on time in the meeting?</strong></div><span class="es-sub">¿Deberíamos llegar a tiempo a la reunión?</span></td></tr>
+      <tr><td>Wh- questions</td><td>Wh- word + should + subject + verb</td><td><div class="ex-row"><button class="spk-btn" onclick="speak('What should I do to solve this problem?')">🔊</button><strong><em>What should</em> I do to solve this problem?</strong></div><span class="es-sub">¿Qué debería hacer para resolver este problema?</span></td></tr>
+    </table>
+    <div class="tip gold">
+      <span class="tip-ico">🧼</span>
+      <span><strong>Ejemplo fácil:</strong> <button class="spk-btn" onclick="speak('You should wash your hands before eating.')">🔊</button>"You <strong>should</strong> wash your hands before eating" <em>(deberías lavarte las manos antes de comer)</em> = es una recomendación, un buen consejo, no una orden estricta.</span>
+    </div>
+  </div>
+
+  <div class="quiz-box gold" id="box-should">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Should — Advice &amp; Obligation</span></div>
+    <div class="quiz-score" id="score-should"></div>
+    <div class="qz-container" id="qz-should"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     WOULD
+═══════════════════════════════════ -->
+<div id="would">
+  <div class="sec-head purple">
+    <div class="sec-num">1.1.3</div>
+    <div class="sec-info">
+      <h2>Would — willingness, requests &amp; hypothetical situations</h2>
+      <p>Cómo expresar deseos, hacer peticiones corteses y hablar de situaciones hipotéticas</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">Los 3 usos principales de would</div>
+    <div class="three-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a5)">Wishes / willingness — Deseos</div><div class="mc-val"><button class="spk-btn" onclick="speak('I would love to live here.')">🔊</button></div><div class="mc-body">"I <strong>would</strong> love to live here." → Me encantaría vivir aquí.</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a5)">Polite requests — Peticiones</div><div class="mc-val"><button class="spk-btn" onclick="speak('Would you open the door, please?')">🔊</button></div><div class="mc-body">"<strong>Would</strong> you open the door, please?" → ¿Podrías abrir la puerta, por favor?</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a5)">Hypothetical — Hipótesis</div><div class="mc-val"><button class="spk-btn" onclick="speak('I would choose that jacket if I were you.')">🔊</button></div><div class="mc-body">"I <strong>would</strong> choose that jacket if I were you." → Yo elegiría esa chaqueta si fuera tú.</div></div>
+    </div>
+    <table class="stab purple">
+      <tr><th>Form</th><th>Structure</th><th>Example</th></tr>
+      <tr><td>Affirmative</td><td>Subject + would + verb</td><td><div class="ex-row"><button class="spk-btn" onclick="speak('She would like some coffee.')">🔊</button><strong>She <em>would</em> like some coffee.</strong></div><span class="es-sub">A ella le gustaría un café.</span></td></tr>
+      <tr><td>Affirmative (contracted)</td><td><strong>'d</strong></td><td><div class="ex-row"><button class="spk-btn" onclick="speak(`She'd like some coffee.`)">🔊</button><strong>She'd like some coffee.</strong></div><span class="es-sub">A ella le gustaría un café.</span></td></tr>
+      <tr><td>Negative</td><td>Subject + would + not + verb</td><td><div class="ex-row"><button class="spk-btn" onclick="speak('We would not lose the keys.')">🔊</button><strong>We <em>would not</em> lose the keys.</strong></div><span class="es-sub">No perderíamos las llaves.</span></td></tr>
+      <tr><td>Negative (contracted)</td><td><strong>Wouldn't</strong></td><td><div class="ex-row"><button class="spk-btn" onclick="speak(`He wouldn't come to the party.`)">🔊</button><strong>He <em>wouldn't</em> come to the party.</strong></div><span class="es-sub">Él no vendría a la fiesta.</span></td></tr>
+      <tr><td>Interrogative</td><td>Would + subject + verb + ?</td><td><div class="ex-row"><button class="spk-btn" onclick="speak('Would you like to come with us?')">🔊</button><strong><em>Would</em> you like to come with us?</strong></div><span class="es-sub">¿Te gustaría venir con nosotros?</span></td></tr>
+      <tr><td>Wh- questions</td><td>Wh- word + would + subject + verb</td><td><div class="ex-row"><button class="spk-btn" onclick="speak('What would you like to have for lunch?')">🔊</button><strong><em>What would</em> you like to have for lunch?</strong></div><span class="es-sub">¿Qué te gustaría comer de almuerzo?</span></td></tr>
+    </table>
+    <div class="tip purple">
+      <span class="tip-ico">☕</span>
+      <span><strong>Ejemplo fácil:</strong> <button class="spk-btn" onclick="speak('Would you like some coffee?')">🔊</button>"<strong>Would</strong> you like some coffee?" <em>(¿te gustaría un café?)</em> es mucho más cortés que "Do you want coffee?" — por eso usamos would en peticiones formales.</span>
+    </div>
+  </div>
+
+  <div class="quiz-box purple" id="box-would">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Would — Wishes, Requests &amp; Hypotheticals</span></div>
+    <div class="quiz-score" id="score-would"></div>
+    <div class="qz-container" id="qz-would"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     RETOS FINALES
+═══════════════════════════════════ -->
+<div id="retos">
+  <div class="sec-head blue">
+    <div class="sec-num">🏆</div>
+    <div class="sec-info">
+      <h2>Retos de repaso — Modal Verbs</h2>
+      <p>Practica creando tus propias oraciones con could, may, might, should y would</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="bubbles">
+      <div class="bubble blue"><div class="b-label">🔵 Reto 1 — Ability</div><div class="b-main">Write a sentence about something you could do when you were a child, but you can't do now.</div><div class="b-sub">Example: "When I was five, I could sleep anywhere. Now I can't." <em>(Cuando tenía cinco años podía dormir en cualquier lugar. Ahora no puedo.)</em></div></div>
+      <div class="bubble green"><div class="b-label">🟢 Reto 2 — Possibility</div><div class="b-main">Write 3 sentences about your weekend plans using may, could and might, from most to least certain.</div></div>
+      <div class="bubble gold"><div class="b-label">🟡 Reto 3 — Advice</div><div class="b-main">Give a friend advice using should and shouldn't about how to do well in school.</div></div>
+      <div class="bubble purple"><div class="b-label">🟣 Reto 4 — BOSS LEVEL: Polite request</div><div class="b-main">Write a short formal dialogue (4 lines) where one person makes a polite request using "would" and "could".</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WORD BANK / GLOSARIO -->
+<div id="glosario" class="wb-section">
+  <div class="wb-title">GLOSARIO DE <span>MODAL VERBS</span></div>
+  <p class="wb-sub">Inglés · 4to Trimestre · Unit 1 · Copia: término → significado → escribe tu propio ejemplo</p>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#5cb8f8">🗣️ ABILITY / HABILIDAD</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Can</div><div class="es">Poder / saber hacer algo (presente).</div></div>
+      <div class="wb-word"><div class="en">Could</div><div class="es">Pasado de "can"; podía / sabía hacer algo.</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#ff8fa0">🎲 POSSIBILITY / POSIBILIDAD</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">May</div><div class="es">Es probable (mayor certeza).</div></div>
+      <div class="wb-word"><div class="en">Could</div><div class="es">Es menos probable.</div></div>
+      <div class="wb-word"><div class="en">Might</div><div class="es">Solo una posibilidad, nada seguro.</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#86efac">🙏 PERMISSION / PERMISO</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">May I...?</div><div class="es">¿Puedo...? (formal y común).</div></div>
+      <div class="wb-word"><div class="en">Might I...?</div><div class="es">¿Podría...? (la forma más educada).</div></div>
+      <div class="wb-word"><div class="en">Could I...?</div><div class="es">¿Podría...? (cortés).</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#fcd45c">💬 ADVICE / CONSEJO</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Should</div><div class="es">Deberías (consejo, no obligación estricta).</div></div>
+      <div class="wb-word"><div class="en">Shouldn't</div><div class="es">No deberías.</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#c4b5fd">☕ WISHES, REQUESTS &amp; HYPOTHETICALS</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Would</div><div class="es">Deseo, petición cortés o situación hipotética.</div></div>
+      <div class="wb-word"><div class="en">Wouldn't</div><div class="es">Contracción de "would not".</div></div>
+      <div class="wb-word"><div class="en">'d</div><div class="es">Contracción de "would" (I'd, She'd...).</div></div>
+    </div>
+  </div>
+
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 18px;font-size:13px;color:rgba(240,246,255,.65);margin-top:4px">
+    🎯 <strong style="color:#fff">Tarea — Unit 1 English:</strong><br>
+    1. Write 5 sentences about your childhood using "could" for past ability.<br>
+    2. Write a short dialogue practicing polite requests with "would" and "could".<br>
+    3. Give a friend 3 pieces of advice using "should" and "shouldn't".<br>
+    4. Write 3 sentences about your future plans using may, could and might.<br>
+    5. Practica en voz alta la pronunciación de los 5 modal verbs usando la sección "🔊 Pronunciación".
+  </div>
+</div>
+
+</div><!-- /wrap -->
+<footer>Inglés · Unit 1 — Modal Verbs · Ejemplos, traducción y pronunciación para practicar en clase</footer>
+
+<script>
+/* ═══ TEXT-TO-SPEECH ═══ */
+function speak(text){
+  try{
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US';
+    u.rate = 0.82;
+    window.speechSynthesis.speak(u);
+  }catch(e){ console.log('Speech synthesis not supported'); }
+}
+
+/* ═══ QUIZ ENGINE ═══ */
+function initQuiz(containerId, scoreId, colorClass, questions){
+  const container = document.getElementById(containerId);
+  const scoreEl = document.getElementById(scoreId);
+  let answered = 0, correct = 0;
+  const total = questions.length;
+  scoreEl.textContent = `Progreso: 0 / ${total} respondidas`;
+
+  questions.forEach((qz, i) => {
+    const qDiv = document.createElement('div');
+    qDiv.className = 'qz-question';
+
+    const qText = document.createElement('div');
+    qText.className = 'qz-qtext';
+    const tag = qz.type === 'tf'
+      ? '<span class="qz-tag" style="background:var(--'+colorClass+')">V / F</span>'
+      : '<span class="qz-tag" style="background:var(--'+colorClass+')">OPCIÓN MÚLTIPLE</span>';
+    qText.innerHTML = `<span class="qz-num">${i+1}.</span><span>${qz.q} ${tag}</span>`;
+    qDiv.appendChild(qText);
+
+    const optsDiv = document.createElement('div');
+    optsDiv.className = qz.type === 'tf' ? 'qz-tf-opts' : 'qz-opts';
+
+    const explainDiv = document.createElement('div');
+    explainDiv.className = 'qz-explain';
+    explainDiv.innerHTML = qz.exp;
+
+    const opts = qz.type === 'tf' ? ['Verdadero', 'Falso'] : qz.options;
+    const correctIdx = qz.type === 'tf' ? (qz.correct ? 0 : 1) : qz.correct;
+
+    opts.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'qz-opt';
+      btn.textContent = qz.type === 'tf' ? opt : String.fromCharCode(97 + idx) + ') ' + opt;
+      btn.onclick = () => {
+        if (qDiv.dataset.done) return;
+        qDiv.dataset.done = '1';
+        answered++;
+        if (idx === correctIdx) correct++;
+        Array.from(optsDiv.children).forEach((b, bi) => {
+          b.classList.add('disabled');
+          if (bi === correctIdx) b.classList.add('correct');
+          else if (bi === idx) b.classList.add('incorrect');
+        });
+        explainDiv.classList.add('show');
+        scoreEl.textContent = `Progreso: ${answered} / ${total} respondidas · ✅ ${correct} correctas`;
+      };
+      optsDiv.appendChild(btn);
+    });
+
+    qDiv.appendChild(optsDiv);
+    qDiv.appendChild(explainDiv);
+    container.appendChild(qDiv);
+  });
+}
+
+/* ===== 1.1 REVIEW ===== */
+initQuiz('qz-review','score-review','a1',[
+{type:'mc', q:'Which modal verb expresses obligation?', options:['Could','Must','Might','Would'], correct:1, exp:'<b>Correct answer: b) Must.</b> "Must" expresses a strong obligation, like "I must memorize these rules." (Debo memorizar estas reglas.)'},
+{type:'mc', q:'Which modal verb is used to give advice?', options:['Should','Can','Might','Have to'], correct:0, exp:'<b>Correct answer: a) Should.</b> "Should" is used for advice, suggestions and opinions, not strict obligation.'},
+{type:'tf', q:'"Might" can express both possibility and permission.', correct:true, exp:'<b>Verdadero.</b> "Might" se usa para posibilidad ("It might rain") y para pedir permiso de forma muy educada ("Might I come in?" — ¿Podría entrar?).'},
+{type:'mc', q:'Complete: "Policemen ___ drink on duty." (prohibition)', options:['must not','could','should','would'], correct:0, exp:'<b>Correct answer: a) must not.</b> "Los policías no deben beber en servicio." Expresa una prohibición estricta.'},
+{type:'tf', q:'"Would" is only used to talk about the past.', correct:false, exp:'<b>Falso.</b> "Would" se usa para deseos, peticiones corteses e hipótesis, no solo para el pasado.'},
+{type:'mc', q:'Which modal expresses ability?', options:['Must','Can / Could','Should','Would'], correct:1, exp:'<b>Correct answer: b) Can / Could.</b> "My brother can speak three languages" (Mi hermano puede hablar tres idiomas) es un ejemplo de habilidad.'},
+{type:'mc', q:'Complete: "___ you like a cup of coffee?" (offer)', options:['Must','Would','Should','Could not'], correct:1, exp:'<b>Correct answer: b) Would.</b> "¿Te gustaría una taza de café?" es la forma cortés de ofrecer algo.'},
+{type:'tf', q:'Modal verbs are always followed by the infinitive with "to".', correct:false, exp:'<b>Falso.</b> Los modal verbs siempre van seguidos del verbo en infinitivo SIN "to": "She can swim", no "She can to swim".'}
+]);
+
+/* ===== PRONUNCIACIÓN ===== */
+initQuiz('qz-pron','score-pron','a5',[
+{type:'mc', q:'¿Cómo suena aproximadamente la palabra "should"?', options:['"shud"','"sould"','"eskul"','"shold"'], correct:0, exp:'<b>Correct answer: a) "shud".</b> /ʃʊd/ — la "sh" suena como en "show", nunca se pronuncia la "o" como en español.'},
+{type:'mc', q:'¿Cómo suena aproximadamente la palabra "would"?', options:['"guold"','"wud"','"vould"','"uold"'], correct:1, exp:'<b>Correct answer: b) "wud".</b> /wʊd/ — la "w" suena como en "web", no como "v" en español.'},
+{type:'tf', q:'La palabra "could" se pronuncia marcando fuerte la letra L.', correct:false, exp:'<b>Falso.</b> En "could" /kʊd/ la L es muda; suena parecido a "cud".'},
+{type:'mc', q:'¿Cómo suena aproximadamente "might"?', options:['"mait"','"míjt"','"mig-jt"','"meit"'], correct:0, exp:'<b>Correct answer: a) "máit".</b> /maɪt/ — la "gh" es muda, no se pronuncia.'},
+{type:'tf', q:'"May" y "might" se pronuncian exactamente igual.', correct:false, exp:'<b>Falso.</b> "May" suena "méi" /meɪ/ y "might" suena "máit" /maɪt/; son distintas.'},
+{type:'mc', q:'La contracción "shouldn\'t" suena aproximadamente como:', options:['"shud-not"','"shúdent"','"sholdent"','"shu-den-te"'], correct:1, exp:'<b>Correct answer: b) "shúdent".</b> /ˈʃʊdənt/ — se pronuncia como una sola palabra fluida, sin pausa.'},
+{type:'tf', q:'Las letras entre diagonales, como /kʊd/, representan el Alfabeto Fonético Internacional (IPA), una guía de pronunciación.', correct:true, exp:'<b>Verdadero.</b> El IPA ayuda a saber exactamente cómo suena una palabra, más allá de cómo se escribe.'},
+{type:'mc', q:'¿Cuál es la mejor forma de mejorar tu pronunciación de estos modal verbs?', options:['Memorizar solo la escritura','Escuchar el audio y repetir en voz alta','Traducir cada letra','Ignorar la pronunciación'], correct:1, exp:'<b>Correct answer: b.</b> Escuchar y repetir en voz alta es la mejor forma de aprender la pronunciación real.'}
+]);
+
+/* ===== COULD, MAY, MIGHT ===== */
+initQuiz('qz-cmm','score-cmm','a2',[
+{type:'mc', q:'"Could" as past ability is the past form of:', options:['Should','Can','Would','Must'], correct:1, exp:'<b>Correct answer: b) Can.</b> "She can speak Spanish" → "She could speak Spanish" (pasado).'},
+{type:'mc', q:'Complete: "When I was a child, I ___ ride horses."', options:['can','could','may','should'], correct:1, exp:'<b>Correct answer: b) could.</b> Habla de una habilidad en el pasado: "Cuando era niño, podía montar a caballo."'},
+{type:'tf', q:'"May", "could", and "might" all express possibility, but with different levels of certainty.', correct:true, exp:'<b>Verdadero.</b> May = más probable, could = menos probable, might = solo una posibilidad.'},
+{type:'mc', q:'Which expresses the HIGHEST likelihood?', options:['Might','Could','May','All are equal'], correct:2, exp:'<b>Correct answer: c) May.</b> "May" indica que es más probable que algo suceda.'},
+{type:'mc', q:'Complete: "This store ___ close next week." (most likely to happen)', options:['might','may','could','should'], correct:1, exp:'<b>Correct answer: b) may.</b> "Es probable que esta tienda cierre la próxima semana."'},
+{type:'tf', q:'"Might" expresses the lowest degree of certainty among may/could/might.', correct:true, exp:'<b>Verdadero.</b> "Might" indica que algo es solo una posibilidad, nada seguro.'},
+{type:'mc', q:'Complete: "Her umbrella ___ be in the living room." (not sure at all, just a small possibility)', options:['may','could','might','must'], correct:2, exp:'<b>Correct answer: c) might.</b> "Su paraguas tal vez esté en la sala" — expresa la menor certeza de las tres opciones.'},
+{type:'tf', q:'"Could" expresses less possibility than "may".', correct:true, exp:'<b>Verdadero.</b> "May" indica mayor probabilidad que "could".'}
+]);
+
+/* ===== PERMISSION & FORMS ===== */
+initQuiz('qz-permission','score-permission','a3',[
+{type:'mc', q:'Which is the MOST polite way (British English) to ask for permission?', options:['Can I...?','Might I...?','Could I not...?','Do I may...?'], correct:1, exp:'<b>Correct answer: b) Might I...?</b> ("¿Podría...?") Es la forma más educada, aunque "May I...?" también es muy común.'},
+{type:'mc', q:'Complete: "___ I borrow your pencil?" (asking permission)', options:['Must','May','Should','Would'], correct:1, exp:'<b>Correct answer: b) May.</b> "¿Puedo pedir prestado tu lápiz?" es una forma cortés y común de pedir permiso.'},
+{type:'tf', q:'The negative form of "may" is "may not" and it CAN be contracted.', correct:false, exp:'<b>Falso.</b> "May not" nunca se contrae; no existe "mayn\'t" en uso normal.'},
+{type:'mc', q:'What is the contraction of "might not"?', options:["Mightn't","Maynt","Mightnot","No contraction"], correct:0, exp:'<b>Correct answer: a) Mightn\'t.</b> "That bag mightn\'t be very expensive." (Esa bolsa tal vez no sea muy cara.)'},
+{type:'mc', q:'Complete the question: "___ she talk to you after school?"', options:['Could','Coulds','Do could','Is could'], correct:0, exp:'<b>Correct answer: a) Could.</b> Se coloca el modal verb al inicio de la pregunta.'},
+{type:'tf', q:'To make a question with modal verbs, you move the modal verb to the front of the sentence.', correct:true, exp:'<b>Verdadero.</b> Ejemplo: "She could talk to you" → "Could she talk to you?"'},
+{type:'mc', q:'Complete: "Lissa ___ be at home." (negative, contracted)', options:["couldn't","could not't","can't be not","doesn't could"], correct:0, exp:'<b>Correct answer: a) couldn\'t.</b> "Lissa couldn\'t be at home." (Lissa no podía estar en casa.)'},
+{type:'tf', q:'Modal verbs change form depending on the subject (he/she/it).', correct:false, exp:'<b>Falso.</b> Los modal verbs no cambian: "he can", "she can", "it can" — nunca se agrega -s.'}
+]);
+
+/* ===== SHOULD ===== */
+initQuiz('qz-should','score-should','a4',[
+{type:'mc', q:'"Should" is mainly used to:', options:['Express strong ability','Give advice or opinions','Talk about the past only','Ask for objects'], correct:1, exp:'<b>Correct answer: b) Give advice or opinions.</b> No es una obligación estricta, sino un consejo.'},
+{type:'mc', q:'Complete: "You ___ eat so much sugar." (negative advice)', options:["shouldn't","should to not","not should","doesn't should"], correct:0, exp:'<b>Correct answer: a) shouldn\'t.</b> "You shouldn\'t eat so much sugar." (No deberías comer tanta azúcar.)'},
+{type:'tf', q:'The interrogative form of "should" is made by moving "should" to the front of the sentence.', correct:true, exp:'<b>Verdadero.</b> "She should talk to you" → "Should she talk to you?"'},
+{type:'mc', q:'Complete: "What ___ I do to solve this problem?"', options:['I should','should I','do should','should do I'], correct:1, exp:'<b>Correct answer: b) should I.</b> "What should I do...?" (¿Qué debería hacer...?)'},
+{type:'tf', q:'"Should" always needs "to" before the main verb.', correct:false, exp:'<b>Falso.</b> "You should call the police", no "You should to call".'},
+{type:'mc', q:'Complete: "You ___ wash your hands before eating." (recommendation)', options:['should','would','mightn\'t','could not'], correct:0, exp:'<b>Correct answer: a) should.</b> Es un consejo de salud.'},
+{type:'mc', q:'What\'s the contraction of "should not"?', options:["Shouldn't","Shou'dnt","Should'nt","Shdn't"], correct:0, exp:'<b>Correct answer: a) Shouldn\'t.</b>'},
+{type:'tf', q:'"Should" is used to talk about strict legal obligations, like laws.', correct:false, exp:'<b>Falso.</b> Eso corresponde más a "must". "Should" es para consejos y recomendaciones, no obligaciones estrictas.'}
+]);
+
+/* ===== WOULD ===== */
+initQuiz('qz-would','score-would','a5',[
+{type:'mc', q:'"Would" is used for all of these EXCEPT:', options:['Wishes and desires','Polite requests','Hypothetical situations','Strict prohibition'], correct:3, exp:'<b>Correct answer: d) Strict prohibition.</b> Para prohibición estricta se usa "must not", no "would".'},
+{type:'mc', q:'Complete: "___ you like some coffee?" (polite offer)', options:['Should','Would','Must','Ought'], correct:1, exp:'<b>Correct answer: b) Would.</b> "Would you like...?" es una oferta cortés (¿Te gustaría...?).'},
+{type:'tf', q:'The contracted form of "would" is \'d.', correct:true, exp:'<b>Verdadero.</b> "I would" → "I\'d", "She would" → "She\'d".'},
+{type:'mc', q:'Complete: "I ___ choose that jacket if I were you." (hypothetical advice)', options:['would','will','can','must'], correct:0, exp:'<b>Correct answer: a) would.</b> Es una situación hipotética ("Yo elegiría esa chaqueta si fuera tú").'},
+{type:'tf', q:'"Wouldn\'t" is the contraction of "would not".', correct:true, exp:'<b>Verdadero.</b> "He would not come" → "He wouldn\'t come." (Él no vendría.)'},
+{type:'mc', q:'Complete: "___ you like to come with us?"', options:['Would','Woulds','Do would','Are would'], correct:0, exp:'<b>Correct answer: a) Would.</b> "Would you like to come with us?" (¿Te gustaría venir con nosotros?)'},
+{type:'mc', q:'Complete: "What ___ you like to do today?" (wh- question)', options:['do would','would','would do','will would'], correct:1, exp:'<b>Correct answer: b) would.</b> "What would you like to do today?" (¿Qué te gustaría hacer hoy?)'},
+{type:'tf', q:'"Would" is only used in questions, never in affirmative sentences.', correct:false, exp:'<b>Falso.</b> "I would love to live here" (Me encantaría vivir aquí) es una oración afirmativa con "would".'}
+]);
+</script>
+</body>
+</html>

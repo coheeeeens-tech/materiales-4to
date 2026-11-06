@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inglés 4 — Unidad II: The Present Perfect Tense</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f0f4f8;--surface:#fff;--border:#c0d0e0;
+  --ink:#061828;--muted:#3a5a78;
+  --a1:#1a4fc4;--a2:#c41a1a;--a3:#1a9a5c;--a4:#b8860b;--a5:#7a1ac4;
+  --a1l:#e8eef9;--a2l:#fdeaea;--a3l:#e3f4e8;--a4l:#fff8e1;--a5l:#f0e8fb;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;line-height:1.7;}
+
+.hero{background:var(--ink);color:#f0f6ff;padding:56px 48px 48px;position:relative;overflow:hidden;}
+.hero::after{content:'🗣️';font-size:220px;position:absolute;right:20px;bottom:-30px;line-height:1;pointer-events:none;opacity:.06;}
+.hero-top{display:flex;align-items:center;gap:16px;margin-bottom:28px;}
+.unit-badge{background:var(--a1);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;padding:4px 14px;border-radius:4px;}
+.subject-tag{font-size:12px;font-weight:500;color:rgba(240,246,255,0.45);letter-spacing:2px;text-transform:uppercase;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,8vw,5rem);line-height:.92;letter-spacing:1px;margin-bottom:16px;}
+.hero h1 span{color:#5cb8f8;}
+.hero-desc{max-width:600px;font-size:15px;color:rgba(240,246,255,0.6);margin-bottom:32px;}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;}
+.pill{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:6px 16px;font-size:13px;font-weight:500;}
+.pill-dot{width:8px;height:8px;border-radius:50%;}
+
+.nav-strip{background:var(--a1);display:flex;overflow-x:auto;position:sticky;top:0;z-index:10;}
+.nav-strip a{color:rgba(255,255,255,.75);text-decoration:none;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:12px 20px;white-space:nowrap;border-right:1px solid rgba(255,255,255,.15);transition:all .2s;}
+.nav-strip a:hover{background:rgba(255,255,255,.12);color:#fff;}
+
+.wrap{max-width:960px;margin:0 auto;padding:0 28px 100px;}
+
+.sec-head{display:flex;align-items:flex-start;margin:56px 0 24px;border-left:5px solid var(--a1);padding-left:18px;}
+.sec-head.red{border-color:var(--a2);} .sec-head.green{border-color:var(--a3);} .sec-head.gold{border-color:var(--a4);} .sec-head.purple{border-color:var(--a5);}
+.sec-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;line-height:1;color:var(--a1);margin-right:14px;flex-shrink:0;}
+.sec-head.red .sec-num{color:var(--a2);} .sec-head.green .sec-num{color:var(--a3);} .sec-head.gold .sec-num{color:var(--a4);} .sec-head.purple .sec-num{color:var(--a5);}
+.sec-info h2{font-family:'Bebas Neue',sans-serif;font-size:1.85rem;letter-spacing:.5px;line-height:1.1;}
+.sec-info p{font-size:13px;color:var(--muted);font-weight:500;}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px 26px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.card-label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+
+.concept-box{border-radius:12px;padding:18px 22px;margin:12px 0;text-align:center;}
+.concept-box.blue{background:linear-gradient(135deg,#061828,#1a4fc4);}
+.concept-box.red{background:linear-gradient(135deg,#2a0a0a,#c41a1a);}
+.concept-box.green{background:linear-gradient(135deg,#0a2a18,#1a9a5c);}
+.concept-box.gold{background:linear-gradient(135deg,#2a1800,#b8860b);}
+.concept-box.purple{background:linear-gradient(135deg,#1a0a2a,#7a1ac4);}
+.concept-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:1px;color:#fff;margin-bottom:6px;}
+.concept-def{font-size:14px;color:rgba(255,255,255,.85);line-height:1.65;}
+
+.tip{border-radius:10px;padding:13px 16px;font-size:13.5px;margin-top:14px;display:flex;gap:10px;align-items:flex-start;}
+.tip.blue{background:rgba(26,79,196,.08);border-left:3px solid var(--a1);}
+.tip.red{background:rgba(196,26,26,.08);border-left:3px solid var(--a2);}
+.tip.green{background:rgba(26,154,92,.08);border-left:3px solid var(--a3);}
+.tip.gold{background:rgba(184,134,11,.08);border-left:3px solid var(--a4);}
+.tip.purple{background:rgba(122,26,196,.08);border-left:3px solid var(--a5);}
+.tip-ico{font-size:18px;flex-shrink:0;margin-top:1px;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;}
+@media(max-width:600px){.two-col,.three-col,.char-grid,.pron-grid{grid-template-columns:1fr;}}
+
+.mini-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.mini-card .mc-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.mini-card .mc-val{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.5px;color:var(--ink);}
+.mini-card .mc-body{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.55;}
+
+.char-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;}
+.char-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;border-left:4px solid var(--a1);}
+.char-card.red{border-color:var(--a2);}.char-card.green{border-color:var(--a3);}.char-card.gold{border-color:var(--a4);}.char-card.purple{border-color:var(--a5);}
+.char-card .cc-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.5px;margin-bottom:6px;}
+.char-card .cc-title.blue{color:var(--a1);}.char-card .cc-title.red{color:var(--a2);}.char-card .cc-title.green{color:var(--a3);}.char-card .cc-title.gold{color:var(--a4);}.char-card .cc-title.purple{color:var(--a5);}
+.char-card .cc-body{font-size:13px;line-height:1.6;color:var(--ink);}
+.char-card .cc-ex{font-size:12px;margin-top:8px;padding:6px 10px;border-radius:6px;font-style:italic;}
+.char-card .cc-ex.blue{background:var(--a1l);color:var(--a1);}.char-card .cc-ex.red{background:var(--a2l);color:var(--a2);}
+.char-card .cc-ex.green{background:var(--a3l);color:var(--a3);}.char-card .cc-ex.gold{background:var(--a4l);color:var(--a4);}
+.char-card .cc-ex.purple{background:var(--a5l);color:var(--a5);}
+
+.stab{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;color:var(--ink);}
+.stab th{text-align:left;padding:9px 12px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-bottom:2px solid;background:rgba(0,0,0,.02);}
+.stab.blue th{color:var(--a1);border-color:var(--a1);}
+.stab.red th{color:var(--a2);border-color:var(--a2);}
+.stab.green th{color:var(--a3);border-color:var(--a3);}
+.stab.gold th{color:var(--a4);border-color:var(--a4);}
+.stab.purple th{color:var(--a5);border-color:var(--a5);}
+.stab td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.stab tr:last-child td{border-bottom:none;}
+.stab tr:nth-child(even) td{background:rgba(0,0,0,.015);}
+
+.formula-box{background:var(--ink);border-radius:12px;padding:20px 24px;margin:14px 0;text-align:center;}
+.formula-box .f-label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(240,246,255,.45);margin-bottom:8px;}
+.formula-box .f-eq{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:1px;color:#5cb8f8;}
+.formula-box .f-note{font-size:12px;color:rgba(240,246,255,.6);margin-top:6px;}
+
+.solved{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.solved-head{display:flex;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid var(--border);}
+.solved-badge{font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:1.5px;padding:3px 10px;border-radius:4px;color:#fff;flex-shrink:0;}
+.bg-blue{background:var(--a1);}.bg-red{background:var(--a2);}.bg-green{background:var(--a3);}.bg-gold{background:var(--a4);}.bg-purple{background:var(--a5);}
+.solved-title{font-weight:700;font-size:14px;color:var(--ink);}
+.solved-body{padding:18px 20px;}
+.paso-grid{display:flex;flex-direction:column;gap:8px;}
+.paso{display:flex;gap:12px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 14px;}
+.paso-num{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;line-height:1;flex-shrink:0;width:28px;}
+.paso-body .p-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;}
+.paso-body .p-op{font-size:14px;font-weight:600;color:var(--ink);}
+.paso-body .p-note{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.5;}
+.resultado-box{border-radius:10px;padding:12px 16px;margin-top:12px;display:flex;gap:10px;align-items:center;}
+.resultado-box.blue{background:rgba(26,79,196,.08);border:1px solid rgba(26,79,196,.2);}
+.resultado-box.red{background:rgba(196,26,26,.08);border:1px solid rgba(196,26,26,.2);}
+.resultado-box.green{background:rgba(26,154,92,.08);border:1px solid rgba(26,154,92,.2);}
+.resultado-box.gold{background:rgba(184,134,11,.08);border:1px solid rgba(184,134,11,.2);}
+.resultado-box.purple{background:rgba(122,26,196,.08);border:1px solid rgba(122,26,196,.2);}
+.res-ico{font-size:22px;flex-shrink:0;}
+.res-body .res-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+.res-body .res-val{font-size:14px;font-weight:700;color:var(--ink);}
+
+.bubbles{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+.bubble{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;}
+.bubble .b-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.bubble .b-main{font-weight:600;font-size:14px;margin-bottom:3px;color:var(--ink);}
+.bubble .b-sub{font-size:12.5px;color:var(--muted);}
+
+.wb-section{background:var(--ink);color:#f0f6ff;border-radius:16px;padding:32px;margin-top:60px;}
+.wb-title{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:1px;margin-bottom:6px;}
+.wb-title span{color:#5cb8f8;}
+.wb-sub{color:rgba(240,246,255,.5);font-size:13.5px;margin-bottom:28px;}
+.wb-group{margin-bottom:28px;}
+.wb-group-title{font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:2px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:12px;}
+.wb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.wb-word{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 12px;}
+.wb-word .en{font-weight:700;font-size:13.5px;margin-bottom:2px;color:#fff;}
+.wb-word .es{font-size:12px;color:rgba(240,246,255,.55);}
+
+footer{text-align:center;padding:28px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--border);margin-top:20px;}
+
+/* ═══ QUIZ INTERACTIVO ═══ */
+.quiz-box{background:var(--surface);border:2px dashed var(--border);border-radius:14px;padding:20px 22px;margin:8px 0 32px;}
+.quiz-box.blue{border-color:var(--a1);}.quiz-box.red{border-color:var(--a2);}
+.quiz-box.green{border-color:var(--a3);}.quiz-box.gold{border-color:var(--a4);}
+.quiz-box.purple{border-color:var(--a5);}
+.quiz-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.quiz-head .qz-ico{font-size:1.5rem;}
+.quiz-head h4{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.5px;color:var(--ink);}
+.quiz-head span.qz-sub{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;}
+.quiz-score{font-size:12px;font-weight:700;margin-bottom:14px;color:var(--muted);}
+.qz-question{background:var(--bg);border-radius:10px;padding:14px 16px;margin-bottom:10px;}
+.qz-question:last-child{margin-bottom:0;}
+.qz-qtext{font-weight:600;font-size:13.5px;margin-bottom:10px;display:flex;gap:8px;align-items:flex-start;color:var(--ink);}
+.qz-qtext .qz-num{font-family:'Bebas Neue',sans-serif;flex-shrink:0;font-size:1.05rem;line-height:1.3;}
+.qz-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:middle;}
+.qz-tag.review{background:#555 !important;}
+.qz-opts{display:flex;flex-direction:column;gap:6px;}
+.qz-tf-opts{display:flex;gap:8px;}
+.qz-opt{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 13px;font-size:13px;cursor:pointer;text-align:left;transition:all .15s;font-family:inherit;color:var(--ink);}
+.qz-tf-opts .qz-opt{flex:1;text-align:center;font-weight:600;}
+.qz-opt:hover:not(.disabled){background:var(--a1l);border-color:var(--a1);}
+.qz-opt.correct{background:rgba(26,154,92,.18);border-color:var(--a3);font-weight:700;color:#0a4a2a;}
+.qz-opt.incorrect{background:rgba(196,26,26,.18);border-color:var(--a2);font-weight:700;color:#7a1414;}
+.qz-opt.disabled{cursor:default;}
+.qz-explain{font-size:12.5px;margin-top:9px;padding:9px 13px;border-radius:8px;background:rgba(0,0,0,.04);display:none;line-height:1.5;color:var(--ink);}
+.qz-explain.show{display:block;}
+.qz-explain b{color:var(--a3);}
+
+/* ═══ PRONUNCIACIÓN ═══ */
+.pron-box{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:20px 22px;margin:14px 0;}
+.pron-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.pron-head .pron-ico{font-size:1.4rem;}
+.pron-head h5{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.5px;color:var(--ink);}
+.pron-note{font-size:12px;color:var(--muted);margin-bottom:14px;}
+.pron-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;}
+.pron-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-align:center;}
+.pron-word{font-weight:700;font-size:15px;color:var(--ink);margin-bottom:2px;}
+.pron-phon{font-size:11.5px;color:var(--muted);font-style:italic;margin-bottom:10px;}
+.pron-btns{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;}
+.pron-btn{border:none;border-radius:100px;padding:6px 10px;font-size:10.5px;font-weight:700;cursor:pointer;color:#fff;}
+.pron-sentence{margin-top:16px;padding-top:14px;border-top:1px dashed var(--border);}
+.pron-sent-item{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--bg);border-radius:8px;padding:9px 12px;margin-bottom:8px;}
+.pron-sent-text{font-size:13.5px;font-style:italic;color:var(--ink);flex:1;min-width:180px;}
+.pron-sent-phon{font-size:11.5px;color:var(--muted);width:100%;}
+
+/* ═══ FILL IN THE BLANK (DUOLINGO STYLE) ═══ */
+.fib-box{background:var(--surface);border:2px dashed var(--border);border-radius:14px;padding:20px 22px;margin:14px 0;}
+.fib-head{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.fib-head .fib-ico{font-size:1.4rem;}
+.fib-head h5{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.5px;color:var(--ink);}
+.fib-note{font-size:12px;color:var(--muted);margin-bottom:14px;}
+.fib-item{background:var(--bg);border-radius:10px;padding:13px 15px;margin-bottom:10px;}
+.fib-item:last-child{margin-bottom:0;}
+.fib-sentence{font-size:14px;margin-bottom:9px;color:var(--ink);}
+.fib-sentence b{color:var(--a1);}
+.fib-input-row{display:flex;gap:8px;flex-wrap:wrap;}
+.fib-input{flex:1;min-width:140px;padding:9px 11px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;color:var(--ink);}
+.fib-check-btn{border:none;border-radius:8px;padding:9px 16px;font-size:12.5px;font-weight:700;cursor:pointer;color:#fff;background:var(--a3);}
+.fib-check-btn:hover{opacity:.88;}
+.fib-feedback{font-size:12.5px;margin-top:8px;font-weight:700;display:none;}
+.fib-feedback.show{display:block;}
+.fib-feedback.correct{color:var(--a3);}
+.fib-feedback.incorrect{color:var(--a2);}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="unit-badge">UNIDAD II</div>
+    <div class="subject-tag">Inglés 4 · The Present Perfect Tense</div>
+  </div>
+  <h1>INGLÉS 4<br><span>UNIDAD II</span></h1>
+  <p class="hero-desc">En esta unidad aprenderás el Present Perfect Tense: cómo formar oraciones afirmativas, negativas e interrogativas; cómo usar already, yet, just, ever, never, how long, for y since. Cada tema incluye ejemplos fáciles, un laboratorio de pronunciación con audio en dos velocidades, ejercicios para completar tipo Duolingo, y preguntas para practicar.</p>
+  <div class="hero-pills">
+    <div class="pill"><div class="pill-dot" style="background:#5cb8f8"></div>2.1 Affirmative · Negative · Interrogative</div>
+    <div class="pill"><div class="pill-dot" style="background:#ff8fa0"></div>2.2 Already · Yet · Just</div>
+    <div class="pill"><div class="pill-dot" style="background:#86efac"></div>2.3 Ever · Never</div>
+    <div class="pill"><div class="pill-dot" style="background:#fcd45c"></div>2.4 How long · For · Since</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-strip">
+  <a href="#p21">2.1 Affirmative/Negative/Interrogative</a>
+  <a href="#p22">2.2 Already/Yet/Just</a>
+  <a href="#p23">2.3 Ever/Never</a>
+  <a href="#p24">2.4 How long/For/Since</a>
+  <a href="#retos">Retos</a>
+  <a href="#glosario">Glosario</a>
+</div>
+
+<div class="wrap">
+
+<!-- ═══════════════════════════════════
+     2.1 AFFIRMATIVE / NEGATIVE / INTERROGATIVE
+═══════════════════════════════════ -->
+<div id="p21">
+  <div class="sec-head blue">
+    <div class="sec-num">2.1</div>
+    <div class="sec-info">
+      <h2>The Present Perfect Tense</h2>
+      <p>Affirmative, negative, interrogative forms and Wh- words</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">¿Qué es el Present Perfect Tense?</div>
+    <div class="concept-box blue">
+      <div class="concept-title">PRESENT PERFECT TENSE</div>
+      <div class="concept-def">Se usa para describir que una acción ha ocurrido una o varias veces antes de ahora. También expresa cambios que empezaron en el pasado y siguen en el presente: conecta una acción terminada con el presente.</div>
+    </div>
+    <div class="tip blue">
+      <span class="tip-ico">🔎</span>
+      <span><strong>Ejemplo fácil:</strong> "I can't go to your party <span style="color:var(--a4)">because I <b>have broken</b> my leg</span>." La segunda parte empezó en el pasado (te rompiste la pierna) y sigue afectando el presente (por eso no puedes ir a la fiesta).</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">2.1.1 Forma afirmativa</div>
+    <table class="stab blue">
+      <tr><th>Subject</th><th>have / has</th><th>Past participle</th></tr>
+      <tr><td>I / You / We / They</td><td>have</td><td>played, swum, cut, gone, drunk…</td></tr>
+      <tr><td>He / She / It</td><td>has</td><td>written, washed, eaten…</td></tr>
+    </table>
+    <div class="card-label" style="color:var(--a1);margin-top:18px">Forma contraída de have/has</div>
+    <table class="stab blue">
+      <tr><th>Subject</th><th>have/has</th><th>Contracción</th></tr>
+      <tr><td>I</td><td>have</td><td>I've</td></tr>
+      <tr><td>You</td><td>have</td><td>You've</td></tr>
+      <tr><td>He</td><td>has</td><td>He's</td></tr>
+      <tr><td>She</td><td>has</td><td>She's</td></tr>
+      <tr><td>It</td><td>has</td><td>It's</td></tr>
+      <tr><td>We</td><td>have</td><td>We've</td></tr>
+      <tr><td>They</td><td>have</td><td>They've</td></tr>
+    </table>
+    <div class="tip gold">
+      <span class="tip-ico">💡</span>
+      <span><strong>Focus!</strong> El participio pasado de un verbo regular se forma agregando <b>-ed</b>: play → play<b>ed</b>, look → look<b>ed</b>, open → open<b>ed</b>. Los verbos irregulares (written, gone, drunk…) no siguen esta regla — hay que aprenderlos de memoria.</span>
+    </div>
+    <div class="two-col" style="margin-top:14px">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a1)">Ejemplo fácil 1</div><div class="mc-body"><i>You have seen this movie.</i> → <i>You've seen this movie.</i></div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a1)">Ejemplo fácil 2</div><div class="mc-body"><i>She has lost her purse.</i> → <i>She's lost her purse.</i></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">2.1.2 Forma negativa</div>
+    <table class="stab blue">
+      <tr><th>Subject</th><th>have/has</th><th>not</th><th>Past participle</th></tr>
+      <tr><td>I / You / We / They</td><td>have</td><td>not</td><td>played, gone…</td></tr>
+      <tr><td>He / She / It</td><td>has</td><td>not</td><td>written, eaten…</td></tr>
+    </table>
+    <p style="font-size:13.5px;color:var(--ink);margin-top:12px">También puedes usar contracciones. Hay dos formas de contraer una oración negativa:</p>
+    <div class="two-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a1)">Opción 1</div><div class="mc-body"><i>He has not finished.</i> → <i>He's not finished.</i></div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a1)">Opción 2</div><div class="mc-body"><i>He has not finished.</i> → <i>He hasn't finished.</i></div></div>
+    </div>
+    <div class="tip blue">
+      <span class="tip-ico">🔎</span>
+      <span><strong>Ejemplo fácil:</strong> "I have not read that book yet." = "I've not read that book yet." = "I haven't read that book yet." — ¡las tres significan lo mismo!</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">2.1.3 Forma interrogativa</div>
+    <p style="font-size:13.5px;color:var(--ink)">Se forma invirtiendo el auxiliar <b>have/has</b> al inicio de la oración (antes del sujeto) y agregando un signo de interrogación (?) al final.</p>
+    <table class="stab blue">
+      <tr><th>have/has</th><th>Subject</th><th>Past participle</th><th>Complement</th><th>?</th></tr>
+      <tr><td>Have</td><td>you</td><td>talked</td><td>to your friend</td><td>?</td></tr>
+      <tr><td>Has</td><td>she</td><td>gone</td><td>to England</td><td>?</td></tr>
+    </table>
+    <div class="card-label" style="color:var(--a1);margin-top:18px">Respuestas cortas y largas</div>
+    <table class="stab blue">
+      <tr><th>Pregunta</th><th>Respuesta corta</th><th>Respuesta larga</th></tr>
+      <tr><td>Has she gone to England?</td><td>Yes, she has.</td><td>Yes, she has gone to England.</td></tr>
+      <tr><td></td><td>No, she hasn't.</td><td>No, she hasn't gone to England.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">2.1.4 Wh- words con el Present Perfect Tense</div>
+    <table class="stab blue">
+      <tr><th>Wh-word</th><th>have/has</th><th>Subject</th><th>Past participle</th><th>Complement</th></tr>
+      <tr><td>Where</td><td>have</td><td>I</td><td>left</td><td>my umbrella?</td></tr>
+      <tr><td>What</td><td>have</td><td>you</td><td>done</td><td>on holidays?</td></tr>
+      <tr><td>When</td><td>has</td><td>he</td><td>gone</td><td>to France?</td></tr>
+      <tr><td>Why</td><td>has</td><td>she</td><td>come</td><td>to your party?</td></tr>
+    </table>
+    <div class="tip blue">
+      <span class="tip-ico">🔎</span>
+      <span><strong>Ejemplo fácil:</strong> "When has he gone to France?" → "He's gone to France last year." / "What have you done this morning?" → "I've baked a cake!"</span>
+    </div>
+  </div>
+
+  <!-- PRONUNCIACIÓN 2.1 -->
+  <div class="pron-box">
+    <div class="pron-head"><span class="pron-ico">🔊</span><h5>LABORATORIO DE PRONUNCIACIÓN</h5></div>
+    <div class="pron-note">Presiona 🐢 para escuchar lento y 🔊 para escuchar a velocidad normal. La pronunciación escrita es una guía aproximada para hispanohablantes (no es el alfabeto fonético real).</div>
+    <div class="pron-grid">
+      <div class="pron-card"><div class="pron-word">have</div><div class="pron-phon">se dice como: "jaf"</div><div class="pron-btns"><button class="pron-btn bg-blue" onclick="speak('have',0.55)">🐢 Lento</button><button class="pron-btn bg-blue" onclick="speak('have',1)">🔊 Normal</button></div></div>
+      <div class="pron-card"><div class="pron-word">has</div><div class="pron-phon">se dice como: "jaz"</div><div class="pron-btns"><button class="pron-btn bg-blue" onclick="speak('has',0.55)">🐢 Lento</button><button class="pron-btn bg-blue" onclick="speak('has',1)">🔊 Normal</button></div></div>
+      <div class="pron-card"><div class="pron-word">haven't</div><div class="pron-phon">se dice como: "JÁ-vent"</div><div class="pron-btns"><button class="pron-btn bg-blue" onclick="speak(`haven't`,0.55)">🐢 Lento</button><button class="pron-btn bg-blue" onclick="speak(`haven't`,1)">🔊 Normal</button></div></div>
+      <div class="pron-card"><div class="pron-word">hasn't</div><div class="pron-phon">se dice como: "JÁ-sent"</div><div class="pron-btns"><button class="pron-btn bg-blue" onclick="speak(`hasn't`,0.55)">🐢 Lento</button><button class="pron-btn bg-blue" onclick="speak(`hasn't`,1)">🔊 Normal</button></div></div>
+    </div>
+    <div class="pron-sentence">
+      <div class="pron-sent-item">
+        <div class="pron-sent-text">"You've seen this movie."</div>
+        <div class="pron-btns"><button class="pron-btn bg-blue" onclick="speak(`You've seen this movie.`,0.55)">🐢 Lento</button><button class="pron-btn bg-blue" onclick="speak(`You've seen this movie.`,1)">🔊 Normal</button></div>
+        <div class="pron-sent-phon">se dice como: "iuv sin dis múvi"</div>
+      </div>
+      <div class="pron-sent-item">
+        <div class="pron-sent-text">"She has lost her purse."</div>
+        <div class="pron-btns"><button class="pron-btn bg-blue" onclick="speak(`She has lost her purse.`,0.55)">🐢 Lento</button><button class="pron-btn bg-blue" onclick="speak(`She has lost her purse.`,1)">🔊 Normal</button></div>
+        <div class="pron-sent-phon">se dice como: "shi jaz lost jer pers"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-blue">EJEMPLO FÁCIL</div>
+      <div class="solved-title">🧩 Arma una oración en Present Perfect, paso a paso</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a1)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a1)">Elige el sujeto</div><div class="p-op">They (ellos)</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a1)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a1)">Elige have o has</div><div class="p-op">"They" usa <b>have</b>.</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a1)">3</div><div class="paso-body"><div class="p-label" style="color:var(--a1)">Agrega el participio pasado</div><div class="p-op">Play (jugar) → played</div></div></div>
+      </div>
+      <div class="resultado-box blue"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">They have played chess. / They've played chess.</div></div></div>
+    </div>
+  </div>
+
+  <!-- FILL IN THE BLANK 2.1 -->
+  <div class="fib-box">
+    <div class="fib-head"><span class="fib-ico">✍️</span><h5>COMPLETA LA ORACIÓN (estilo Duolingo)</h5></div>
+    <div class="fib-note">Escribe la palabra o palabras que faltan y presiona "Revisar".</div>
+    <div class="fib-item"><div class="fib-sentence">1. She <b>___</b> (lose) her purse. <i>(afirmativo)</i></div><div class="fib-input-row"><input class="fib-input" id="fib21-1"><button class="fib-check-btn" onclick="checkFib('fib21-1','fibf21-1',['has lost'])">Revisar</button></div><div class="fib-feedback" id="fibf21-1"></div></div>
+    <div class="fib-item"><div class="fib-sentence">2. I <b>___</b> (read) that book yet. <i>(negativo)</i></div><div class="fib-input-row"><input class="fib-input" id="fib21-2"><button class="fib-check-btn" onclick="checkFib('fib21-2','fibf21-2',['have not read','havent read',`haven't read`])">Revisar</button></div><div class="fib-feedback" id="fibf21-2"></div></div>
+    <div class="fib-item"><div class="fib-sentence">3. <b>___</b> you <b>___</b> (send) the file? <i>(interrogativo)</i></div><div class="fib-input-row"><input class="fib-input" id="fib21-3" placeholder="Have / sent"><button class="fib-check-btn" onclick="checkFib('fib21-3','fibf21-3',['have / sent','have/sent'])">Revisar</button></div><div class="fib-feedback" id="fibf21-3"></div></div>
+    <div class="fib-item"><div class="fib-sentence">4. Where <b>___</b> you <b>___</b> (leave) your umbrella?</div><div class="fib-input-row"><input class="fib-input" id="fib21-4" placeholder="have / left"><button class="fib-check-btn" onclick="checkFib('fib21-4','fibf21-4',['have / left','have/left'])">Revisar</button></div><div class="fib-feedback" id="fibf21-4"></div></div>
+  </div>
+
+  <div class="quiz-box blue" id="box-p21">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Affirmative, negative, interrogative</span></div>
+    <div class="quiz-score" id="score-p21"></div>
+    <div class="qz-container" id="qz-p21"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     2.2 ALREADY, YET, JUST
+═══════════════════════════════════ -->
+<div id="p22">
+  <div class="sec-head red">
+    <div class="sec-num">2.2</div>
+    <div class="sec-info">
+      <h2>The Present Perfect Tense with already, yet and just</h2>
+      <p>Tres palabras pequeñas que cambian el matiz de la oración</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">2.2.1 Already</div>
+    <p style="font-size:13.5px;color:var(--ink)"><b>Already</b> (ya) enfatiza que algo se terminó antes de que pasara otra cosa. Va entre el auxiliar <b>have/has</b> y el participio pasado. Se usa en oraciones <b>afirmativas</b>, no en negativas.</p>
+    <div class="formula-box">
+      <div class="f-label">Estructura</div>
+      <div class="f-eq">Subject + have/has + already + past participle</div>
+      <div class="f-note">Ejemplo: I have already done my homework.</div>
+    </div>
+    <div class="two-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a2)">Ejemplo fácil 1</div><div class="mc-body"><i>He's already painted his house.</i></div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a2)">Ejemplo fácil 2</div><div class="mc-body"><i>They've already paid the bill, thanks.</i></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">2.2.2 Yet</div>
+    <p style="font-size:13.5px;color:var(--ink)"><b>Yet</b> (todavía / aún) se usa en oraciones <b>negativas</b> o en <b>preguntas</b>. Va al final de la oración.</p>
+    <div class="two-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a2)">Negativo</div><div class="mc-body">Subject + have/has + not + past participle + <b>yet</b><br><i>He hasn't done his essay yet.</i></div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a2)">Interrogativo</div><div class="mc-body">have/has + Subject + past participle + <b>yet</b>?<br><i>Have you seen her yet?</i></div></div>
+    </div>
+    <div class="tip gold">
+      <span class="tip-ico">💡</span>
+      <span><strong>Focus!</strong> Puedes hacer preguntas negativas con <b>yet</b> para expresar una expectativa más fuerte: "Hasn't your sister called yet?" (Yo esperaba que ya hubiera llamado).</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">2.2.3 Just</div>
+    <p style="font-size:13.5px;color:var(--ink)"><b>Just</b> significa "recientemente". Se usa en oraciones afirmativas o preguntas, para una acción que terminó en un tiempo muy corto antes de hablar. Va entre <b>have/has</b> y el participio pasado.</p>
+    <div class="formula-box">
+      <div class="f-label">Estructura</div>
+      <div class="f-eq">Subject + have/has + just + past participle</div>
+      <div class="f-note">Ejemplo: I've just bought my ticket.</div>
+    </div>
+    <div class="two-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a2)">Ejemplo fácil 1</div><div class="mc-body"><i>The train has just arrived.</i></div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a2)">Ejemplo fácil 2</div><div class="mc-body"><i>Has my cat just slept?</i></div></div>
+    </div>
+  </div>
+
+  <!-- PRONUNCIACIÓN 2.2 -->
+  <div class="pron-box">
+    <div class="pron-head"><span class="pron-ico">🔊</span><h5>LABORATORIO DE PRONUNCIACIÓN</h5></div>
+    <div class="pron-note">Presiona 🐢 para escuchar lento y 🔊 para escuchar a velocidad normal.</div>
+    <div class="pron-grid">
+      <div class="pron-card"><div class="pron-word">already</div><div class="pron-phon">se dice como: "ol-RÉ-di"</div><div class="pron-btns"><button class="pron-btn bg-red" onclick="speak('already',0.55)">🐢 Lento</button><button class="pron-btn bg-red" onclick="speak('already',1)">🔊 Normal</button></div></div>
+      <div class="pron-card"><div class="pron-word">yet</div><div class="pron-phon">se dice como: "iet"</div><div class="pron-btns"><button class="pron-btn bg-red" onclick="speak('yet',0.55)">🐢 Lento</button><button class="pron-btn bg-red" onclick="speak('yet',1)">🔊 Normal</button></div></div>
+      <div class="pron-card"><div class="pron-word">just</div><div class="pron-phon">se dice como: "yast"</div><div class="pron-btns"><button class="pron-btn bg-red" onclick="speak('just',0.55)">🐢 Lento</button><button class="pron-btn bg-red" onclick="speak('just',1)">🔊 Normal</button></div></div>
+    </div>
+    <div class="pron-sentence">
+      <div class="pron-sent-item">
+        <div class="pron-sent-text">"I have already done my homework."</div>
+        <div class="pron-btns"><button class="pron-btn bg-red" onclick="speak(`I have already done my homework.`,0.55)">🐢 Lento</button><button class="pron-btn bg-red" onclick="speak(`I have already done my homework.`,1)">🔊 Normal</button></div>
+        <div class="pron-sent-phon">se dice como: "ai jaf ol-RÉ-di dan mai jom-uork"</div>
+      </div>
+      <div class="pron-sent-item">
+        <div class="pron-sent-text">"Have you seen her yet?"</div>
+        <div class="pron-btns"><button class="pron-btn bg-red" onclick="speak(`Have you seen her yet?`,0.55)">🐢 Lento</button><button class="pron-btn bg-red" onclick="speak(`Have you seen her yet?`,1)">🔊 Normal</button></div>
+        <div class="pron-sent-phon">se dice como: "jaf iu sin jer iet"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILL IN THE BLANK 2.2 -->
+  <div class="fib-box">
+    <div class="fib-head"><span class="fib-ico">✍️</span><h5>COMPLETA LA ORACIÓN (estilo Duolingo)</h5></div>
+    <div class="fib-note">Escribe already, yet o just en el espacio correcto.</div>
+    <div class="fib-item"><div class="fib-sentence">1. I've <b>___</b> bought my ticket. <i>(recientemente)</i></div><div class="fib-input-row"><input class="fib-input" id="fib22-1"><button class="fib-check-btn" onclick="checkFib('fib22-1','fibf22-1',['just'])">Revisar</button></div><div class="fib-feedback" id="fibf22-1"></div></div>
+    <div class="fib-item"><div class="fib-sentence">2. He hasn't finished his essay <b>___</b>.</div><div class="fib-input-row"><input class="fib-input" id="fib22-2"><button class="fib-check-btn" onclick="checkFib('fib22-2','fibf22-2',['yet'])">Revisar</button></div><div class="fib-feedback" id="fibf22-2"></div></div>
+    <div class="fib-item"><div class="fib-sentence">3. They've <b>___</b> paid the bill.</div><div class="fib-input-row"><input class="fib-input" id="fib22-3"><button class="fib-check-btn" onclick="checkFib('fib22-3','fibf22-3',['already'])">Revisar</button></div><div class="fib-feedback" id="fibf22-3"></div></div>
+  </div>
+
+  <div class="quiz-box red" id="box-p22">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Already, yet, just (incluye repaso de 2.1)</span></div>
+    <div class="quiz-score" id="score-p22"></div>
+    <div class="qz-container" id="qz-p22"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     2.3 EVER / NEVER
+═══════════════════════════════════ -->
+<div id="p23">
+  <div class="sec-head green">
+    <div class="sec-num">2.3</div>
+    <div class="sec-info">
+      <h2>The Present Perfect Tense with ever and never</h2>
+      <p>"¿Alguna vez...?" y "nunca..." en inglés</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">Ever y never: adverbios de tiempo</div>
+    <p style="font-size:13.5px;color:var(--ink)"><b>Ever</b> significa "en cualquier momento" y <b>never</b> significa "en ningún momento". Se usan mucho con el Present Perfect, pero también con otros tiempos verbales.</p>
+    <div class="two-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a3)">Never (afirmativo, sentido negativo)</div><div class="mc-body">Subject + have/has + <b>never</b> + past participle<br><i>She's never met him.</i></div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a3)">Ever (interrogativo)</div><div class="mc-body">have/has + Subject + <b>ever</b> + past participle?<br><i>Have you ever been in Italy?</i></div></div>
+    </div>
+    <div class="tip green">
+      <span class="tip-ico">🔎</span>
+      <span><strong>Ejemplo fácil:</strong> "I have never eaten Japanese food." (Nunca he comido comida japonesa) — parece afirmativa en su estructura, pero su significado es negativo.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">🗺️ Lectura: Have you ever been to England?</div>
+    <p style="font-size:13.5px;color:var(--ink)">En un diálogo, Robert le muestra a Anna fotos de Stonehenge, un sitio en Inglaterra. Anna le pregunta: <i>"Have you ever been to England?"</i> y Robert responde: <i>"No, I've never been there, but my grandparents have. They went there last year."</i></p>
+    <div class="card-label" style="color:var(--a3);margin-top:14px">Algunos lugares turísticos de Inglaterra</div>
+    <table class="stab green">
+      <tr><th>Lugar</th><th>Descripción breve</th></tr>
+      <tr><td>Big Ben</td><td>Torre del reloj más famosa de Londres</td></tr>
+      <tr><td>British Museum</td><td>Museo con piezas históricas de todo el mundo</td></tr>
+      <tr><td>Buckingham Palace</td><td>Residencia oficial de la familia real</td></tr>
+      <tr><td>London Eye</td><td>Rueda de la fortuna a orillas del río Támesis</td></tr>
+      <tr><td>Tower Bridge</td><td>Puente icónico sobre el río Támesis</td></tr>
+      <tr><td>Stonehenge</td><td>Círculo de piedras prehistórico</td></tr>
+      <tr><td>Windsor Castle</td><td>Castillo real habitado desde hace siglos</td></tr>
+    </table>
+    <div class="tip green">
+      <span class="tip-ico">🔎</span>
+      <span><strong>Ejemplo fácil:</strong> "Have your grandparents visited other countries?" → "Yes, they have. They've been to Peru and Argentina, too."</span>
+    </div>
+  </div>
+
+  <!-- PRONUNCIACIÓN 2.3 -->
+  <div class="pron-box">
+    <div class="pron-head"><span class="pron-ico">🔊</span><h5>LABORATORIO DE PRONUNCIACIÓN</h5></div>
+    <div class="pron-note">Presiona 🐢 para escuchar lento y 🔊 para escuchar a velocidad normal.</div>
+    <div class="pron-grid">
+      <div class="pron-card"><div class="pron-word">ever</div><div class="pron-phon">se dice como: "É-ver"</div><div class="pron-btns"><button class="pron-btn bg-green" onclick="speak('ever',0.55)">🐢 Lento</button><button class="pron-btn bg-green" onclick="speak('ever',1)">🔊 Normal</button></div></div>
+      <div class="pron-card"><div class="pron-word">never</div><div class="pron-phon">se dice como: "NÉ-ver"</div><div class="pron-btns"><button class="pron-btn bg-green" onclick="speak('never',0.55)">🐢 Lento</button><button class="pron-btn bg-green" onclick="speak('never',1)">🔊 Normal</button></div></div>
+    </div>
+    <div class="pron-sentence">
+      <div class="pron-sent-item">
+        <div class="pron-sent-text">"Have you ever been to England?"</div>
+        <div class="pron-btns"><button class="pron-btn bg-green" onclick="speak(`Have you ever been to England?`,0.55)">🐢 Lento</button><button class="pron-btn bg-green" onclick="speak(`Have you ever been to England?`,1)">🔊 Normal</button></div>
+        <div class="pron-sent-phon">se dice como: "jaf iu É-ver bin tu ÍN-gland"</div>
+      </div>
+      <div class="pron-sent-item">
+        <div class="pron-sent-text">"I've never been there."</div>
+        <div class="pron-btns"><button class="pron-btn bg-green" onclick="speak(`I've never been there.`,0.55)">🐢 Lento</button><button class="pron-btn bg-green" onclick="speak(`I've never been there.`,1)">🔊 Normal</button></div>
+        <div class="pron-sent-phon">se dice como: "aiv NÉ-ver bin der"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILL IN THE BLANK 2.3 -->
+  <div class="fib-box">
+    <div class="fib-head"><span class="fib-ico">✍️</span><h5>COMPLETA LA ORACIÓN (estilo Duolingo)</h5></div>
+    <div class="fib-note">Escribe ever o never en el espacio correcto.</div>
+    <div class="fib-item"><div class="fib-sentence">1. Have you <b>___</b> been in Italy?</div><div class="fib-input-row"><input class="fib-input" id="fib23-1"><button class="fib-check-btn" onclick="checkFib('fib23-1','fibf23-1',['ever'])">Revisar</button></div><div class="fib-feedback" id="fibf23-1"></div></div>
+    <div class="fib-item"><div class="fib-sentence">2. She's <b>___</b> met him.</div><div class="fib-input-row"><input class="fib-input" id="fib23-2"><button class="fib-check-btn" onclick="checkFib('fib23-2','fibf23-2',['never'])">Revisar</button></div><div class="fib-feedback" id="fibf23-2"></div></div>
+  </div>
+
+  <div class="quiz-box green" id="box-p23">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Ever, never (incluye repaso de 2.1 y 2.2)</span></div>
+    <div class="quiz-score" id="score-p23"></div>
+    <div class="qz-container" id="qz-p23"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     2.4 HOW LONG / FOR / SINCE
+═══════════════════════════════════ -->
+<div id="p24">
+  <div class="sec-head gold">
+    <div class="sec-num">2.4</div>
+    <div class="sec-info">
+      <h2>The Present Perfect Tense with how long, for and since</h2>
+      <p>Cómo hablar de la duración de una acción</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a4)">For y Since</div>
+    <div class="two-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a4)">For</div><div class="mc-body">Expresa la <b>duración</b> de una acción.<br><i>I have done ballet for 15 years.</i></div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a4)">Since</div><div class="mc-body">Expresa el <b>momento en que empezó</b> la acción.<br><i>I have done ballet since I was 3 years old.</i></div></div>
+    </div>
+    <div class="tip gold">
+      <span class="tip-ico">💡</span>
+      <span><strong>Ejemplo fácil:</strong> si esa persona empezó ballet a los 3 años y ahora tiene 18, puedes decirlo de dos formas: "for 15 years" (la duración) o "since I was 3 years old" (el punto de partida). ¡Las dos oraciones significan lo mismo!</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a4)">How long</div>
+    <p style="font-size:13.5px;color:var(--ink)"><b>How long</b> (¿cuánto tiempo?) se usa para preguntar por la duración de una acción, y normalmente se responde con <b>for</b> o <b>since</b>.</p>
+    <table class="stab gold">
+      <tr><th>Pregunta con How long</th><th>Respuesta con for</th><th>Respuesta con since</th></tr>
+      <tr><td>How long have you lived here?</td><td>I have lived here for 10 years.</td><td>I have lived here since I was 10 years old.</td></tr>
+      <tr><td>How long has she worked with you?</td><td>She's worked with me for 3 months.</td><td>She's worked with me since she arrived here.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a4)">🗓️ Lectura: The Deadline</div>
+    <p style="font-size:13.5px;color:var(--ink)">Maggie le pregunta a Tom si ha terminado su tarea. Tom responde: <i>"No, I haven't."</i> Y explica que no ha empezado porque ha tenido muchas otras cosas que hacer: <i>"I have thought about it since past Friday."</i> Al final, su novia lo ha esperado 45 minutos: <i>"My girlfriend has waited for 45 minutes."</i></p>
+    <div class="tip gold">
+      <span class="tip-ico">🔎</span>
+      <span><strong>Ejemplo fácil:</strong> nota cómo Tom usa <b>for</b> (45 minutes = duración) y <b>since</b> (past Friday = punto de partida) en la misma conversación.</span>
+    </div>
+  </div>
+
+  <!-- PRONUNCIACIÓN 2.4 -->
+  <div class="pron-box">
+    <div class="pron-head"><span class="pron-ico">🔊</span><h5>LABORATORIO DE PRONUNCIACIÓN</h5></div>
+    <div class="pron-note">Presiona 🐢 para escuchar lento y 🔊 para escuchar a velocidad normal.</div>
+    <div class="pron-grid">
+      <div class="pron-card"><div class="pron-word">for</div><div class="pron-phon">se dice como: "for"</div><div class="pron-btns"><button class="pron-btn bg-gold" onclick="speak('for',0.55)">🐢 Lento</button><button class="pron-btn bg-gold" onclick="speak('for',1)">🔊 Normal</button></div></div>
+      <div class="pron-card"><div class="pron-word">since</div><div class="pron-phon">se dice como: "sins"</div><div class="pron-btns"><button class="pron-btn bg-gold" onclick="speak('since',0.55)">🐢 Lento</button><button class="pron-btn bg-gold" onclick="speak('since',1)">🔊 Normal</button></div></div>
+      <div class="pron-card"><div class="pron-word">how long</div><div class="pron-phon">se dice como: "jau long"</div><div class="pron-btns"><button class="pron-btn bg-gold" onclick="speak(`how long`,0.55)">🐢 Lento</button><button class="pron-btn bg-gold" onclick="speak(`how long`,1)">🔊 Normal</button></div></div>
+    </div>
+    <div class="pron-sentence">
+      <div class="pron-sent-item">
+        <div class="pron-sent-text">"How long have you lived here?"</div>
+        <div class="pron-btns"><button class="pron-btn bg-gold" onclick="speak(`How long have you lived here?`,0.55)">🐢 Lento</button><button class="pron-btn bg-gold" onclick="speak(`How long have you lived here?`,1)">🔊 Normal</button></div>
+        <div class="pron-sent-phon">se dice como: "jau long jaf iu livd jir"</div>
+      </div>
+      <div class="pron-sent-item">
+        <div class="pron-sent-text">"I have lived here for 10 years."</div>
+        <div class="pron-btns"><button class="pron-btn bg-gold" onclick="speak(`I have lived here for 10 years.`,0.55)">🐢 Lento</button><button class="pron-btn bg-gold" onclick="speak(`I have lived here for 10 years.`,1)">🔊 Normal</button></div>
+        <div class="pron-sent-phon">se dice como: "ai jaf livd jir for ten iers"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILL IN THE BLANK 2.4 -->
+  <div class="fib-box">
+    <div class="fib-head"><span class="fib-ico">✍️</span><h5>COMPLETA LA ORACIÓN (estilo Duolingo)</h5></div>
+    <div class="fib-note">Escribe for o since en el espacio correcto.</div>
+    <div class="fib-item"><div class="fib-sentence">1. I have lived here <b>___</b> 10 years.</div><div class="fib-input-row"><input class="fib-input" id="fib24-1"><button class="fib-check-btn" onclick="checkFib('fib24-1','fibf24-1',['for'])">Revisar</button></div><div class="fib-feedback" id="fibf24-1"></div></div>
+    <div class="fib-item"><div class="fib-sentence">2. She's worked with me <b>___</b> she arrived here.</div><div class="fib-input-row"><input class="fib-input" id="fib24-2"><button class="fib-check-btn" onclick="checkFib('fib24-2','fibf24-2',['since'])">Revisar</button></div><div class="fib-feedback" id="fibf24-2"></div></div>
+    <div class="fib-item"><div class="fib-sentence">3. They've waited <b>___</b> one hour.</div><div class="fib-input-row"><input class="fib-input" id="fib24-3"><button class="fib-check-btn" onclick="checkFib('fib24-3','fibf24-3',['for'])">Revisar</button></div><div class="fib-feedback" id="fibf24-3"></div></div>
+  </div>
+
+  <div class="quiz-box gold" id="box-p24">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: How long, for, since (incluye repaso de toda la unidad)</span></div>
+    <div class="quiz-score" id="score-p24"></div>
+    <div class="qz-container" id="qz-p24"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     RETOS
+═══════════════════════════════════ -->
+<div id="retos">
+  <div class="sec-head green">
+    <div class="sec-num">🏆</div>
+    <div class="sec-info">
+      <h2>Retos de repaso</h2>
+      <p>Pon en práctica lo aprendido en esta unidad</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="bubbles">
+      <div class="bubble blue"><div class="b-label">🔵 Reto 1 — Affirmative/Negative/Interrogative</div><div class="b-main">Escribe 3 oraciones sobre ti mismo en Present Perfect: una afirmativa, una negativa y una pregunta con Wh-word.</div></div>
+      <div class="bubble red"><div class="b-label">🔴 Reto 2 — Already/Yet/Just</div><div class="b-main">Escribe un mini diálogo de 4 líneas usando already, yet y just al menos una vez cada uno.</div></div>
+      <div class="bubble green"><div class="b-label">🟢 Reto 3 — Ever/Never</div><div class="b-main">Pregúntale a un compañero 3 preguntas con "Have you ever...?" y responde usando never si nunca lo has hecho.</div></div>
+      <div class="bubble gold"><div class="b-label">🟡 Reto 4 — BOSS LEVEL: How long/For/Since</div><div class="b-main">Escribe 3 oraciones sobre cuánto tiempo llevas haciendo algo (estudiar inglés, vivir en tu ciudad, etc.), usando for y since.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WORD BANK / GLOSARIO -->
+<div id="glosario" class="wb-section">
+  <div class="wb-title">GLOSARIO DE <span>TÉRMINOS</span></div>
+  <p class="wb-sub">Inglés 4 · Unidad II · Copia: término → definición → tu propio ejemplo</p>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#5cb8f8">🧩 AFFIRMATIVE / NEGATIVE / INTERROGATIVE</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Present Perfect Tense</div><div class="es">Tiempo verbal que conecta una acción pasada con el presente.</div></div>
+      <div class="wb-word"><div class="en">Past participle</div><div class="es">Tercera forma del verbo (played, gone, written…).</div></div>
+      <div class="wb-word"><div class="en">Have / Has</div><div class="es">Auxiliar del Present Perfect según el sujeto.</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#ff8fa0">⏱️ ALREADY / YET / JUST</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Already</div><div class="es">Ya (en oraciones afirmativas).</div></div>
+      <div class="wb-word"><div class="en">Yet</div><div class="es">Todavía / aún (en negativas y preguntas).</div></div>
+      <div class="wb-word"><div class="en">Just</div><div class="es">Recientemente.</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#86efac">🔁 EVER / NEVER</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Ever</div><div class="es">En cualquier momento (en preguntas).</div></div>
+      <div class="wb-word"><div class="en">Never</div><div class="es">Nunca (en afirmativas con sentido negativo).</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#fcd45c">⏳ HOW LONG / FOR / SINCE</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">For</div><div class="es">Duración de una acción (for 10 years).</div></div>
+      <div class="wb-word"><div class="en">Since</div><div class="es">Punto de partida de una acción (since 2015).</div></div>
+      <div class="wb-word"><div class="en">How long</div><div class="es">Pregunta por la duración de una acción.</div></div>
+    </div>
+  </div>
+
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 18px;font-size:13px;color:rgba(240,246,255,.65);margin-top:4px">
+    🎯 <strong style="color:#fff">Tarea:</strong><br>
+    1. Escribe 5 oraciones afirmativas en Present Perfect sobre tu semana.<br>
+    2. Escribe 3 preguntas usando ever y respóndelas.<br>
+    3. Practica en voz alta las oraciones del laboratorio de pronunciación.<br>
+    4. Escribe un diálogo corto usando for y since.
+  </div>
+</div>
+
+</div><!-- /wrap -->
+<footer>Inglés 4 · Unidad II · The Present Perfect Tense</footer>
+
+<script>
+/* ═══ AUDIO / PRONUNCIACIÓN ═══ */
+function speak(text, rate){
+  if(!('speechSynthesis' in window)){
+    alert('Tu navegador no soporta la lectura de voz. Prueba con Chrome o Edge.');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'en-US';
+  utter.rate = rate;
+  utter.pitch = 1;
+  window.speechSynthesis.speak(utter);
+}
+
+/* ═══ FILL IN THE BLANK CHECKER ═══ */
+function normalize(s){
+  return s.trim().toLowerCase().replace(/\s+/g,' ').replace(/’/g,"'");
+}
+function checkFib(inputId, feedbackId, answers){
+  const val = normalize(document.getElementById(inputId).value);
+  const feedbackEl = document.getElementById(feedbackId);
+  const isCorrect = answers.some(a => normalize(a) === val);
+  feedbackEl.classList.add('show');
+  if(isCorrect){
+    feedbackEl.classList.remove('incorrect');
+    feedbackEl.classList.add('correct');
+    feedbackEl.textContent = '✅ ¡Correcto!';
+  } else {
+    feedbackEl.classList.remove('correct');
+    feedbackEl.classList.add('incorrect');
+    feedbackEl.textContent = '❌ Casi. Respuesta correcta: ' + answers[0];
+  }
+}
+
+/* ═══ QUIZ ENGINE ═══ */
+function initQuiz(containerId, scoreId, colorClass, questions){
+  const container = document.getElementById(containerId);
+  const scoreEl = document.getElementById(scoreId);
+  let answered = 0, correct = 0;
+  const total = questions.length;
+  scoreEl.textContent = `Progreso: 0 / ${total} respondidas`;
+
+  questions.forEach((qz, i) => {
+    const qDiv = document.createElement('div');
+    qDiv.className = 'qz-question';
+
+    const qText = document.createElement('div');
+    qText.className = 'qz-qtext';
+    let tag = qz.type === 'tf'
+      ? '<span class="qz-tag" style="background:var(--'+colorClass+')">V / F</span>'
+      : '<span class="qz-tag" style="background:var(--'+colorClass+')">OPCIÓN MÚLTIPLE</span>';
+    if(qz.review){ tag += '<span class="qz-tag review">REPASO</span>'; }
+    qText.innerHTML = `<span class="qz-num">${i+1}.</span><span>${qz.q} ${tag}</span>`;
+    qDiv.appendChild(qText);
+
+    const optsDiv = document.createElement('div');
+    optsDiv.className = qz.type === 'tf' ? 'qz-tf-opts' : 'qz-opts';
+
+    const explainDiv = document.createElement('div');
+    explainDiv.className = 'qz-explain';
+    explainDiv.innerHTML = qz.exp;
+
+    const opts = qz.type === 'tf' ? ['Verdadero', 'Falso'] : qz.options;
+    const correctIdx = qz.type === 'tf' ? (qz.correct ? 0 : 1) : qz.correct;
+
+    opts.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'qz-opt';
+      btn.textContent = qz.type === 'tf' ? opt : String.fromCharCode(97 + idx) + ') ' + opt;
+      btn.onclick = () => {
+        if (qDiv.dataset.done) return;
+        qDiv.dataset.done = '1';
+        answered++;
+        if (idx === correctIdx) correct++;
+        Array.from(optsDiv.children).forEach((b, bi) => {
+          b.classList.add('disabled');
+          if (bi === correctIdx) b.classList.add('correct');
+          else if (bi === idx) b.classList.add('incorrect');
+        });
+        explainDiv.classList.add('show');
+        scoreEl.textContent = `Progreso: ${answered} / ${total} respondidas · ✅ ${correct} correctas`;
+      };
+      optsDiv.appendChild(btn);
+    });
+
+    qDiv.appendChild(optsDiv);
+    qDiv.appendChild(explainDiv);
+    container.appendChild(qDiv);
+  });
+}
+
+/* ===== 2.1 AFFIRMATIVE / NEGATIVE / INTERROGATIVE ===== */
+initQuiz('qz-p21','score-p21','a1',[
+{type:'mc', q:'The Present Perfect Tense is used to describe an action that:', options:['Has taken place once or many times before now','Will happen tomorrow','Is happening right now','Never happens'], correct:0, exp:'<b>Correct answer: a.</b>'},
+{type:'mc', q:'Choose the correct auxiliary verb: "She ___ lost her purse."', options:['has','have','had','having'], correct:0, exp:'<b>Correct answer: a) has.</b> "She" uses "has".'},
+{type:'mc', q:'What is the past participle of the regular verb "play"?', options:['played','plaied','playd','plays'], correct:0, exp:'<b>Correct answer: a) played.</b> Regular verbs add -ed.'},
+{type:'tf', q:'The contraction of "They have" is "They\\'ve".', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'Choose the correct negative form: "He ___ finished his homework."', options:['hasn\\'t','haven\\'t','doesn\\'t','isn\\'t'], correct:0, exp:'<b>Correct answer: a) hasn\\'t.</b> "He" uses "has", so the negative is "hasn\\'t".'},
+{type:'mc', q:'How do you form the interrogative form of the Present Perfect Tense?', options:['Inverting have/has to the front of the sentence','Adding "do" before the subject','Using "will" before the verb','Adding "-ing" to the verb'], correct:0, exp:'<b>Correct answer: a.</b>'},
+{type:'mc', q:'Complete: "___ has he gone to France?" — "He\\'s gone to France last year."', options:['When','What','Who','How much'], correct:0, exp:'<b>Correct answer: a) When.</b>'},
+{type:'tf', q:'The short answer to "Has she gone to England?" if the answer is negative is "No, she hasn\\'t."', correct:true, exp:'<b>Verdadero.</b>'}
+]);
+
+/* ===== 2.2 ALREADY / YET / JUST ===== */
+initQuiz('qz-p22','score-p22','a2',[
+{type:'mc', q:'"Already" is used in:', options:['Affirmative sentences','Negative sentences only','Questions only','Imperative sentences'], correct:0, exp:'<b>Correct answer: a.</b>'},
+{type:'mc', q:'Where does "already" go in the sentence?', options:['Between have/has and the past participle','At the beginning of the sentence','At the end of the sentence','Before the subject'], correct:0, exp:'<b>Correct answer: a.</b>'},
+{type:'mc', q:'"Yet" is typically used in:', options:['Negative sentences or questions','Only affirmative sentences','Only the past tense','Only the future tense'], correct:0, exp:'<b>Correct answer: a.</b>'},
+{type:'tf', q:'"Yet" goes at the end of the sentence.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'"Just" means:', options:['Recently','Never','Always','Yesterday'], correct:0, exp:'<b>Correct answer: a) Recently.</b>'},
+{type:'mc', q:'Complete: "The train has ___ arrived."', options:['just','yet','never','ever'], correct:0, exp:'<b>Correct answer: a) just.</b>'},
+{type:'mc', q:'(REPASO) Complete using the correct auxiliary: "They ___ already paid the bill."', review:true, options:['have','has','had','do'], correct:0, exp:'<b>Correct answer: a) have.</b> "They" uses "have" — repaso del tema 2.1.'},
+{type:'tf', q:'(REPASO) The past participle of an irregular verb must be memorized because it does not follow the -ed rule.', review:true, correct:true, exp:'<b>Verdadero.</b> Repaso del tema 2.1.'}
+]);
+
+/* ===== 2.3 EVER / NEVER ===== */
+initQuiz('qz-p23','score-p23','a3',[
+{type:'mc', q:'"Ever" means:', options:['At any time','At no time','Recently','Always'], correct:0, exp:'<b>Correct answer: a.</b>'},
+{type:'mc', q:'"Never" means:', options:['At no time','At any time','Yesterday','Just now'], correct:0, exp:'<b>Correct answer: a.</b>'},
+{type:'mc', q:'"Ever" is mostly used in:', options:['Questions','Negative statements only','Imperative sentences','Future tense only'], correct:0, exp:'<b>Correct answer: a.</b>'},
+{type:'tf', q:'"Never" is used in affirmative sentences, but with a negative meaning.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'Complete: "Have you ___ been to England?"', options:['ever','never','already','yet'], correct:0, exp:'<b>Correct answer: a) ever.</b>'},
+{type:'mc', q:'Complete: "I\\'ve ___ eaten Japanese food." (nunca)', options:['never','ever','just','yet'], correct:0, exp:'<b>Correct answer: a) never.</b>'},
+{type:'mc', q:'(REPASO) Complete: "She\\'s ___ lost her purse." (ya)', review:true, options:['already','never','ever','yet'], correct:0, exp:'<b>Correct answer: a) already.</b> Repaso del tema 2.2.'},
+{type:'tf', q:'(REPASO) The interrogative form of the Present Perfect Tense is made by inverting have/has to the front of the sentence.', review:true, correct:true, exp:'<b>Verdadero.</b> Repaso del tema 2.1.'}
+]);
+
+/* ===== 2.4 HOW LONG / FOR / SINCE ===== */
+initQuiz('qz-p24','score-p24','a4',[
+{type:'mc', q:'"For" expresses:', options:['The length of time an action has carried on','The exact starting point of an action','A negative meaning','A question'], correct:0, exp:'<b>Correct answer: a.</b>'},
+{type:'mc', q:'"Since" expresses:', options:['Any time when an action started','The length of time only','A future action','A repeated habit'], correct:0, exp:'<b>Correct answer: a.</b>'},
+{type:'mc', q:'Complete: "I have lived here ___ 10 years."', options:['for','since','ever','yet'], correct:0, exp:'<b>Correct answer: a) for.</b>'},
+{type:'mc', q:'Complete: "I have lived here ___ I was 10 years old."', options:['since','for','ever','just'], correct:0, exp:'<b>Correct answer: a) since.</b>'},
+{type:'tf', q:'"How long" is used to ask about the duration of an action.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'Complete: "___ have you waited for?" — "We\\'ve waited for one hour."', options:['How long','How much','How many','How often'], correct:0, exp:'<b>Correct answer: a) How long.</b>'},
+{type:'mc', q:'(REPASO) Complete: "They ___ never been to Peru." (using never, tema 2.3)', review:true, options:['have','has','had','do'], correct:0, exp:'<b>Correct answer: a) have.</b> Repaso del tema 2.3.'},
+{type:'tf', q:'(REPASO) "Already" is placed between the auxiliary verb have/has and the past participle, just like "just".', review:true, correct:true, exp:'<b>Verdadero.</b> Repaso del tema 2.2.'}
+]);
+</script>
+</body>
+</html>

@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metodología de la Investigación — Unidad I (v2)</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f0f4f8;--surface:#fff;--border:#c0d0e0;
+  --ink:#061828;--muted:#3a5a78;
+  --a1:#1a4fc4;--a2:#c41a1a;--a3:#1a9a5c;--a4:#b8860b;--a5:#7a1ac4;
+  --a1l:#e8eef9;--a2l:#fdeaea;--a3l:#e3f4e8;--a4l:#fff8e1;--a5l:#f0e8fb;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;line-height:1.7;}
+
+.hero{background:var(--ink);color:#f0f6ff;padding:56px 48px 48px;position:relative;overflow:hidden;}
+.hero::after{content:'🔍';font-size:220px;position:absolute;right:20px;bottom:-30px;line-height:1;pointer-events:none;opacity:.06;}
+.hero-top{display:flex;align-items:center;gap:16px;margin-bottom:28px;}
+.unit-badge{background:var(--a1);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;padding:4px 14px;border-radius:4px;}
+.subject-tag{font-size:12px;font-weight:500;color:rgba(240,246,255,0.45);letter-spacing:2px;text-transform:uppercase;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,8vw,5rem);line-height:.92;letter-spacing:1px;margin-bottom:16px;}
+.hero h1 span{color:#5cb8f8;}
+.hero-desc{max-width:600px;font-size:15px;color:rgba(240,246,255,0.6);margin-bottom:32px;}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;}
+.pill{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:6px 16px;font-size:13px;font-weight:500;}
+.pill-dot{width:8px;height:8px;border-radius:50%;}
+
+.nav-strip{background:var(--a1);display:flex;overflow-x:auto;position:sticky;top:0;z-index:10;}
+.nav-strip a{color:rgba(255,255,255,.75);text-decoration:none;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:12px 20px;white-space:nowrap;border-right:1px solid rgba(255,255,255,.15);transition:all .2s;}
+.nav-strip a:hover{background:rgba(255,255,255,.12);color:#fff;}
+
+.wrap{max-width:960px;margin:0 auto;padding:0 28px 100px;}
+
+.sec-head{display:flex;align-items:flex-start;margin:56px 0 24px;border-left:5px solid var(--a1);padding-left:18px;}
+.sec-head.red{border-color:var(--a2);} .sec-head.green{border-color:var(--a3);} .sec-head.gold{border-color:var(--a4);} .sec-head.purple{border-color:var(--a5);}
+.sec-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;line-height:1;color:var(--a1);margin-right:14px;flex-shrink:0;}
+.sec-head.red .sec-num{color:var(--a2);} .sec-head.green .sec-num{color:var(--a3);} .sec-head.gold .sec-num{color:var(--a4);} .sec-head.purple .sec-num{color:var(--a5);}
+.sec-info h2{font-family:'Bebas Neue',sans-serif;font-size:1.85rem;letter-spacing:.5px;line-height:1.1;}
+.sec-info p{font-size:13px;color:var(--muted);font-weight:500;}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px 26px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.card-label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+
+.concept-box{border-radius:12px;padding:18px 22px;margin:12px 0;text-align:center;}
+.concept-box.blue{background:linear-gradient(135deg,#061828,#1a4fc4);}
+.concept-box.red{background:linear-gradient(135deg,#2a0a0a,#c41a1a);}
+.concept-box.green{background:linear-gradient(135deg,#0a2a18,#1a9a5c);}
+.concept-box.gold{background:linear-gradient(135deg,#2a1800,#b8860b);}
+.concept-box.purple{background:linear-gradient(135deg,#1a0a2a,#7a1ac4);}
+.concept-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:1px;color:#fff;margin-bottom:6px;}
+.concept-def{font-size:14px;color:rgba(255,255,255,.85);line-height:1.65;}
+
+.tip{border-radius:10px;padding:13px 16px;font-size:13.5px;margin-top:14px;display:flex;gap:10px;align-items:flex-start;}
+.tip.blue{background:rgba(26,79,196,.08);border-left:3px solid var(--a1);}
+.tip.red{background:rgba(196,26,26,.08);border-left:3px solid var(--a2);}
+.tip.green{background:rgba(26,154,92,.08);border-left:3px solid var(--a3);}
+.tip.gold{background:rgba(184,134,11,.08);border-left:3px solid var(--a4);}
+.tip.purple{background:rgba(122,26,196,.08);border-left:3px solid var(--a5);}
+.tip-ico{font-size:18px;flex-shrink:0;margin-top:1px;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px;}
+@media(max-width:600px){.two-col,.char-grid,.pron-grid{grid-template-columns:1fr;}}
+
+.mini-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.mini-card .mc-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.mini-card .mc-val{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.5px;color:var(--ink);}
+.mini-card .mc-body{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.55;}
+
+.char-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;}
+.char-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;border-left:4px solid var(--a1);}
+.char-card.red{border-color:var(--a2);}.char-card.green{border-color:var(--a3);}.char-card.gold{border-color:var(--a4);}.char-card.purple{border-color:var(--a5);}
+.char-card .cc-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.5px;margin-bottom:6px;}
+.char-card .cc-title.blue{color:var(--a1);}.char-card .cc-title.red{color:var(--a2);}.char-card .cc-title.green{color:var(--a3);}.char-card .cc-title.gold{color:var(--a4);}.char-card .cc-title.purple{color:var(--a5);}
+.char-card .cc-body{font-size:13px;line-height:1.6;color:var(--ink);}
+
+.stab{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;color:var(--ink);}
+.stab th{text-align:left;padding:9px 12px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-bottom:2px solid;background:rgba(0,0,0,.02);}
+.stab.blue th{color:var(--a1);border-color:var(--a1);}
+.stab.red th{color:var(--a2);border-color:var(--a2);}
+.stab.green th{color:var(--a3);border-color:var(--a3);}
+.stab.gold th{color:var(--a4);border-color:var(--a4);}
+.stab.purple th{color:var(--a5);border-color:var(--a5);}
+.stab td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.stab tr:last-child td{border-bottom:none;}
+.stab tr:nth-child(even) td{background:rgba(0,0,0,.015);}
+
+.bubbles{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+.bubble{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;}
+.bubble .b-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.bubble .b-main{font-weight:600;font-size:14px;margin-bottom:3px;color:var(--ink);}
+
+.wb-section{background:var(--ink);color:#f0f6ff;border-radius:16px;padding:32px;margin-top:60px;}
+.wb-title{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:1px;margin-bottom:6px;}
+.wb-title span{color:#5cb8f8;}
+.wb-sub{color:rgba(240,246,255,.5);font-size:13.5px;margin-bottom:28px;}
+.wb-group{margin-bottom:28px;}
+.wb-group-title{font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:2px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:12px;}
+.wb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.wb-word{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 12px;}
+.wb-word .en{font-weight:700;font-size:13.5px;margin-bottom:2px;color:#fff;}
+.wb-word .es{font-size:12px;color:rgba(240,246,255,.55);}
+
+footer{text-align:center;padding:28px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--border);margin-top:20px;}
+
+/* ═══ QUIZ ═══ */
+.quiz-box{background:var(--surface);border:2px dashed var(--border);border-radius:14px;padding:20px 22px;margin:8px 0 32px;}
+.quiz-box.blue{border-color:var(--a1);}.quiz-box.red{border-color:var(--a2);}
+.quiz-box.green{border-color:var(--a3);}.quiz-box.gold{border-color:var(--a4);}
+.quiz-box.purple{border-color:var(--a5);}
+.quiz-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.quiz-head .qz-ico{font-size:1.5rem;}
+.quiz-head h4{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.5px;color:var(--ink);}
+.quiz-head span.qz-sub{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;}
+.quiz-score{font-size:12px;font-weight:700;margin-bottom:14px;color:var(--muted);}
+.qz-question{background:var(--bg);border-radius:10px;padding:14px 16px;margin-bottom:10px;}
+.qz-question:last-child{margin-bottom:0;}
+.qz-qtext{font-weight:600;font-size:13.5px;margin-bottom:10px;display:flex;gap:8px;align-items:flex-start;color:var(--ink);}
+.qz-qtext .qz-num{font-family:'Bebas Neue',sans-serif;flex-shrink:0;font-size:1.05rem;line-height:1.3;}
+.qz-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:middle;}
+.qz-tag.situ{background:#7a1ac4 !important;}
+.qz-tag.eng{background:#0a7a7a !important;}
+.qz-opts{display:flex;flex-direction:column;gap:6px;}
+.qz-tf-opts{display:flex;gap:8px;}
+.qz-opt{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 13px;font-size:13px;cursor:pointer;text-align:left;transition:all .15s;font-family:inherit;color:var(--ink);}
+.qz-tf-opts .qz-opt{flex:1;text-align:center;font-weight:600;}
+.qz-opt:hover:not(.disabled){background:var(--a1l);border-color:var(--a1);}
+.qz-opt.correct{background:rgba(26,154,92,.18);border-color:var(--a3);font-weight:700;color:#0a4a2a;}
+.qz-opt.incorrect{background:rgba(196,26,26,.18);border-color:var(--a2);font-weight:700;color:#7a1414;}
+.qz-opt.disabled{cursor:default;}
+.qz-explain{font-size:12.5px;margin-top:9px;padding:9px 13px;border-radius:8px;background:rgba(0,0,0,.04);display:none;line-height:1.5;color:var(--ink);}
+.qz-explain.show{display:block;}
+.qz-explain b{color:var(--a3);}
+
+/* ═══ CRUCIGRAMA ═══ */
+.cw-box{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:20px 22px;margin:14px 0;}
+.cw-head{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+.cw-head .cw-ico{font-size:1.4rem;}
+.cw-head h5{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.5px;color:var(--ink);}
+.cw-layout{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start;}
+.cw-grid-wrap{overflow-x:auto;flex-shrink:0;}
+table.cw-table{border-collapse:collapse;}
+.cw-cell{width:26px;height:26px;border:1px solid var(--ink);padding:0;position:relative;background:#fff;}
+.cw-empty{width:26px;height:26px;border:none;background:transparent;}
+.cw-input{width:100%;height:100%;border:none;text-align:center;font-weight:700;text-transform:uppercase;font-size:13px;background:transparent;font-family:inherit;color:var(--ink);}
+.cw-input:focus{outline:2px solid var(--a1);}
+.cw-input.cw-correct{background:rgba(26,154,92,.28);}
+.cw-input.cw-incorrect{background:rgba(196,26,26,.28);}
+.cw-num{position:absolute;top:0;left:1px;font-size:7px;color:var(--muted);font-weight:700;}
+.cw-clues{flex:1;min-width:220px;}
+.cw-clue-group{margin-bottom:12px;}
+.cw-clue-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.cw-clue{font-size:12.5px;margin-bottom:6px;line-height:1.5;color:var(--ink);}
+.cw-clue b{color:var(--a1);}
+.cw-check-btn{border:none;border-radius:100px;padding:9px 20px;font-size:13px;font-weight:700;cursor:pointer;color:#fff;background:var(--a3);margin-top:10px;}
+.cw-check-btn:hover{opacity:.88;}
+.cw-result{font-size:13px;font-weight:700;margin-top:10px;display:none;}
+.cw-result.show{display:block;}
+
+/* ═══ SOPA DE LETRAS ═══ */
+.ws-box{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:20px 22px;margin:14px 0;}
+.ws-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.ws-head .ws-ico{font-size:1.4rem;}
+.ws-head h5{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.5px;color:var(--ink);}
+.ws-note{font-size:12px;color:var(--muted);margin-bottom:14px;}
+.ws-layout{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start;}
+table.ws-table{border-collapse:collapse;flex-shrink:0;}
+.ws-cell{width:28px;height:28px;border:1px solid var(--border);text-align:center;font-weight:700;font-size:13px;cursor:pointer;user-select:none;color:var(--ink);background:#fff;}
+.ws-cell:hover{background:var(--a1l);}
+.ws-cell.selected{background:#ffe08a;}
+.ws-cell.found{background:rgba(26,154,92,.35);cursor:default;}
+.ws-side{flex:1;min-width:220px;}
+.ws-wordlist{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
+.ws-word-pill{font-size:12.5px;font-weight:700;padding:6px 10px;border-radius:8px;background:var(--bg);border:1px solid var(--border);color:var(--ink);}
+.ws-word-pill.done{background:rgba(26,154,92,.18);border-color:var(--a3);color:#0a4a2a;text-decoration:line-through;}
+.ws-def-box{display:none;background:var(--a3l);border:1px solid var(--a3);border-radius:10px;padding:12px 14px;margin-top:6px;}
+.ws-def-box.show{display:block;}
+.ws-def-box textarea{width:100%;border:1px solid var(--border);border-radius:8px;padding:8px;font-family:inherit;font-size:12.5px;margin-top:6px;resize:vertical;min-height:50px;}
+.ws-def-save{border:none;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;color:#fff;background:var(--a3);margin-top:6px;}
+.ws-progress{font-size:12px;font-weight:700;color:var(--muted);margin-top:10px;}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="unit-badge">UNIDAD I</div>
+    <div class="subject-tag">Metodología de la Investigación</div>
+  </div>
+  <h1>METODOLOGÍA<br><span>DE LA INVESTIGACIÓN</span></h1>
+  <p class="hero-desc">Antes de investigar cualquier cosa, necesitas saber CÓMO vas a recolectar tus datos, A QUIÉNES vas a estudiar, y CÓMO vas a citar y dar crédito a otros autores. Esta es una versión NUEVA de la unidad, con preguntas distintas, crucigramas, sopas de letras interactivas, preguntas en inglés y situaciones para resolver — así que ninguna respuesta memorizada de antes te va a servir. ¡A pensar de verdad!</p>
+  <div class="hero-pills">
+    <div class="pill"><div class="pill-dot" style="background:#5cb8f8"></div>1.1 Método, técnicas e instrumentos</div>
+    <div class="pill"><div class="pill-dot" style="background:#ff8fa0"></div>Validez y confiabilidad</div>
+    <div class="pill"><div class="pill-dot" style="background:#86efac"></div>1.1.2 Población y muestra</div>
+    <div class="pill"><div class="pill-dot" style="background:#fcd45c"></div>1.2 Citas estilo APA</div>
+    <div class="pill"><div class="pill-dot" style="background:#c4b5fd"></div>Citas con varios autores y fichas</div>
+    <div class="pill"><div class="pill-dot" style="background:#5cb8f8"></div>1.2.2 Referencias</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-strip">
+  <a href="#s11">1.1 Método, técnicas e instrumentos</a>
+  <a href="#s12">Validez y confiabilidad</a>
+  <a href="#s13">1.1.2 Población y muestra</a>
+  <a href="#s14">1.2 Citas estilo APA</a>
+  <a href="#s15">Varios autores y fichas</a>
+  <a href="#s16">1.2.2 Referencias</a>
+  <a href="#retos">Retos</a>
+  <a href="#glosario">Glosario</a>
+</div>
+
+<div class="wrap">
+
+<!-- ═══════════════════════════════════
+     1.1 MÉTODO, TÉCNICAS E INSTRUMENTOS
+═══════════════════════════════════ -->
+<div id="s11">
+  <div class="sec-head blue">
+    <div class="sec-num">1.1</div>
+    <div class="sec-info">
+      <h2>Método, técnicas e instrumentos de investigación</h2>
+      <p>Cómo se obtiene la información en una investigación</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">Tres conceptos que no debes confundir</div>
+    <table class="stab blue">
+      <tr><th>Concepto</th><th>Definición</th><th>Ejemplo fácil</th></tr>
+      <tr><td>Método</td><td>El camino que se sigue para lograr una meta u objetivo.</td><td>"Voy a investigar entrevistando gente" es el método general.</td></tr>
+      <tr><td>Técnica</td><td>Conjunto de reglas y operaciones para manejar los instrumentos.</td><td>La entrevista es la técnica.</td></tr>
+      <tr><td>Instrumento</td><td>El dispositivo que permite captar los datos.</td><td>La guía de entrevista (el papel con las preguntas) es el instrumento.</td></tr>
+    </table>
+    <div class="tip blue">
+      <span class="tip-ico">🍳</span>
+      <span><strong>Ejemplo fácil:</strong> piensa en cocinar. El método es "voy a preparar la comida friendo"; la técnica es "freír"; el instrumento es "el sartén". ¡Así de simple es la diferencia!</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">Enfoques de investigación</div>
+    <div class="two-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a1)">Cuantitativo</div><div class="mc-val" style="color:var(--a1)">Números y estadística</div><div class="mc-body">Usa medición numérica y análisis estadístico para probar hipótesis y establecer patrones.</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a1)">Cualitativo</div><div class="mc-val" style="color:var(--a1)">Sin medición numérica</div><div class="mc-body">Descubre o afina preguntas de investigación mediante la interpretación.</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">Técnicas e instrumentos más usados</div>
+    <table class="stab blue">
+      <tr><th>Técnica</th><th>Instrumento</th><th>En qué consiste</th></tr>
+      <tr><td>Encuesta</td><td>Cuestionario</td><td>Preguntas escritas; el encuestador solo marca las respuestas dadas.</td></tr>
+      <tr><td>Entrevista</td><td>Guía de entrevista</td><td>Encuentro cara a cara, preguntas realizadas de forma oral.</td></tr>
+      <tr><td>Experimentación</td><td>Pruebas o test (pretest/postest)</td><td>Se controlan variables para comparar datos antes y después.</td></tr>
+      <tr><td>Observación</td><td>Guía de observación</td><td>Atención metódica hacia un objeto o sujeto para conocerlo.</td></tr>
+      <tr><td>Análisis documental</td><td>Guía de análisis documental</td><td>Revisión de documentos, medios impresos, digitales o audiovisuales.</td></tr>
+    </table>
+    <div class="tip blue">
+      <span class="tip-ico">🔎</span>
+      <span><strong>Ejemplo fácil:</strong> si quieres saber qué piensan tus compañeros sobre la comida de la cafetería, puedes hacer una <b>encuesta</b> (técnica) usando un <b>cuestionario</b> (instrumento) con preguntas de opción múltiple.</span>
+    </div>
+  </div>
+
+  <div class="quiz-box blue" id="box-s11">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Método, técnicas e instrumentos (versión nueva)</span></div>
+    <div class="quiz-score" id="score-s11"></div>
+    <div class="qz-container" id="qz-s11"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     VALIDEZ Y CONFIABILIDAD
+═══════════════════════════════════ -->
+<div id="s12">
+  <div class="sec-head red">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Validez y confiabilidad de los instrumentos</h2>
+      <p>Cómo saber si un instrumento de medición es bueno y de fiar</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">Dos características clave</div>
+    <div class="concept-box red">
+      <div class="concept-title">CONFIABILIDAD</div>
+      <div class="concept-def">Nivel en que un instrumento produce los MISMOS resultados al aplicarse a sujetos similares en condiciones similares.</div>
+    </div>
+    <div class="concept-box blue">
+      <div class="concept-title">VALIDEZ</div>
+      <div class="concept-def">Ayuda a determinar si un instrumento realmente mide la variable que se quiere estudiar.</div>
+    </div>
+    <div class="tip red">
+      <span class="tip-ico">⚖️</span>
+      <span><strong>Ejemplo fácil:</strong> si te pesas hoy y una báscula marca 80 kg, mañana marca 70 kg, y pasado mañana 90 kg (sin ninguna razón), esa báscula NO es confiable. Y si usaras una cinta métrica para "pesarte", esa cinta no sería válida para medir peso (aunque sí sería válida para medir tu estatura).</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">4 tipos de validez</div>
+    <div class="char-grid">
+      <div class="char-card red"><div class="cc-title red">DE CONTENIDO</div><div class="cc-body">Grado en que un instrumento refleja un dominio específico del contenido a medir.</div></div>
+      <div class="char-card red"><div class="cc-title red">DE CRITERIO</div><div class="cc-body">Se compara la herramienta con algún criterio externo que pretende medir lo mismo.</div></div>
+      <div class="char-card red"><div class="cc-title red">DE CONSTRUCTO</div><div class="cc-body">Qué tan exitosamente un instrumento representa y mide un concepto teórico.</div></div>
+      <div class="char-card red"><div class="cc-title red">DE EXPERTOS</div><div class="cc-body">Grado en que, según especialistas en el tema, un instrumento mide la variable en cuestión.</div></div>
+    </div>
+    <div class="tip gold">
+      <span class="tip-ico">➕</span>
+      <span><strong>Dato clave:</strong> la fiabilidad TOTAL de un instrumento es la suma de la validez de contenido, de criterio y de constructo.</span>
+    </div>
+  </div>
+
+  <!-- CRUCIGRAMA META 1 -->
+  <div class="cw-box" id="cwm1">
+    <div class="cw-head"><span class="cw-ico">🧩</span><h5>CRUCIGRAMA — Método, técnica, instrumento, validez y confiabilidad</h5></div>
+    <div class="cw-layout">
+      <div class="cw-grid-wrap" id="cwm1-grid"></div>
+      <div class="cw-clues">
+        <div class="cw-clue-group">
+          <div class="cw-clue-title">Horizontales</div>
+          <div class="cw-clue"><b>1.</b> Camino general que se sigue para lograr un objetivo de investigación.</div>
+          <div class="cw-clue"><b>2.</b> Conjunto de reglas y operaciones para manejar los instrumentos.</div>
+          <div class="cw-clue"><b>3.</b> Cualidad de un instrumento que ayuda a determinar si realmente mide lo que dice medir.</div>
+          <div class="cw-clue"><b>4.</b> Nivel en que un instrumento produce los mismos resultados en condiciones similares.</div>
+        </div>
+        <div class="cw-clue-group">
+          <div class="cw-clue-title">Vertical</div>
+          <div class="cw-clue"><b>5.</b> Dispositivo que permite captar los datos de una investigación.</div>
+        </div>
+      </div>
+    </div>
+    <button class="cw-check-btn" onclick="checkCrossword('cwm1')">✅ Revisar crucigrama</button>
+    <div class="cw-result" id="cwm1-result"></div>
+  </div>
+
+  <div class="quiz-box red" id="box-s12">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Validez y confiabilidad (versión nueva)</span></div>
+    <div class="quiz-score" id="score-s12"></div>
+    <div class="qz-container" id="qz-s12"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     1.1.2 POBLACIÓN Y MUESTRA
+═══════════════════════════════════ -->
+<div id="s13">
+  <div class="sec-head green">
+    <div class="sec-num">1.1.2</div>
+    <div class="sec-info">
+      <h2>Población y muestra</h2>
+      <p>A quiénes vas a estudiar, y cómo elegir a una parte representativa</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">Conceptos básicos</div>
+    <div class="two-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a3)">Población</div><div class="mc-val" style="color:var(--a3)">El total</div><div class="mc-body">Todos los individuos, objetos o casos que se tienen para realizar la investigación. Puede ser finita o infinita.</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a3)">Muestra</div><div class="mc-val" style="color:var(--a3)">Una porción</div><div class="mc-body">Selección de una fracción representativa de la población, con las mismas características, para ahorrar tiempo y recursos.</div></div>
+    </div>
+    <div class="tip green">
+      <span class="tip-ico">🔎</span>
+      <span><strong>Ejemplo fácil:</strong> si quieres saber la opinión de TODOS los estudiantes de tu escuela (población), pero son demasiados, puedes encuestar solo a 50 de ellos elegidos cuidadosamente (muestra).</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">Tipos de muestreo</div>
+    <table class="stab green">
+      <tr><th>Tipo</th><th>Cómo funciona</th></tr>
+      <tr><td>Aleatorio simple</td><td>Se listan y numeran todos, y se eligen números al azar (población homogénea).</td></tr>
+      <tr><td>Sistemático</td><td>Se elige un intervalo regular (ej. cada 5to elemento de la lista).</td></tr>
+      <tr><td>Estratificado</td><td>Se divide la población en grupos (estratos) según características, y se elige al azar la misma cantidad de cada grupo.</td></tr>
+      <tr><td>Participación voluntaria</td><td>Solo se estudia a quienes aceptaron participar (no probabilístico).</td></tr>
+      <tr><td>Muestra de expertos</td><td>Se consulta a especialistas en el tema (no probabilístico).</td></tr>
+    </table>
+    <div class="tip green">
+      <span class="tip-ico">🎟️</span>
+      <span><strong>Ejemplo fácil:</strong> el muestreo aleatorio simple es como una rifa: metes todos los nombres en una urna y sacas algunos al azar. El muestreo estratificado es como elegir el mismo número de personas de cada salón de tu escuela, en vez de solo de un salón.</span>
+    </div>
+  </div>
+
+  <!-- SOPA DE LETRAS 1: POBLACIÓN Y MUESTRA -->
+  <div class="ws-box" id="ws1">
+    <div class="ws-head"><span class="ws-ico">🔡</span><h5>SOPA DE LETRAS — Población y muestra</h5></div>
+    <div class="ws-note">Haz clic en la primera letra de una palabra y luego en su última letra (en línea recta, horizontal o vertical). Cuando encuentres una palabra, escribe TÚ su definición con tus propias palabras.</div>
+    <div class="ws-layout">
+      <div class="ws-grid-wrap" id="ws1-grid"></div>
+      <div class="ws-side">
+        <div class="ws-wordlist" id="ws1-list"></div>
+        <div class="ws-progress" id="ws1-progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-box green" id="box-s13">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Población y muestra (versión nueva)</span></div>
+    <div class="quiz-score" id="score-s13"></div>
+    <div class="qz-container" id="qz-s13"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     1.2 ESTILO APA: CITAS
+═══════════════════════════════════ -->
+<div id="s14">
+  <div class="sec-head gold">
+    <div class="sec-num">1.2</div>
+    <div class="sec-info">
+      <h2>Estilo APA: citas</h2>
+      <p>Cómo dar crédito a las ideas de otros autores correctamente</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a4)">Tipos de citas</div>
+    <div class="two-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a4)">Cita textual (directa)</div><div class="mc-val" style="color:var(--a4)">Copia exacta</div><div class="mc-body">Se extraen fragmentos exactos del autor. Incluye apellido, año y página.</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a4)">Cita de parafraseo</div><div class="mc-val" style="color:var(--a4)">Con tus palabras</div><div class="mc-body">Se explican las ideas de otro autor con palabras propias. Incluye apellido y año (sin página obligatoria).</div></div>
+    </div>
+    <div class="card-label" style="color:var(--a4);margin-top:18px">Cita corta vs. cita en bloque</div>
+    <table class="stab gold">
+      <tr><th>Tipo</th><th>Longitud</th><th>Formato</th></tr>
+      <tr><td>Cita corta</td><td>Menos de 40 palabras</td><td>Va inmersa en el texto, entre comillas, sin cursiva.</td></tr>
+      <tr><td>Cita en bloque</td><td>Más de 40 palabras</td><td>Separada del texto, con sangría, sin comillas y sin cursiva.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a4)">Ejemplo fácil: cita corta parentética vs. narrativa</div>
+    <div class="two-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a4)">Parentética (autor y datos entre paréntesis)</div><div class="mc-body">"El aprendizaje requiere práctica constante" (García, 2015, p. 40).</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a4)">Narrativa (autor mencionado en el texto)</div><div class="mc-body">Para García (2015) "el aprendizaje requiere práctica constante" (p. 40).</div></div>
+    </div>
+    <div class="tip gold">
+      <span class="tip-ico">✅</span>
+      <span><strong>Diferencia clave:</strong> en la narrativa, el apellido va fuera del paréntesis, mezclado en la oración.</span>
+    </div>
+  </div>
+
+  <div class="quiz-box gold" id="box-s14">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Citas estilo APA (versión nueva)</span></div>
+    <div class="quiz-score" id="score-s14"></div>
+    <div class="qz-container" id="qz-s14"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     CITAS CON VARIOS AUTORES Y FICHAS
+═══════════════════════════════════ -->
+<div id="s15">
+  <div class="sec-head purple">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Citas con varios autores y fichas de trabajo</h2>
+      <p>Qué hacer cuando un texto tiene más de un autor</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">Reglas según el número de autores</div>
+    <table class="stab purple">
+      <tr><th>Número de autores</th><th>Cómo se citan</th></tr>
+      <tr><td>2 autores</td><td>Ambos apellidos separados por "y", seguido del año. Siempre igual.</td></tr>
+      <tr><td>3 a 5 autores</td><td>Primera vez: todos los apellidos + año. Después: solo el primer apellido + "et al." + año.</td></tr>
+      <tr><td>6 o más autores</td><td>Desde la primera cita: solo el apellido del primer autor + "et al." + año.</td></tr>
+    </table>
+    <div class="tip purple">
+      <span class="tip-ico">👥</span>
+      <span><strong>Ejemplo fácil:</strong> "et al." significa "y colaboradores". Es como decir "Juan y su equipo", en vez de escribir los 8 nombres cada vez.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">Fichas de trabajo</div>
+    <div class="char-grid">
+      <div class="char-card purple"><div class="cc-title purple">FICHA DE CITA TEXTUAL</div><div class="cc-body">Se reproducen frases exactas de un autor para sustentar ideas.</div></div>
+      <div class="char-card purple"><div class="cc-title purple">FICHA DE PARÁFRASIS</div><div class="cc-body">Se explica una idea con lenguaje propio, conservando la esencia original.</div></div>
+      <div class="char-card purple"><div class="cc-title purple">FICHA DE RESUMEN</div><div class="cc-body">Se anotan las ideas esenciales del texto, sin agregar opiniones personales, respetando el orden original.</div></div>
+    </div>
+    <div class="tip purple">
+      <span class="tip-ico">📏</span>
+      <span><strong>Tamaño recomendado:</strong> media cuartilla, o 21 x 12 cm. Cada ficha debe llevar los datos de la fuente (libro, revista, etc.) para poder citarla después correctamente.</span>
+    </div>
+  </div>
+
+  <div class="quiz-box purple" id="box-s15">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Citas con varios autores y fichas (versión nueva)</span></div>
+    <div class="quiz-score" id="score-s15"></div>
+    <div class="qz-container" id="qz-s15"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     1.2.2 REFERENCIAS
+═══════════════════════════════════ -->
+<div id="s16">
+  <div class="sec-head blue">
+    <div class="sec-num">1.2.2</div>
+    <div class="sec-info">
+      <h2>Referencias</h2>
+      <p>La lista final de todas las fuentes consultadas</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">Los 4 elementos de una referencia</div>
+    <div class="char-grid">
+      <div class="char-card"><div class="cc-title blue">AUTOR(ES)</div><div class="cc-body">Responsable(s) del trabajo.</div></div>
+      <div class="char-card"><div class="cc-title blue">FECHA</div><div class="cc-body">Año en que se publicó el material.</div></div>
+      <div class="char-card"><div class="cc-title blue">TÍTULO</div><div class="cc-body">Nombre del material, en cursivas.</div></div>
+      <div class="char-card"><div class="cc-title blue">FUENTE</div><div class="cc-body">Lugar de consulta o adquisición (editorial o enlace).</div></div>
+    </div>
+    <div class="card-label" style="color:var(--a1);margin-top:18px">Ejemplo fácil: referencia de un libro con un solo autor</div>
+    <table class="stab blue">
+      <tr><th>Formato</th><td>Apellido, A. (Año). <i>Título</i>. Lugar de publicación: Editorial.</td></tr>
+      <tr><th>Ejemplo</th><td>Morín, E. (1999). <i>Los siete saberes necesarios para la educación del futuro</i>. París, Francia: UNESCO.</td></tr>
+    </table>
+    <div class="tip blue">
+      <span class="tip-ico">✅</span>
+      <span><strong>Resultado:</strong> el título va en cursivas, con sangría francesa (todas las líneas después de la primera se sangran).</span>
+    </div>
+    <div class="card-label" style="color:var(--a1);margin-top:18px">Tipos de fichas de registro</div>
+    <div class="char-grid">
+      <div class="char-card"><div class="cc-title blue">BIBLIOGRÁFICAS</div><div class="cc-body">Para libros.</div></div>
+      <div class="char-card"><div class="cc-title blue">HEMEROGRÁFICAS</div><div class="cc-body">Para periódicos, revistas y folletos.</div></div>
+      <div class="char-card"><div class="cc-title blue">ELECTRÓNICAS</div><div class="cc-body">Para páginas web, blogs, libros electrónicos.</div></div>
+    </div>
+  </div>
+
+  <!-- CRUCIGRAMA META 2 -->
+  <div class="cw-box" id="cwm2">
+    <div class="cw-head"><span class="cw-ico">🧩</span><h5>CRUCIGRAMA — Citas y referencias</h5></div>
+    <div class="cw-layout">
+      <div class="cw-grid-wrap" id="cwm2-grid"></div>
+      <div class="cw-clues">
+        <div class="cw-clue-group">
+          <div class="cw-clue-title">Horizontales</div>
+          <div class="cw-clue"><b>1.</b> Selección de una fracción representativa de la población.</div>
+          <div class="cw-clue"><b>2.</b> Explicar las ideas de otro autor con tus propias palabras (dos palabras: "cita de ___").</div>
+          <div class="cw-clue"><b>3.</b> Reproducción exacta, entre comillas, de las palabras de un autor.</div>
+          <div class="cw-clue"><b>4.</b> Documento donde se registran las ideas retomadas de un texto leído.</div>
+        </div>
+        <div class="cw-clue-group">
+          <div class="cw-clue-title">Vertical</div>
+          <div class="cw-clue"><b>5.</b> Lista final de todas las fuentes consultadas en un trabajo de investigación.</div>
+        </div>
+      </div>
+    </div>
+    <button class="cw-check-btn" onclick="checkCrossword('cwm2')">✅ Revisar crucigrama</button>
+    <div class="cw-result" id="cwm2-result"></div>
+  </div>
+
+  <!-- SOPA DE LETRAS 2: REFERENCIAS -->
+  <div class="ws-box" id="ws2">
+    <div class="ws-head"><span class="ws-ico">🔡</span><h5>SOPA DE LETRAS — Referencias</h5></div>
+    <div class="ws-note">Haz clic en la primera letra de una palabra y luego en su última letra. Al encontrarla, escribe su definición con tus propias palabras.</div>
+    <div class="ws-layout">
+      <div class="ws-grid-wrap" id="ws2-grid"></div>
+      <div class="ws-side">
+        <div class="ws-wordlist" id="ws2-list"></div>
+        <div class="ws-progress" id="ws2-progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-box blue" id="box-s16">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Referencias (versión nueva)</span></div>
+    <div class="quiz-score" id="score-s16"></div>
+    <div class="qz-container" id="qz-s16"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     RETOS
+═══════════════════════════════════ -->
+<div id="retos">
+  <div class="sec-head red">
+    <div class="sec-num">🏆</div>
+    <div class="sec-info">
+      <h2>Retos de repaso — Unidad I</h2>
+      <p>Pon en práctica lo aprendido sobre metodología de la investigación</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="bubbles">
+      <div class="bubble blue"><div class="b-label">🔵 Reto 1 — Método, técnica e instrumento</div><div class="b-main">Diseña una mini investigación sobre los hábitos de sueño de tus compañeros. Define el método, la técnica y el instrumento que usarías.</div></div>
+      <div class="bubble green"><div class="b-label">🟢 Reto 2 — Muestra</div><div class="b-main">Si tu escuela tiene 600 estudiantes y quieres una muestra estratificada por grado, explica cómo la elegirías.</div></div>
+      <div class="bubble gold"><div class="b-label">🟡 Reto 3 — Citas APA</div><div class="b-main">Escribe una cita corta parentética y otra narrativa, usando un autor y año inventados.</div></div>
+      <div class="bubble purple"><div class="b-label">🟣 Reto 4 — BOSS LEVEL: Referencia completa</div><div class="b-main">Escribe la referencia completa de un libro de tu elección, siguiendo el formato: Apellido, A. (Año). Título. Lugar: Editorial.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- GLOSARIO -->
+<div id="glosario" class="wb-section">
+  <div class="wb-title">GLOSARIO DE <span>TÉRMINOS</span></div>
+  <p class="wb-sub">Metodología de la Investigación · Unidad I · Copia: término → definición → tu propio ejemplo</p>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#5cb8f8">🔍 MÉTODO, TÉCNICAS E INSTRUMENTOS</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Método</div><div class="es">Camino que se sigue para lograr una meta.</div></div>
+      <div class="wb-word"><div class="en">Técnica</div><div class="es">Reglas para manejar los instrumentos.</div></div>
+      <div class="wb-word"><div class="en">Instrumento</div><div class="es">Dispositivo que capta los datos.</div></div>
+      <div class="wb-word"><div class="en">Confiabilidad</div><div class="es">Que un instrumento dé los mismos resultados en condiciones similares.</div></div>
+      <div class="wb-word"><div class="en">Validez</div><div class="es">Que un instrumento realmente mida lo que dice medir.</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#86efac">📊 POBLACIÓN Y MUESTRA</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Población</div><div class="es">Total de individuos u objetos del estudio.</div></div>
+      <div class="wb-word"><div class="en">Muestra</div><div class="es">Porción representativa de la población.</div></div>
+      <div class="wb-word"><div class="en">Muestreo probabilístico</div><div class="es">Todos tienen la misma posibilidad de ser elegidos.</div></div>
+      <div class="wb-word"><div class="en">Muestreo no probabilístico</div><div class="es">La selección depende de factores del investigador.</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#fcd45c">📚 CITAS Y REFERENCIAS APA</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Cita textual</div><div class="es">Copia exacta de un fragmento de texto.</div></div>
+      <div class="wb-word"><div class="en">Cita de parafraseo</div><div class="es">Idea de otro autor explicada con palabras propias.</div></div>
+      <div class="wb-word"><div class="en">Cita en bloque</div><div class="es">Cita de más de 40 palabras, con sangría.</div></div>
+      <div class="wb-word"><div class="en">et al.</div><div class="es">"Y colaboradores"; se usa con 3+ autores.</div></div>
+      <div class="wb-word"><div class="en">Referencia</div><div class="es">Datos completos de una fuente consultada.</div></div>
+      <div class="wb-word"><div class="en">Ficha de trabajo</div><div class="es">Registro de ideas retomadas de un texto leído.</div></div>
+    </div>
+  </div>
+
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 18px;font-size:13px;color:rgba(240,246,255,.65);margin-top:4px">
+    🎯 <strong style="color:#fff">Tarea — Unidad I Metodología:</strong><br>
+    1. Elige un tema de tu interés y define qué técnica e instrumento usarías para investigarlo.<br>
+    2. Explica con tus palabras la diferencia entre población y muestra, usando un ejemplo de tu escuela.<br>
+    3. Busca un libro o artículo y escribe una cita textual corta y una cita de parafraseo de su contenido.<br>
+    4. Escribe la referencia completa de ese mismo libro o artículo, siguiendo el formato APA.
+  </div>
+</div>
+
+</div><!-- /wrap -->
+<footer>Metodología de la Investigación · Unidad I · Versión 2 (preguntas nuevas)</footer>
+
+<script>
+/* ═══ QUIZ ENGINE ═══ */
+function initQuiz(containerId, scoreId, colorClass, questions){
+  const container = document.getElementById(containerId);
+  const scoreEl = document.getElementById(scoreId);
+  let answered = 0, correct = 0;
+  const total = questions.length;
+  scoreEl.textContent = `Progreso: 0 / ${total} respondidas`;
+
+  questions.forEach((qz, i) => {
+    const qDiv = document.createElement('div');
+    qDiv.className = 'qz-question';
+
+    const qText = document.createElement('div');
+    qText.className = 'qz-qtext';
+    let tag = qz.type === 'tf'
+      ? '<span class="qz-tag" style="background:var(--'+colorClass+')">V / F</span>'
+      : '<span class="qz-tag" style="background:var(--'+colorClass+')">OPCIÓN MÚLTIPLE</span>';
+    if(qz.situ){ tag += '<span class="qz-tag situ">SITUACIÓN</span>'; }
+    if(qz.eng){ tag += '<span class="qz-tag eng">ENGLISH</span>'; }
+    qText.innerHTML = `<span class="qz-num">${i+1}.</span><span>${qz.q} ${tag}</span>`;
+    qDiv.appendChild(qText);
+
+    const optsDiv = document.createElement('div');
+    optsDiv.className = qz.type === 'tf' ? 'qz-tf-opts' : 'qz-opts';
+
+    const explainDiv = document.createElement('div');
+    explainDiv.className = 'qz-explain';
+    explainDiv.innerHTML = qz.exp;
+
+    const opts = qz.type === 'tf' ? ['Verdadero', 'Falso'] : qz.options;
+    const correctIdx = qz.type === 'tf' ? (qz.correct ? 0 : 1) : qz.correct;
+
+    opts.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'qz-opt';
+      btn.textContent = qz.type === 'tf' ? opt : String.fromCharCode(97 + idx) + ') ' + opt;
+      btn.onclick = () => {
+        if (qDiv.dataset.done) return;
+        qDiv.dataset.done = '1';
+        answered++;
+        if (idx === correctIdx) correct++;
+        Array.from(optsDiv.children).forEach((b, bi) => {
+          b.classList.add('disabled');
+          if (bi === correctIdx) b.classList.add('correct');
+          else if (bi === idx) b.classList.add('incorrect');
+        });
+        explainDiv.classList.add('show');
+        scoreEl.textContent = `Progreso: ${answered} / ${total} respondidas · ✅ ${correct} correctas`;
+      };
+      optsDiv.appendChild(btn);
+    });
+
+    qDiv.appendChild(optsDiv);
+    qDiv.appendChild(explainDiv);
+    container.appendChild(qDiv);
+  });
+}
+
+/* ═══ CRUCIGRAMA ENGINE ═══ */
+function buildCrossword(containerId, words){
+  let maxRow=0, maxCol=0;
+  words.forEach(w=>{
+    if(w.dir==='H'){ maxRow=Math.max(maxRow,w.row); maxCol=Math.max(maxCol,w.col+w.word.length-1); }
+    else { maxRow=Math.max(maxRow,w.row+w.word.length-1); maxCol=Math.max(maxCol,w.col); }
+  });
+  const rows=maxRow+1, cols=maxCol+1;
+  const grid = Array.from({length:rows},()=>Array(cols).fill(null));
+  words.forEach(w=>{
+    for(let i=0;i<w.word.length;i++){
+      const r = w.dir==='H'? w.row : w.row+i;
+      const c = w.dir==='H'? w.col+i : w.col;
+      grid[r][c]=w.word[i];
+    }
+  });
+  let num=1;
+  const numbering={};
+  words.forEach(w=>{
+    const key=w.row+','+w.col;
+    if(!(key in numbering)){ numbering[key]=num++; }
+  });
+  const table=document.createElement('table');
+  table.className='cw-table';
+  for(let r=0;r<rows;r++){
+    const tr=document.createElement('tr');
+    for(let c=0;c<cols;c++){
+      const td=document.createElement('td');
+      if(grid[r][c]){
+        td.className='cw-cell';
+        const key=r+','+c;
+        if(key in numbering){
+          const numSpan=document.createElement('span');
+          numSpan.className='cw-num';
+          numSpan.textContent=numbering[key];
+          td.appendChild(numSpan);
+        }
+        const inp=document.createElement('input');
+        inp.maxLength=1;
+        inp.className='cw-input';
+        inp.dataset.answer=grid[r][c];
+        inp.addEventListener('input',(e)=>{ e.target.value=e.target.value.toUpperCase(); });
+        td.appendChild(inp);
+      } else {
+        td.className='cw-empty';
+      }
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  document.getElementById(containerId+'-grid').appendChild(table);
+}
+
+function checkCrossword(containerId){
+  const inputs = document.querySelectorAll('#'+containerId+' .cw-input');
+  let correct=0;
+  inputs.forEach(inp=>{
+    const val = inp.value.trim().toUpperCase();
+    inp.classList.remove('cw-correct','cw-incorrect');
+    if(val===inp.dataset.answer){ inp.classList.add('cw-correct'); correct++; }
+    else { inp.classList.add('cw-incorrect'); }
+  });
+  const resultEl = document.getElementById(containerId+'-result');
+  resultEl.classList.add('show');
+  resultEl.style.color = correct===inputs.length ? 'var(--a3)' : 'var(--a2)';
+  resultEl.textContent = correct+' / '+inputs.length+' letras correctas';
+}
+
+/* ═══ SOPA DE LETRAS ENGINE ═══ */
+function buildWordSearch(containerId, size, placements){
+  const grid = Array.from({length:size},()=>Array(size).fill(null));
+  placements.forEach(p=>{
+    for(let i=0;i<p.word.length;i++){
+      const r = p.dir==='H'? p.row : p.row+i;
+      const c = p.dir==='H'? p.col+i : p.col;
+      grid[r][c] = p.word[i];
+    }
+  });
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  for(let r=0;r<size;r++){
+    for(let c=0;c<size;c++){
+      if(!grid[r][c]){ grid[r][c] = letters[Math.floor(Math.random()*letters.length)]; }
+    }
+  }
+
+  const pending = {};
+  placements.forEach(p=>{ pending[p.word] = p; });
+
+  const table = document.createElement('table');
+  table.className = 'ws-table';
+  const cells = {};
+  for(let r=0;r<size;r++){
+    const tr = document.createElement('tr');
+    for(let c=0;c<size;c++){
+      const td = document.createElement('td');
+      td.className = 'ws-cell';
+      td.textContent = grid[r][c];
+      td.dataset.row = r;
+      td.dataset.col = c;
+      cells[r+','+c] = td;
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  document.getElementById(containerId+'-grid').appendChild(table);
+
+  const listEl = document.getElementById(containerId+'-list');
+  const pills = {};
+  placements.forEach(p=>{
+    const pill = document.createElement('div');
+    pill.className = 'ws-word-pill';
+    pill.textContent = p.word;
+    pills[p.word] = pill;
+    listEl.appendChild(pill);
+
+    const defBox = document.createElement('div');
+    defBox.className = 'ws-def-box';
+    defBox.innerHTML = `<div style="font-size:12.5px;font-weight:700;color:var(--a3)">¡Encontraste "${p.word}"! Escribe su definición:</div><textarea placeholder="Escribe aquí tu definición..."></textarea><br><button class="ws-def-save">Guardar</button>`;
+    listEl.appendChild(defBox);
+    p._defBox = defBox;
+    const saveBtn = defBox.querySelector('.ws-def-save');
+    saveBtn.onclick = () => {
+      const val = defBox.querySelector('textarea').value.trim();
+      if(val.length > 0){
+        defBox.innerHTML = `<div style="font-size:12.5px;color:var(--a3);font-weight:700">✅ Definición guardada: "${val}"</div>`;
+      }
+    };
+  });
+
+  const progressEl = document.getElementById(containerId+'-progress');
+  let foundCount = 0;
+  function updateProgress(){
+    progressEl.textContent = `Encontradas: ${foundCount} / ${placements.length}`;
+  }
+  updateProgress();
+
+  let selStart = null;
+  Object.keys(cells).forEach(key=>{
+    const td = cells[key];
+    td.addEventListener('click', ()=>{
+      if(td.classList.contains('found')) return;
+      if(!selStart){
+        selStart = td;
+        td.classList.add('selected');
+        return;
+      }
+      const r1 = parseInt(selStart.dataset.row), c1 = parseInt(selStart.dataset.col);
+      const r2 = parseInt(td.dataset.row), c2 = parseInt(td.dataset.col);
+      let path = [];
+      if(r1 === r2){
+        const step = c2 >= c1 ? 1 : -1;
+        for(let c=c1;c!==c2+step;c+=step){ path.push(cells[r1+','+c]); }
+      } else if(c1 === c2){
+        const step = r2 >= r1 ? 1 : -1;
+        for(let r=r1;r!==r2+step;r+=step){ path.push(cells[r+','+c1]); }
+      } else {
+        // not a straight line, reset selection
+        selStart.classList.remove('selected');
+        selStart = td;
+        td.classList.add('selected');
+        return;
+      }
+      const str = path.map(c=>c.textContent).join('');
+      const strRev = str.split('').reverse().join('');
+      let matchedWord = null;
+      Object.keys(pending).forEach(w=>{
+        if(str === w || strRev === w){ matchedWord = w; }
+      });
+      selStart.classList.remove('selected');
+      if(matchedWord){
+        path.forEach(c=>{ c.classList.remove('selected'); c.classList.add('found'); });
+        pills[matchedWord].classList.add('done');
+        pending[matchedWord]._defBox.classList.add('show');
+        delete pending[matchedWord];
+        foundCount++;
+        updateProgress();
+      }
+      selStart = null;
+    });
+  });
+}
+
+/* Sopa de letras 1: Población y muestra */
+buildWordSearch('ws1', 12, [
+  {word:'POBLACION', row:0, col:0, dir:'H'},
+  {word:'MUESTRA', row:2, col:3, dir:'H'},
+  {word:'ESTRATO', row:4, col:0, dir:'V'},
+  {word:'ALEATORIO', row:6, col:2, dir:'H'}
+]);
+
+/* Sopa de letras 2: Referencias */
+buildWordSearch('ws2', 12, [
+  {word:'REFERENCIA', row:0, col:0, dir:'H'},
+  {word:'AUTOR', row:2, col:0, dir:'H'},
+  {word:'FUENTE', row:4, col:0, dir:'H'},
+  {word:'TITULO', row:6, col:0, dir:'V'},
+  {word:'FICHA', row:2, col:6, dir:'V'}
+]);
+
+/* Crucigrama Meta 1: método/técnica/instrumento/validez/confiabilidad */
+buildCrossword('cwm1', [
+  {word:'INSTRUMENTO', row:0, col:5, dir:'V'},
+  {word:'VALIDEZ', row:0, col:2, dir:'H'},
+  {word:'CONFIABILIDAD', row:1, col:3, dir:'H'},
+  {word:'TECNICA', row:3, col:5, dir:'H'},
+  {word:'METODO', row:6, col:5, dir:'H'}
+]);
+
+/* Crucigrama Meta 2: citas y referencias */
+buildCrossword('cwm2', [
+  {word:'REFERENCIA', row:0, col:5, dir:'V'},
+  {word:'MUESTRA', row:1, col:3, dir:'H'},
+  {word:'PARAFRASEO', row:2, col:1, dir:'H'},
+  {word:'CITA', row:7, col:5, dir:'H'},
+  {word:'FICHA', row:8, col:4, dir:'H'}
+]);
+
+/* ===== 1.1 MÉTODO, TÉCNICAS E INSTRUMENTOS (TODAS NUEVAS) ===== */
+initQuiz('qz-s11','score-s11','a1',[
+{type:'mc', situ:true, q:'Ana quiere estudiar si sus compañeros prefieren estudiar de día o de noche, y les entrega un cuestionario escrito con opciones para marcar. ¿Cuál es el instrumento en este caso?', options:['El cuestionario','La entrevista','El método','La muestra'], correct:0, exp:'<b>Respuesta correcta: a) El cuestionario.</b> Es el dispositivo/papel que capta los datos.'},
+{type:'mc', q:'El camino general que se sigue para lograr un objetivo de investigación se llama:', options:['Técnica','Instrumento','Método','Muestra'], correct:2, exp:'<b>Respuesta correcta: c) Método.</b>'},
+{type:'mc', eng:true, q:'Which of these is an example of a research "technique", not an "instrument"?', options:['Interview','Questionnaire (the paper)','Observation guide','Test (the document)'], correct:0, exp:'<b>Correct answer: a) Interview.</b> Interview is the technique; the interview guide (paper) would be the instrument.'},
+{type:'tf', q:'La guía de observación es el instrumento que corresponde a la técnica de observación.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', situ:true, q:'Un investigador revisa notas periodísticas antiguas para analizar cómo cambió la opinión pública sobre un tema. ¿Qué técnica está usando?', options:['Análisis documental','Experimentación','Encuesta','Entrevista'], correct:0, exp:'<b>Respuesta correcta: a) Análisis documental.</b>'},
+{type:'mc', q:'Un estudio que mide cuántas personas prefieren cierto producto usando porcentajes y estadística tiene un enfoque:', options:['Cualitativo','Cuantitativo','Documental','Experimental'], correct:1, exp:'<b>Respuesta correcta: b) Cuantitativo.</b>'},
+{type:'mc', eng:true, q:'A researcher gives 4 questionnaires to each of 15 people. How many questionnaires are used in total?', options:['19','60','11','45'], correct:1, exp:'<b>Correct answer: b) 60.</b> (4 × 15 = 60)'},
+{type:'tf', q:'La entrevista siempre se realiza por escrito y nunca de forma oral.', correct:false, exp:'<b>Falso.</b> La entrevista es un encuentro cara a cara con preguntas realizadas de forma oral.'}
+]);
+
+/* ===== VALIDEZ Y CONFIABILIDAD (TODAS NUEVAS) ===== */
+initQuiz('qz-s12','score-s12','a2',[
+{type:'mc', situ:true, q:'Cada vez que tomas el mismo examen de matemáticas en condiciones similares, obtienes resultados muy parecidos. Esto demuestra que el examen tiene:', options:['Validez','Confiabilidad','Muestra','Población'], correct:1, exp:'<b>Respuesta correcta: b) Confiabilidad.</b>'},
+{type:'mc', q:'La validez de un instrumento se refiere a que:', options:['Dé siempre el mismo resultado','Realmente mida lo que dice medir','Sea barato de aplicar','Tenga muchas preguntas'], correct:1, exp:'<b>Respuesta correcta: b.</b>'},
+{type:'mc', situ:true, q:'Usas una regla (de medir longitud) para intentar medir el nivel de felicidad de las personas. ¿Qué le falta a este instrumento?', options:['Validez','Confiabilidad','Muestra','Técnica'], correct:0, exp:'<b>Respuesta correcta: a) Validez.</b> Una regla no mide felicidad, así que no es válida para esa variable.'},
+{type:'tf', q:'La validez de contenido se refiere a qué tan bien un instrumento refleja el dominio específico que se quiere medir.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'¿Qué tipo de validez compara el instrumento con un criterio externo que mide lo mismo?', options:['De contenido','De criterio','De constructo','De expertos'], correct:1, exp:'<b>Respuesta correcta: b) De criterio.</b>'},
+{type:'mc', eng:true, q:'Which word means "the ability of an instrument to measure what it claims to measure"?', options:['Reliability','Validity','Sample','Method'], correct:1, exp:'<b>Correct answer: b) Validity.</b>'},
+{type:'mc', q:'La fiabilidad total de un instrumento resulta de sumar la validez de:', options:['Contenido, criterio y constructo','Solo expertos','Solo contenido','Muestra y población'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', situ:true, q:'Un termómetro marca temperaturas distintas cada vez que mides el mismo cuarto, sin ninguna razón aparente. Ese termómetro es confiable.', correct:false, exp:'<b>Falso.</b> Si no da resultados consistentes en condiciones similares, no es confiable.'}
+]);
+
+/* ===== 1.1.2 POBLACIÓN Y MUESTRA (TODAS NUEVAS) ===== */
+initQuiz('qz-s13','score-s13','a3',[
+{type:'mc', situ:true, q:'Una escuela tiene 900 alumnos en total. Si decides estudiar a todos ellos, estás trabajando con:', options:['Una muestra','La población','Un instrumento','Una técnica'], correct:1, exp:'<b>Respuesta correcta: b) La población.</b>'},
+{type:'mc', q:'Elegir solo a 60 personas de los 900 alumnos de una escuela para un estudio se llama:', options:['Población','Muestra','Validez','Confiabilidad'], correct:1, exp:'<b>Respuesta correcta: b) Muestra.</b>'},
+{type:'mc', eng:true, q:'A school has 500 students. If you use systematic sampling and pick every 5th student on the list, how many students will be in your sample? (500 ÷ 5)', options:['100','5','500','25'], correct:0, exp:'<b>Correct answer: a) 100.</b>'},
+{type:'mc', q:'Si divides a los alumnos en grupos por grado y seleccionas al azar la misma cantidad de cada grupo, el muestreo es:', options:['Aleatorio simple','Estratificado','Sistemático','De expertos'], correct:1, exp:'<b>Respuesta correcta: b) Estratificado.</b>'},
+{type:'tf', q:'El muestreo de participación voluntaria es un tipo de muestreo probabilístico.', correct:false, exp:'<b>Falso.</b> Es un muestreo NO probabilístico.'},
+{type:'mc', situ:true, q:'Consultas a 5 especialistas en educación para validar tu instrumento de investigación. ¿Qué tipo de muestreo usaste?', options:['Muestra de expertos','Aleatorio simple','Sistemático','Estratificado'], correct:0, exp:'<b>Respuesta correcta: a) Muestra de expertos.</b>'},
+{type:'mc', eng:true, q:'Which word describes a population that has a limited, countable number of members?', options:['Infinite','Finite','Random','Stratified'], correct:1, exp:'<b>Correct answer: b) Finite.</b>'},
+{type:'mc', q:'El muestreo donde todos los miembros de la población tienen la misma posibilidad de ser elegidos es:', options:['No probabilístico','Aleatorio simple','De expertos','Voluntario'], correct:1, exp:'<b>Respuesta correcta: b) Aleatorio simple.</b>'}
+]);
+
+/* ===== 1.2 CITAS ESTILO APA (TODAS NUEVAS) ===== */
+initQuiz('qz-s14','score-s14','a4',[
+{type:'mc', q:'Cuando copias exactamente las palabras de un autor entre comillas, estás usando una cita:', options:['De parafraseo','Textual','En bloque únicamente','De resumen'], correct:1, exp:'<b>Respuesta correcta: b) Textual.</b>'},
+{type:'mc', situ:true, q:'Escribes: \'La motivación es clave (Pérez, 2020, p. 15)\' al final de tu oración. ¿Qué tipo de cita es?', options:['Parentética','Narrativa','En bloque','De resumen'], correct:0, exp:'<b>Respuesta correcta: a) Parentética.</b>'},
+{type:'mc', situ:true, q:'Escribes: \'Según Pérez (2020), la motivación es clave (p. 15)\'. ¿Qué tipo de cita es?', options:['Parentética','Narrativa','De parafraseo sin autor','Ninguna de las anteriores'], correct:1, exp:'<b>Respuesta correcta: b) Narrativa.</b> El apellido va mezclado en el texto.'},
+{type:'mc', q:'Una cita de más de 40 palabras debe escribirse:', options:['Entre comillas y en cursiva','Separada del texto, con sangría, sin comillas','Como nota al pie únicamente','Sin mencionar al autor'], correct:1, exp:'<b>Respuesta correcta: b.</b>'},
+{type:'tf', q:'Una cita de parafraseo siempre debe incluir el número de página.', correct:false, exp:'<b>Falso.</b> En el parafraseo la página no es obligatoria.'},
+{type:'mc', eng:true, q:'Which term describes explaining someone else\'s idea using your own words?', options:['Direct quote','Paraphrase','Reference','Footnote'], correct:1, exp:'<b>Correct answer: b) Paraphrase.</b>'},
+{type:'mc', situ:true, q:'Tu cita tiene 55 palabras copiadas exactamente de un libro. ¿Cómo debes presentarla?', options:['Como cita corta entre comillas','Como cita en bloque, con sangría','Sin citar al autor','Como paráfrasis'], correct:1, exp:'<b>Respuesta correcta: b.</b> Más de 40 palabras = cita en bloque.'},
+{type:'mc', q:'¿Qué datos son obligatorios en cualquier cita textual?', options:['Apellido y año (y página)','Solo el título','Solo la editorial','Ninguno, no se necesita citar'], correct:0, exp:'<b>Respuesta correcta: a.</b>'}
+]);
+
+/* ===== CITAS CON VARIOS AUTORES Y FICHAS (TODAS NUEVAS) ===== */
+initQuiz('qz-s15','score-s15','a5',[
+{type:'mc', situ:true, q:'Tu fuente tiene 2 autores: García y López. ¿Cómo se cita en cualquier momento del texto?', options:['Solo García','García y López (año)','López et al.','Solo el año'], correct:1, exp:'<b>Respuesta correcta: b.</b> Con 2 autores siempre se citan ambos apellidos.'},
+{type:'mc', situ:true, q:'Tu fuente tiene 4 autores y es la PRIMERA vez que la citas en tu trabajo. ¿Qué haces?', options:['Escribes los 4 apellidos + año','Solo el primer apellido + et al.','Solo el año','No se cita'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'Después de la primera cita de una fuente con 4 autores, en las siguientes veces escribes:', options:['Todos los apellidos otra vez','Primer apellido + et al. + año','Solo el año','Ningún apellido'], correct:1, exp:'<b>Respuesta correcta: b.</b>'},
+{type:'mc', situ:true, q:'Tu fuente tiene 9 autores. ¿Cómo se cita desde la PRIMERA vez?', options:['Todos los apellidos','Primer apellido + et al. + año','Los primeros 3 apellidos','Solo el título'], correct:1, exp:'<b>Respuesta correcta: b.</b> Con 6 o más autores se usa "et al." desde la primera cita.'},
+{type:'tf', q:'Una ficha de resumen debe incluir las opiniones personales del estudiante.', correct:false, exp:'<b>Falso.</b> La ficha de resumen no debe llevar opiniones personales.'},
+{type:'mc', q:'¿Qué tipo de ficha reproduce frases exactas de un autor?', options:['Ficha de resumen','Ficha de cita textual','Ficha de paráfrasis','Ninguna de las anteriores'], correct:1, exp:'<b>Respuesta correcta: b.</b>'},
+{type:'mc', eng:true, q:'What does "et al." mean in an APA citation?', options:['"And others"','"The end"','"For example"','"In the same place"'], correct:0, exp:'<b>Correct answer: a) "And others".</b>'},
+{type:'mc', q:'El tamaño recomendado para una ficha de trabajo es:', options:['Una hoja completa','Media cuartilla (21 x 12 cm)','Un post-it','No tiene tamaño recomendado'], correct:1, exp:'<b>Respuesta correcta: b.</b>'}
+]);
+
+/* ===== 1.2.2 REFERENCIAS (TODAS NUEVAS) ===== */
+initQuiz('qz-s16','score-s16','a1',[
+{type:'mc', q:'Las referencias se colocan:', options:['Al inicio, antes del índice','Al final del documento, en orden alfabético','Dentro de cada párrafo','No son necesarias si ya citaste en el texto'], correct:1, exp:'<b>Respuesta correcta: b.</b>'},
+{type:'mc', eng:true, q:'Your reference list has 12 books, and you need to add 3 more for a new project. How many references will you have in total?', options:['9','15','36','4'], correct:1, exp:'<b>Correct answer: b) 15.</b> (12 + 3 = 15)'},
+{type:'mc', q:'¿Cuáles son los 4 elementos que debe tener toda referencia según APA?', options:['Autor, fecha, título y fuente','Solo autor y título','Solo fecha y editorial','Índice, resumen y anexos'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'El título de un libro en una referencia APA se escribe en cursivas.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', situ:true, q:'Vas a registrar la fuente de un artículo publicado en una revista impresa. ¿Qué tipo de ficha usas?', options:['Bibliográfica','Hemerográfica','Electrónica','Ninguna'], correct:1, exp:'<b>Respuesta correcta: b) Hemerográfica.</b>'},
+{type:'mc', situ:true, q:'Vas a registrar la fuente de un blog que leíste en internet. ¿Qué tipo de ficha usas?', options:['Bibliográfica','Hemerográfica','Electrónica','Ninguna'], correct:2, exp:'<b>Respuesta correcta: c) Electrónica.</b>'},
+{type:'mc', eng:true, q:'In an APA reference, which part is written in italics?', options:['The author\'s name','The publication year','The title of the work','The publisher'], correct:2, exp:'<b>Correct answer: c) The title of the work.</b>'},
+{type:'mc', q:'El formato básico de una referencia de libro con un solo autor es:', options:['Apellido, A. (Año). Título. Lugar: Editorial.','Título. Apellido. Año.','Editorial (Año). Apellido. Título.','Año. Apellido, A. Título.'], correct:0, exp:'<b>Respuesta correcta: a.</b>'}
+]);
+</script>
+</body>
+</html>

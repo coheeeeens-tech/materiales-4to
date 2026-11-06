@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Física — Unidad I: Fluidos e Hidráulica</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f0f4f8;--surface:#fff;--border:#c0d0e0;
+  --ink:#061828;--muted:#3a5a78;
+  --a1:#1a4fc4;--a2:#c41a1a;--a3:#1a9a5c;--a4:#b8860b;--a5:#7a1ac4;
+  --a1l:#e8eef9;--a2l:#fdeaea;--a3l:#e3f4e8;--a4l:#fff8e1;--a5l:#f0e8fb;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;line-height:1.7;}
+
+.hero{background:var(--ink);color:#f0f6ff;padding:56px 48px 48px;position:relative;overflow:hidden;}
+.hero::after{content:'💧';font-size:220px;position:absolute;right:20px;bottom:-30px;line-height:1;pointer-events:none;opacity:.06;}
+.hero-top{display:flex;align-items:center;gap:16px;margin-bottom:28px;}
+.unit-badge{background:var(--a1);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;padding:4px 14px;border-radius:4px;}
+.subject-tag{font-size:12px;font-weight:500;color:rgba(240,246,255,0.45);letter-spacing:2px;text-transform:uppercase;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,8vw,5rem);line-height:.92;letter-spacing:1px;margin-bottom:16px;}
+.hero h1 span{color:#5cb8f8;}
+.hero-desc{max-width:560px;font-size:15px;color:rgba(240,246,255,0.6);margin-bottom:32px;}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;}
+.pill{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:6px 16px;font-size:13px;font-weight:500;}
+.pill-dot{width:8px;height:8px;border-radius:50%;}
+
+.nav-strip{background:var(--a1);display:flex;overflow-x:auto;position:sticky;top:0;z-index:10;}
+.nav-strip a{color:rgba(255,255,255,.75);text-decoration:none;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:12px 20px;white-space:nowrap;border-right:1px solid rgba(255,255,255,.15);transition:all .2s;}
+.nav-strip a:hover{background:rgba(255,255,255,.12);color:#fff;}
+
+.wrap{max-width:960px;margin:0 auto;padding:0 28px 100px;}
+
+.sec-head{display:flex;align-items:flex-start;margin:56px 0 24px;border-left:5px solid var(--a1);padding-left:18px;}
+.sec-head.red{border-color:var(--a2);} .sec-head.green{border-color:var(--a3);} .sec-head.gold{border-color:var(--a4);} .sec-head.purple{border-color:var(--a5);}
+.sec-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;line-height:1;color:var(--a1);margin-right:14px;flex-shrink:0;}
+.sec-head.red .sec-num{color:var(--a2);} .sec-head.green .sec-num{color:var(--a3);} .sec-head.gold .sec-num{color:var(--a4);} .sec-head.purple .sec-num{color:var(--a5);}
+.sec-info h2{font-family:'Bebas Neue',sans-serif;font-size:1.85rem;letter-spacing:.5px;line-height:1.1;}
+.sec-info p{font-size:13px;color:var(--muted);font-weight:500;}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px 26px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.card-label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+
+.concept-box{border-radius:12px;padding:18px 22px;margin:12px 0;text-align:center;}
+.concept-box.blue{background:linear-gradient(135deg,#061828,#1a4fc4);}
+.concept-box.red{background:linear-gradient(135deg,#2a0a0a,#c41a1a);}
+.concept-box.green{background:linear-gradient(135deg,#0a2a18,#1a9a5c);}
+.concept-box.gold{background:linear-gradient(135deg,#2a1800,#b8860b);}
+.concept-box.purple{background:linear-gradient(135deg,#1a0a2a,#7a1ac4);}
+.concept-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:1px;color:#fff;margin-bottom:6px;}
+.concept-def{font-size:14px;color:rgba(255,255,255,.85);line-height:1.65;}
+
+.tip{border-radius:10px;padding:13px 16px;font-size:13.5px;margin-top:14px;display:flex;gap:10px;align-items:flex-start;}
+.tip.blue{background:rgba(26,79,196,.08);border-left:3px solid var(--a1);}
+.tip.red{background:rgba(196,26,26,.08);border-left:3px solid var(--a2);}
+.tip.green{background:rgba(26,154,92,.08);border-left:3px solid var(--a3);}
+.tip.gold{background:rgba(184,134,11,.08);border-left:3px solid var(--a4);}
+.tip.purple{background:rgba(122,26,196,.08);border-left:3px solid var(--a5);}
+.tip-ico{font-size:18px;flex-shrink:0;margin-top:1px;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px;}
+@media(max-width:600px){.two-col,.char-grid{grid-template-columns:1fr;}}
+
+.mini-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.mini-card .mc-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.mini-card .mc-val{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.5px;}
+.mini-card .mc-body{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.55;}
+
+.solved{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.solved-head{display:flex;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid var(--border);}
+.solved-badge{font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:1.5px;padding:3px 10px;border-radius:4px;color:#fff;flex-shrink:0;}
+.bg-blue{background:var(--a1);}.bg-red{background:var(--a2);}.bg-green{background:var(--a3);}.bg-gold{background:var(--a4);}.bg-purple{background:var(--a5);}
+.solved-title{font-weight:700;font-size:14px;}
+.solved-body{padding:18px 20px;}
+.paso-grid{display:flex;flex-direction:column;gap:8px;}
+.paso{display:flex;gap:12px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 14px;}
+.paso-num{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;line-height:1;flex-shrink:0;width:28px;}
+.paso-body .p-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;}
+.paso-body .p-op{font-size:14px;font-weight:600;}
+.resultado-box{border-radius:10px;padding:12px 16px;margin-top:12px;display:flex;gap:10px;align-items:center;}
+.resultado-box.blue{background:rgba(26,79,196,.08);border:1px solid rgba(26,79,196,.2);}
+.resultado-box.red{background:rgba(196,26,26,.08);border:1px solid rgba(196,26,26,.2);}
+.resultado-box.green{background:rgba(26,154,92,.08);border:1px solid rgba(26,154,92,.2);}
+.resultado-box.gold{background:rgba(184,134,11,.08);border:1px solid rgba(184,134,11,.2);}
+.resultado-box.purple{background:rgba(122,26,196,.08);border:1px solid rgba(122,26,196,.2);}
+.res-ico{font-size:22px;flex-shrink:0;}
+.res-body .res-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+.res-body .res-val{font-size:14px;font-weight:700;}
+
+.bubbles{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+.bubble{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;}
+.bubble .b-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.bubble .b-main{font-weight:600;font-size:14px;margin-bottom:3px;}
+.bubble .b-sub{font-size:12.5px;color:var(--muted);}
+
+.char-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;}
+.char-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;border-left:4px solid var(--a1);}
+.char-card.red{border-color:var(--a2);}.char-card.green{border-color:var(--a3);}.char-card.gold{border-color:var(--a4);}.char-card.purple{border-color:var(--a5);}
+.char-card .cc-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.5px;margin-bottom:6px;}
+.char-card .cc-title.blue{color:var(--a1);}.char-card .cc-title.red{color:var(--a2);}.char-card .cc-title.green{color:var(--a3);}.char-card .cc-title.gold{color:var(--a4);}.char-card .cc-title.purple{color:var(--a5);}
+.char-card .cc-body{font-size:13px;line-height:1.6;}
+.char-card .cc-ex{font-size:12px;margin-top:8px;padding:6px 10px;border-radius:6px;font-style:italic;}
+.char-card .cc-ex.blue{background:var(--a1l);color:var(--a1);}.char-card .cc-ex.red{background:var(--a2l);color:var(--a2);}
+.char-card .cc-ex.green{background:var(--a3l);color:var(--a3);}.char-card .cc-ex.gold{background:var(--a4l);color:var(--a4);}
+.char-card .cc-ex.purple{background:var(--a5l);color:var(--a5);}
+
+.wb-section{background:var(--ink);color:#f0f6ff;border-radius:16px;padding:32px;margin-top:60px;}
+.wb-title{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:1px;margin-bottom:6px;}
+.wb-title span{color:#5cb8f8;}
+.wb-sub{color:rgba(240,246,255,.5);font-size:13.5px;margin-bottom:28px;}
+.wb-group{margin-bottom:28px;}
+.wb-group-title{font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:2px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:12px;}
+.wb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.wb-word{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 12px;}
+.wb-word .en{font-weight:700;font-size:13.5px;margin-bottom:2px;}
+.wb-word .es{font-size:12px;color:rgba(240,246,255,.55);}
+
+.formula-box{background:var(--ink);border-radius:12px;padding:20px 24px;margin:14px 0;text-align:center;}
+.formula-box .f-label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(240,246,255,.45);margin-bottom:8px;}
+.formula-box .f-eq{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:1px;color:#5cb8f8;}
+.formula-box .f-note{font-size:12px;color:rgba(240,246,255,.6);margin-top:6px;}
+
+footer{text-align:center;padding:28px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--border);margin-top:20px;}
+
+/* ═══ QUIZ INTERACTIVO ═══ */
+.quiz-box{background:var(--surface);border:2px dashed var(--border);border-radius:14px;padding:20px 22px;margin:8px 0 32px;}
+.quiz-box.blue{border-color:var(--a1);}.quiz-box.red{border-color:var(--a2);}
+.quiz-box.green{border-color:var(--a3);}.quiz-box.gold{border-color:var(--a4);}
+.quiz-box.purple{border-color:var(--a5);}
+.quiz-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.quiz-head .qz-ico{font-size:1.5rem;}
+.quiz-head h4{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.5px;}
+.quiz-head span.qz-sub{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;}
+.quiz-score{font-size:12px;font-weight:700;margin-bottom:14px;color:var(--muted);}
+.qz-question{background:var(--bg);border-radius:10px;padding:14px 16px;margin-bottom:10px;}
+.qz-question:last-child{margin-bottom:0;}
+.qz-qtext{font-weight:600;font-size:13.5px;margin-bottom:10px;display:flex;gap:8px;align-items:flex-start;}
+.qz-qtext .qz-num{font-family:'Bebas Neue',sans-serif;flex-shrink:0;font-size:1.05rem;line-height:1.3;}
+.qz-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:middle;}
+.qz-opts{display:flex;flex-direction:column;gap:6px;}
+.qz-tf-opts{display:flex;gap:8px;}
+.qz-opt{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 13px;font-size:13px;cursor:pointer;text-align:left;transition:all .15s;font-family:inherit;color:var(--ink);}
+.qz-tf-opts .qz-opt{flex:1;text-align:center;font-weight:600;}
+.qz-opt:hover:not(.disabled){background:var(--a1l);border-color:var(--a1);}
+.qz-opt.correct{background:rgba(26,154,92,.18);border-color:var(--a3);font-weight:700;color:#0a4a2a;}
+.qz-opt.incorrect{background:rgba(196,26,26,.18);border-color:var(--a2);font-weight:700;color:#7a1414;}
+.qz-opt.disabled{cursor:default;}
+.qz-explain{font-size:12.5px;margin-top:9px;padding:9px 13px;border-radius:8px;background:rgba(0,0,0,.04);display:none;line-height:1.5;}
+.qz-explain.show{display:block;}
+.qz-explain b{color:var(--a3);}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="unit-badge">UNIDAD I</div>
+    <div class="subject-tag">Física · 4to Trimestre · Fluidos e Hidráulica</div>
+  </div>
+  <h1>FÍSICA<br><span>FLUIDOS E HIDRÁULICA</span></h1>
+  <p class="hero-desc">El agua que tomas, el aceite del coche, el aire que respiras... todo eso son fluidos. En esta unidad descubrirás por qué se comportan así, por qué flotan los barcos y cómo un pequeño empujón puede levantar una camioneta.</p>
+  <div class="hero-pills">
+    <div class="pill"><div class="pill-dot" style="background:#5cb8f8"></div>1.1 Fluidos y estados de la materia</div>
+    <div class="pill"><div class="pill-dot" style="background:#ff8fa0"></div>1.2 Hidráulica</div>
+    <div class="pill"><div class="pill-dot" style="background:#86efac"></div>1.2.1 Hidrostática</div>
+    <div class="pill"><div class="pill-dot" style="background:#fcd45c"></div>Densidad y peso específico</div>
+    <div class="pill"><div class="pill-dot" style="background:#c4b5fd"></div>Presión</div>
+    <div class="pill"><div class="pill-dot" style="background:#5cb8f8"></div>Principio de Pascal</div>
+    <div class="pill"><div class="pill-dot" style="background:#ff8fa0"></div>Principio de Arquímedes</div>
+    <div class="pill"><div class="pill-dot" style="background:#86efac"></div>1.2.2 Hidrodinámica</div>
+    <div class="pill"><div class="pill-dot" style="background:#fcd45c"></div>Bernoulli y Torricelli</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-strip">
+  <a href="#fluidos">1.1 Fluidos</a>
+  <a href="#hidraulica">1.2 Hidráulica</a>
+  <a href="#hidrostatica">1.2.1 Hidrostática</a>
+  <a href="#densidad">Densidad</a>
+  <a href="#presion">Presión</a>
+  <a href="#pascal">Pascal</a>
+  <a href="#arquimedes">Arquímedes</a>
+  <a href="#hidrodinamica">1.2.2 Hidrodinámica</a>
+  <a href="#bernoulli">Bernoulli</a>
+  <a href="#torricelli">Torricelli</a>
+  <a href="#retos">Retos</a>
+  <a href="#glosario">Glosario</a>
+</div>
+
+<div class="wrap">
+
+<!-- ═══════════════════════════════════
+     1.1 FLUIDOS Y ESTADOS DE LA MATERIA
+═══════════════════════════════════ -->
+<div id="fluidos">
+  <div class="sec-head blue">
+    <div class="sec-num">1.1</div>
+    <div class="sec-info">
+      <h2>Fluidos y estados de la materia</h2>
+      <p>Todo lo que existe a tu alrededor es materia, y esa materia se presenta en diferentes "formas de ser"</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">¿Qué es un fluido?</div>
+    <div class="concept-box blue">
+      <div class="concept-title">FLUIDO</div>
+      <div class="concept-def">Sustancia que <strong>fluye</strong> y se adapta a la forma del recipiente que la contiene. Los líquidos y los gases son fluidos, porque sus moléculas se pueden mover con libertad.</div>
+    </div>
+    <div class="tip blue">
+      <span class="tip-ico">💧</span>
+      <span><strong>Ejemplo fácil:</strong> si viertes agua en un vaso, toma la forma del vaso. Si la viertes en una botella, toma la forma de la botella. Eso es fluir: adaptarse al recipiente.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">Los 4 estados de la materia</div>
+    <div class="two-col">
+      <div class="concept-box blue">
+        <div class="concept-title">SÓLIDO</div>
+        <div class="concept-def">Moléculas muy unidas, casi no se mueven. Por eso tiene forma y volumen propios.</div>
+      </div>
+      <div class="concept-box green">
+        <div class="concept-title">LÍQUIDO</div>
+        <div class="concept-def">Moléculas con unión media. Tiene volumen definido, pero no forma: toma la del recipiente.</div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="concept-box gold">
+        <div class="concept-title">GASEOSO</div>
+        <div class="concept-def">Moléculas muy separadas y libres. No tiene forma ni volumen propio.</div>
+      </div>
+      <div class="concept-box purple">
+        <div class="concept-title">PLASMA</div>
+        <div class="concept-def">Cuarto estado, con muchísima energía. Aparece en el Sol y las estrellas.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-box blue" id="box-fluidos">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Fluidos y estados de la materia</span></div>
+    <div class="quiz-score" id="score-fluidos"></div>
+    <div class="qz-container" id="qz-fluidos"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     1.2 HIDRÁULICA
+═══════════════════════════════════ -->
+<div id="hidraulica">
+  <div class="sec-head red">
+    <div class="sec-num">1.2</div>
+    <div class="sec-info">
+      <h2>Hidráulica — el estudio del agua</h2>
+      <p>La rama de la física que estudia los líquidos, ya sea quietos o en movimiento</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">¿De dónde viene la palabra?</div>
+    <div class="concept-box red">
+      <div class="concept-title">HIDRÁULICA</div>
+      <div class="concept-def">Viene del griego <em>hydro</em> (agua) e <em>icos</em> (relativo a). Es la parte de la física que estudia la conducción y el comportamiento del agua.</div>
+    </div>
+    <div class="two-col">
+      <div class="mini-card">
+        <div class="mc-label" style="color:var(--a2)">Hidráulica teórica</div>
+        <div class="mc-val">Los principios</div>
+        <div class="mc-body">Explica las leyes que rigen a un líquido en reposo (Hidrostática) o en movimiento (Hidrodinámica).</div>
+      </div>
+      <div class="mini-card">
+        <div class="mc-label" style="color:var(--a2)">Hidráulica aplicada</div>
+        <div class="mc-val">Los usos</div>
+        <div class="mc-body">Aplica esos principios en el campo, la ciudad, la industria o la generación de energía.</div>
+      </div>
+    </div>
+    <div class="tip red">
+      <span class="tip-ico">🚰</span>
+      <span><strong>Ejemplo fácil:</strong> el agua que produce energía en una presa, que enfría el motor de un carro, o que llega hasta la regadera de tu casa; todo eso lo explica la hidráulica.</span>
+    </div>
+  </div>
+
+  <div class="quiz-box red" id="box-hidraulica">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Hidráulica</span></div>
+    <div class="quiz-score" id="score-hidraulica"></div>
+    <div class="qz-container" id="qz-hidraulica"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     1.2.1 HIDROSTÁTICA
+═══════════════════════════════════ -->
+<div id="hidrostatica">
+  <div class="sec-head green">
+    <div class="sec-num">1.2.1</div>
+    <div class="sec-info">
+      <h2>Hidrostática — los líquidos en reposo</h2>
+      <p>Estudia las propiedades de los líquidos cuando no se están moviendo</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">Propiedades de los líquidos</div>
+    <div class="char-grid">
+      <div class="char-card green">
+        <div class="cc-title green">COHESIÓN</div>
+        <div class="cc-body">Fuerza que mantiene unidas las moléculas de un <strong>mismo</strong> líquido.</div>
+        <div class="cc-ex green">💧 Por eso una gota de agua sobre una hoja forma una bolita.</div>
+      </div>
+      <div class="char-card blue">
+        <div class="cc-title blue">ADHESIÓN</div>
+        <div class="cc-body">Fuerza de atracción entre moléculas de <strong>diferente</strong> tipo.</div>
+        <div class="cc-ex blue">🪟 Por eso el agua se pega al vidrio de una ventana cuando llueve.</div>
+      </div>
+      <div class="char-card gold">
+        <div class="cc-title gold">CAPILARIDAD</div>
+        <div class="cc-body">Gracias a la cohesión y adhesión, un líquido puede subir por un tubo muy delgado.</div>
+        <div class="cc-ex gold">🌱 Así es como una planta sube el agua desde la raíz hasta las hojas.</div>
+      </div>
+      <div class="char-card red">
+        <div class="cc-title red">TENSIÓN SUPERFICIAL</div>
+        <div class="cc-body">Resistencia de un líquido a ser atravesado por otro objeto.</div>
+        <div class="cc-ex red">🫧 Por eso puedes hacer burbujas de jabón.</div>
+      </div>
+      <div class="char-card purple">
+        <div class="cc-title purple">VISCOSIDAD</div>
+        <div class="cc-body">Qué tan fácil o difícil fluye un líquido, por la fricción entre sus capas internas.</div>
+        <div class="cc-ex purple">🍯 La miel es más viscosa que el agua.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-box green" id="box-hidrostatica">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Propiedades de los líquidos</span></div>
+    <div class="quiz-score" id="score-hidrostatica"></div>
+    <div class="qz-container" id="qz-hidrostatica"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     DENSIDAD Y PESO ESPECÍFICO
+═══════════════════════════════════ -->
+<div id="densidad">
+  <div class="sec-head gold">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Densidad y peso específico</h2>
+      <p>Por qué el aceite flota sobre el agua y una piedra se hunde</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a4)">Densidad</div>
+    <div class="concept-box gold">
+      <div class="concept-title">DENSIDAD (ρ)</div>
+      <div class="concept-def">Relación entre la masa de un cuerpo y el volumen que ocupa.</div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">Fórmula de densidad</div>
+      <div class="f-eq">ρ = m / V</div>
+      <div class="f-note">ρ = densidad (kg/m³) &nbsp;·&nbsp; m = masa (kg) &nbsp;·&nbsp; V = volumen (m³)</div>
+    </div>
+    <div class="tip gold">
+      <span class="tip-ico">🪨</span>
+      <span><strong>Ejemplo fácil:</strong> una piedra pequeña pesa más que una esponja del mismo tamaño porque sus moléculas están mucho más apretadas: es más densa.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a4)">Peso específico</div>
+    <div class="formula-box">
+      <div class="f-label">Fórmula de peso específico</div>
+      <div class="f-eq">Pe = ρ · g</div>
+      <div class="f-note">Pe = peso específico (N/m³) &nbsp;·&nbsp; ρ = densidad &nbsp;·&nbsp; g = gravedad (9.8 m/s²)</div>
+    </div>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-gold">EJEMPLO</div>
+      <div class="solved-title">🚰 Calcular la masa y el peso de 3000 litros de agua en un tinaco</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a4)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a4)">Datos</div><div class="p-op">ρ(agua) = 1000 kg/m³ · V = 3 m³</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a4)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a4)">Masa</div><div class="p-op">m = ρV = 3000 kg</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a4)">3</div><div class="paso-body"><div class="p-label" style="color:var(--a4)">Peso</div><div class="p-op">w = mg = 29 400 N</div></div></div>
+      </div>
+      <div class="resultado-box gold"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">Masa = 3000 kg · Peso = 29 400 N</div></div></div>
+    </div>
+  </div>
+
+  <div class="quiz-box gold" id="box-densidad">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Densidad y peso específico</span></div>
+    <div class="quiz-score" id="score-densidad"></div>
+    <div class="qz-container" id="qz-densidad"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     PRESIÓN
+═══════════════════════════════════ -->
+<div id="presion">
+  <div class="sec-head purple">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Presión</h2>
+      <p>Por qué duele más pisar con tacón que con un tenis</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">¿Qué es la presión?</div>
+    <div class="concept-box purple">
+      <div class="concept-title">PRESIÓN</div>
+      <div class="concept-def">Es la relación entre una fuerza aplicada y el área sobre la que actúa.</div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">Fórmula de presión</div>
+      <div class="f-eq">P = F / A</div>
+      <div class="f-note">P = presión, en pascales (Pa) &nbsp;·&nbsp; F = fuerza (N) &nbsp;·&nbsp; A = área (m²)</div>
+    </div>
+    <div class="tip purple">
+      <span class="tip-ico">👠</span>
+      <span><strong>Ejemplo fácil:</strong> al caminar en la arena, un zapato de tacón delgado se hunde más que uno plano.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">Presión hidrostática y atmosférica</div>
+    <div class="formula-box">
+      <div class="f-label">Fórmula de presión hidrostática</div>
+      <div class="f-eq">P = ρ · g · h</div>
+      <div class="f-note">ρ = densidad · g = gravedad · h = profundidad (m)</div>
+    </div>
+    <div class="concept-def">La presión atmosférica es la que ejerce el aire sobre la superficie terrestre. Torricelli fue el primero en medirla usando una columna de mercurio.</div>
+    <div class="tip purple">
+      <span class="tip-ico">⛰️</span>
+      <span><strong>Ejemplo fácil:</strong> por eso a los alpinistas les cuesta más respirar en la cima de una montaña: hay menos presión atmosférica.</span>
+    </div>
+  </div>
+
+  <div class="quiz-box purple" id="box-presion">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Presión</span></div>
+    <div class="quiz-score" id="score-presion"></div>
+    <div class="qz-container" id="qz-presion"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     PRINCIPIO DE PASCAL
+═══════════════════════════════════ -->
+<div id="pascal">
+  <div class="sec-head blue">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Principio de Pascal</h2>
+      <p>El secreto detrás del gato hidráulico que levanta un carro</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">El principio</div>
+    <div class="concept-box blue">
+      <div class="concept-title">PRINCIPIO DE PASCAL</div>
+      <div class="concept-def">La presión ejercida sobre un fluido dentro de un recipiente cerrado se transmite con la misma intensidad a todo el fluido.</div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">Fórmula</div>
+      <div class="f-eq">F₁A₂ = F₂A₁</div>
+      <div class="f-note">F₁, F₂ = fuerzas en cada pistón (N) &nbsp;·&nbsp; A₁, A₂ = áreas de cada pistón (m²)</div>
+    </div>
+    <div class="tip blue">
+      <span class="tip-ico">🚗</span>
+      <span><strong>Ejemplo fácil:</strong> en un gato hidráulico, empujas un pistón pequeño con poca fuerza, y esa presión se transmite a un pistón grande que levanta algo mucho más pesado.</span>
+    </div>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-blue">EJEMPLO</div>
+      <div class="solved-title">🔧 Un gato hidráulico levanta una camioneta de 1600 kg</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a1)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a1)">Peso de la camioneta</div><div class="p-op">F₂ = mg = 15 680 N</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a1)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a1)">Despejar F₁</div><div class="p-op">F₁ = A₁F₂ / A₂</div></div></div>
+      </div>
+      <div class="resultado-box blue"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">Con solo F₁ = 100.35 N se levanta toda la camioneta</div></div></div>
+    </div>
+  </div>
+
+  <div class="quiz-box blue" id="box-pascal">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Principio de Pascal</span></div>
+    <div class="quiz-score" id="score-pascal"></div>
+    <div class="qz-container" id="qz-pascal"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     PRINCIPIO DE ARQUÍMEDES
+═══════════════════════════════════ -->
+<div id="arquimedes">
+  <div class="sec-head red">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Principio de Arquímedes</h2>
+      <p>Por qué un barco de acero flota, aunque el acero se hunda</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">El principio</div>
+    <div class="concept-box red">
+      <div class="concept-title">PRINCIPIO DE ARQUÍMEDES</div>
+      <div class="concept-def">Todo cuerpo sumergido parcial o totalmente en un fluido recibe un empuje hacia arriba, igual al peso del líquido que desalojó.</div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">Fórmula</div>
+      <div class="f-eq">E = ρ · V · g</div>
+      <div class="f-note">E = empuje (N) · ρ = densidad del líquido · V = volumen sumergido · g = gravedad</div>
+    </div>
+    <div class="tip red">
+      <span class="tip-ico">🚢</span>
+      <span><strong>Ejemplo fácil:</strong> un barco flota porque su forma hueca desaloja mucha agua, y ese peso de agua desalojada lo empuja hacia arriba.</span>
+    </div>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-red">EJEMPLO</div>
+      <div class="solved-title">🧊 Empuje sobre un cubo de 5 cm de lado sumergido en agua</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a2)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a2)">Volumen</div><div class="p-op">V = (0.05m)³ = 0.000125 m³</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a2)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a2)">Aplicar la fórmula</div><div class="p-op">E = ρVg = (1000)(0.000125)(9.8)</div></div></div>
+      </div>
+      <div class="resultado-box red"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">E = 1.225 N</div></div></div>
+    </div>
+  </div>
+
+  <div class="quiz-box red" id="box-arquimedes">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Principio de Arquímedes</span></div>
+    <div class="quiz-score" id="score-arquimedes"></div>
+    <div class="qz-container" id="qz-arquimedes"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     1.2.2 HIDRODINÁMICA
+═══════════════════════════════════ -->
+<div id="hidrodinamica">
+  <div class="sec-head green">
+    <div class="sec-num">1.2.2</div>
+    <div class="sec-info">
+      <h2>Hidrodinámica — los líquidos en movimiento</h2>
+      <p>Cómo se comporta el agua cuando viaja por una tubería o una manguera</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">Flujo, gasto y continuidad</div>
+    <div class="two-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a3)">Flujo (F)</div><div class="mc-val">F = m / t</div><div class="mc-body">Masa que pasa por un tubo en cada segundo (kg/s).</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a3)">Gasto (Q)</div><div class="mc-val">Q = V/t = A·v</div><div class="mc-body">Volumen que pasa por un tubo en cada segundo (m³/s).</div></div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">Ecuación de continuidad</div>
+      <div class="f-eq">A₁v₁ = A₂v₂</div>
+      <div class="f-note">Si el área del tubo disminuye, la velocidad del fluido aumenta</div>
+    </div>
+    <div class="tip green">
+      <span class="tip-ico">🚿</span>
+      <span><strong>Ejemplo fácil:</strong> si tapas con el dedo la salida de una manguera, el agua sale más rápido, aunque el gasto total sea el mismo.</span>
+    </div>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-green">EJEMPLO</div>
+      <div class="solved-title">🚰 Reducir un tubo de 10 cm a 2.5 cm de diámetro</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a3)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a3)">Datos</div><div class="p-op">v₁ = 0.20 m/s · A₁ = 0.00785 m² · A₂ = 0.00049 m²</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a3)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a3)">Despejar v₂</div><div class="p-op">v₂ = A₁v₁ / A₂</div></div></div>
+      </div>
+      <div class="resultado-box green"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">v₂ = 3.2 m/s</div></div></div>
+    </div>
+  </div>
+
+  <div class="quiz-box green" id="box-hidrodinamica">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Hidrodinámica y ecuación de continuidad</span></div>
+    <div class="quiz-score" id="score-hidrodinamica"></div>
+    <div class="qz-container" id="qz-hidrodinamica"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     TEOREMA DE BERNOULLI
+═══════════════════════════════════ -->
+<div id="bernoulli">
+  <div class="sec-head gold">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Teorema de Bernoulli</h2>
+      <p>La relación entre la velocidad, la altura y la presión de un líquido en movimiento</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a4)">El teorema</div>
+    <div class="concept-box gold">
+      <div class="concept-title">TEOREMA DE BERNOULLI</div>
+      <div class="concept-def">La energía mecánica total de un fluido en movimiento permanece constante: si la velocidad aumenta, la presión disminuye.</div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">Fórmula</div>
+      <div class="f-eq">P + ½ρv² + ρgh = constante</div>
+      <div class="f-note">P = presión · ρ = densidad · v = velocidad · g = gravedad · h = altura</div>
+    </div>
+    <div class="tip gold">
+      <span class="tip-ico">✈️</span>
+      <span><strong>Ejemplo fácil:</strong> por eso un avión vuela: el aire pasa más rápido por arriba del ala, baja su presión, y la mayor presión de abajo empuja el avión hacia arriba.</span>
+    </div>
+  </div>
+
+  <div class="quiz-box gold" id="box-bernoulli">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Teorema de Bernoulli</span></div>
+    <div class="quiz-score" id="score-bernoulli"></div>
+    <div class="qz-container" id="qz-bernoulli"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     TEOREMA DE TORRICELLI
+═══════════════════════════════════ -->
+<div id="torricelli">
+  <div class="sec-head purple">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Teorema de Torricelli</h2>
+      <p>Con qué velocidad sale el agua por un pequeño orificio de un tanque</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">El teorema</div>
+    <div class="concept-box purple">
+      <div class="concept-title">TEOREMA DE TORRICELLI</div>
+      <div class="concept-def">Es un caso particular de Bernoulli: la velocidad de salida de un líquido por un orificio depende solo de la profundidad a la que está ese orificio.</div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">Fórmula</div>
+      <div class="f-eq">v = √(2gh)</div>
+      <div class="f-note">v = velocidad de salida · g = gravedad · h = profundidad del orificio</div>
+    </div>
+    <div class="tip purple">
+      <span class="tip-ico">🪣</span>
+      <span><strong>Ejemplo fácil:</strong> si haces un agujero cerca del fondo de una cubeta llena de agua, el chorro sale con más fuerza que si el agujero está cerca de la superficie.</span>
+    </div>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-purple">EJEMPLO</div>
+      <div class="solved-title">🕳️ Orificio a 3 m bajo el nivel del agua de un tanque</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a5)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a5)">Datos</div><div class="p-op">h = 3 m · g = 9.8 m/s²</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a5)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a5)">Sustituir</div><div class="p-op">v = √(2 × 9.8 × 3)</div></div></div>
+      </div>
+      <div class="resultado-box purple"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">v = 7.66 m/s</div></div></div>
+    </div>
+  </div>
+
+  <div class="quiz-box purple" id="box-torricelli">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Teorema de Torricelli</span></div>
+    <div class="quiz-score" id="score-torricelli"></div>
+    <div class="qz-container" id="qz-torricelli"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     RETOS FINALES
+═══════════════════════════════════ -->
+<div id="retos">
+  <div class="sec-head blue">
+    <div class="sec-num">🏆</div>
+    <div class="sec-info">
+      <h2>Retos de repaso — Unidad I</h2>
+      <p>Pon a prueba todo lo aprendido sobre fluidos e hidráulica</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="bubbles">
+      <div class="bubble blue"><div class="b-label">🔵 Reto 1 — El vaso con hielo</div><div class="b-main">Explica por qué el hielo flota en el agua, usando el concepto de densidad.</div><div class="b-sub">Pista: densidad del hielo (920 kg/m³) vs. densidad del agua (1000 kg/m³)</div></div>
+      <div class="bubble green"><div class="b-label">🟢 Reto 2 — La regadera</div><div class="b-main">Un tubo de 5 cm de diámetro lleva agua a 10 cm/s. Si se reduce a 2 cm, ¿la velocidad aumenta o disminuye? Explica con la ecuación de continuidad.</div></div>
+      <div class="bubble gold"><div class="b-label">🟡 Reto 3 — El submarino</div><div class="b-main">Un submarino se hunde o flota cambiando el agua que entra a sus tanques. Explica esto usando el principio de Arquímedes.</div></div>
+      <div class="bubble purple"><div class="b-label">🟣 Reto 4 — BOSS LEVEL: La torre de agua</div><div class="b-main">Un tanque está a 15 m de altura con un orificio en la base. Calcula la velocidad de salida del agua con el Teorema de Torricelli.</div><div class="b-sub">Pista: v = √(2gh), g = 9.8 m/s²</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WORD BANK / GLOSARIO -->
+<div id="glosario" class="wb-section">
+  <div class="wb-title">GLOSARIO DE <span>TÉRMINOS</span></div>
+  <p class="wb-sub">Física · 4to Trimestre · Unidad I · Copia: término → definición → tu propio ejemplo de la vida real</p>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#5cb8f8">💧 FLUIDOS Y ESTADOS DE LA MATERIA</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Fluido</div><div class="es">Sustancia que fluye y se adapta a la forma del recipiente.</div></div>
+      <div class="wb-word"><div class="en">Sólido</div><div class="es">Moléculas muy unidas; forma y volumen propios.</div></div>
+      <div class="wb-word"><div class="en">Líquido</div><div class="es">Unión molecular media; volumen definido, sin forma propia.</div></div>
+      <div class="wb-word"><div class="en">Gas</div><div class="es">Moléculas muy separadas y libres.</div></div>
+      <div class="wb-word"><div class="en">Plasma</div><div class="es">Cuarto estado con altísima energía, como el del Sol.</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#86efac">🌊 PROPIEDADES DE LOS LÍQUIDOS</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Cohesión</div><div class="es">Fuerza que une moléculas del mismo líquido.</div></div>
+      <div class="wb-word"><div class="en">Adhesión</div><div class="es">Fuerza de atracción entre moléculas de diferente tipo.</div></div>
+      <div class="wb-word"><div class="en">Capilaridad</div><div class="es">Un líquido sube o baja por un tubo delgado.</div></div>
+      <div class="wb-word"><div class="en">Tensión superficial</div><div class="es">Resistencia de un líquido a ser penetrado.</div></div>
+      <div class="wb-word"><div class="en">Viscosidad</div><div class="es">Facilidad o dificultad de un fluido para moverse.</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#fcd45c">⚖️ DENSIDAD Y PRESIÓN</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Densidad (ρ)</div><div class="es">ρ = m/V.</div></div>
+      <div class="wb-word"><div class="en">Peso específico</div><div class="es">Pe = ρg.</div></div>
+      <div class="wb-word"><div class="en">Presión</div><div class="es">P = F/A.</div></div>
+      <div class="wb-word"><div class="en">Presión hidrostática</div><div class="es">P = ρgh.</div></div>
+      <div class="wb-word"><div class="en">Presión atmosférica</div><div class="es">Presión del aire sobre la superficie terrestre.</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#c4b5fd">⚙️ PRINCIPIOS Y TEOREMAS</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Principio de Pascal</div><div class="es">F₁A₂ = F₂A₁.</div></div>
+      <div class="wb-word"><div class="en">Principio de Arquímedes</div><div class="es">E = ρVg.</div></div>
+      <div class="wb-word"><div class="en">Flujo</div><div class="es">F = m/t.</div></div>
+      <div class="wb-word"><div class="en">Gasto</div><div class="es">Q = V/t = Av.</div></div>
+      <div class="wb-word"><div class="en">Ecuación de continuidad</div><div class="es">A₁v₁ = A₂v₂.</div></div>
+      <div class="wb-word"><div class="en">Teorema de Bernoulli</div><div class="es">P + ½ρv² + ρgh = constante.</div></div>
+      <div class="wb-word"><div class="en">Teorema de Torricelli</div><div class="es">v = √(2gh).</div></div>
+    </div>
+  </div>
+
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 18px;font-size:13px;color:rgba(240,246,255,.65);margin-top:4px">
+    🎯 <strong style="color:#fff">Tarea — Unidad I Física:</strong><br>
+    1. Observa 3 objetos que floten y 3 que se hundan en agua. Explica por qué usando la densidad.<br>
+    2. Llena un vaso con agua hasta el tope y otro hasta la mitad. Explica en cuál hay más presión en el fondo.<br>
+    3. Investiga y dibuja cómo funciona un gato hidráulico usando el principio de Pascal.<br>
+    4. Calcula con qué velocidad saldría el agua de un tinaco por un pequeño orificio en la base (Torricelli).
+  </div>
+</div>
+
+</div><!-- /wrap -->
+<footer>Física · Unidad I — Fluidos e Hidráulica · Explicaciones con ejemplos cotidianos</footer>
+
+<script>
+function initQuiz(containerId, scoreId, colorClass, questions){
+  const container = document.getElementById(containerId);
+  const scoreEl = document.getElementById(scoreId);
+  let answered = 0, correct = 0;
+  const total = questions.length;
+  scoreEl.textContent = `Progreso: 0 / ${total} respondidas`;
+
+  questions.forEach((qz, i) => {
+    const qDiv = document.createElement('div');
+    qDiv.className = 'qz-question';
+
+    const qText = document.createElement('div');
+    qText.className = 'qz-qtext';
+    const tag = qz.type === 'tf'
+      ? '<span class="qz-tag" style="background:var(--'+colorClass+')">V / F</span>'
+      : '<span class="qz-tag" style="background:var(--'+colorClass+')">OPCIÓN MÚLTIPLE</span>';
+    qText.innerHTML = `<span class="qz-num">${i+1}.</span><span>${qz.q} ${tag}</span>`;
+    qDiv.appendChild(qText);
+
+    const optsDiv = document.createElement('div');
+    optsDiv.className = qz.type === 'tf' ? 'qz-tf-opts' : 'qz-opts';
+
+    const explainDiv = document.createElement('div');
+    explainDiv.className = 'qz-explain';
+    explainDiv.innerHTML = qz.exp;
+
+    const opts = qz.type === 'tf' ? ['Verdadero', 'Falso'] : qz.options;
+    const correctIdx = qz.type === 'tf' ? (qz.correct ? 0 : 1) : qz.correct;
+
+    opts.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'qz-opt';
+      btn.textContent = qz.type === 'tf' ? opt : String.fromCharCode(97 + idx) + ') ' + opt;
+      btn.onclick = () => {
+        if (qDiv.dataset.done) return;
+        qDiv.dataset.done = '1';
+        answered++;
+        if (idx === correctIdx) correct++;
+        Array.from(optsDiv.children).forEach((b, bi) => {
+          b.classList.add('disabled');
+          if (bi === correctIdx) b.classList.add('correct');
+          else if (bi === idx) b.classList.add('incorrect');
+        });
+        explainDiv.classList.add('show');
+        scoreEl.textContent = `Progreso: ${answered} / ${total} respondidas · ✅ ${correct} correctas`;
+      };
+      optsDiv.appendChild(btn);
+    });
+
+    qDiv.appendChild(optsDiv);
+    qDiv.appendChild(explainDiv);
+    container.appendChild(qDiv);
+  });
+}
+
+/* ===== 1.1 FLUIDOS ===== */
+initQuiz('qz-fluidos','score-fluidos','a1',[
+{type:'mc', q:'¿Cuál de los siguientes NO es un fluido?', options:['Agua','Aire','Piedra','Aceite'], correct:2, exp:'<b>Respuesta correcta: c) Piedra.</b> Los fluidos son líquidos y gases, porque sus moléculas se mueven con libertad. La piedra es un sólido.'},
+{type:'tf', q:'Los gases tienen forma y volumen propios.', correct:false, exp:'<b>Falso.</b> Los gases no tienen forma ni volumen propio: se expanden hasta llenar todo el espacio disponible.'},
+{type:'mc', q:'¿Por qué el agua toma la forma de cualquier vaso donde se vierte?', options:['Porque es un fluido','Porque es sólido','Porque tiene mucha masa','Porque es transparente'], correct:0, exp:'<b>Respuesta correcta: a) Porque es un fluido.</b> Los fluidos se adaptan a la forma del recipiente que los contiene.'},
+{type:'tf', q:'El plasma es el estado de la materia con menor energía.', correct:false, exp:'<b>Falso.</b> El plasma es el estado con mayor energía: sus átomos chocan constantemente y alcanzan temperaturas altísimas, como en el Sol.'},
+{type:'mc', q:'¿Cuál estado de la materia tiene las moléculas más unidas?', options:['Gaseoso','Líquido','Sólido','Plasma'], correct:2, exp:'<b>Respuesta correcta: c) Sólido.</b> En los sólidos las moléculas están muy juntas y casi no se mueven, por eso tienen forma propia.'},
+{type:'mc', q:'¿En qué estado están las moléculas del vapor que sale de una olla hirviendo?', options:['Sólido','Líquido','Gaseoso','Plasma'], correct:2, exp:'<b>Respuesta correcta: c) Gaseoso.</b> El vapor de agua es agua en estado gaseoso: sus moléculas están muy separadas.'},
+{type:'tf', q:'Los líquidos tienen volumen definido pero no forma propia.', correct:true, exp:'<b>Verdadero.</b> Un litro de agua sigue siendo un litro sin importar el recipiente, pero su forma cambia según el envase.'},
+{type:'mc', q:'¿Cuál es un ejemplo cotidiano de fluido en el cuerpo humano?', options:['Los huesos','La sangre','El cabello','Las uñas'], correct:1, exp:'<b>Respuesta correcta: b) La sangre.</b> La sangre fluye por arterias y venas, adaptándose a la forma de estos conductos.'}
+]);
+
+/* ===== 1.2 HIDRÁULICA ===== */
+initQuiz('qz-hidraulica','score-hidraulica','a2',[
+{type:'mc', q:'¿Qué estudia la Hidráulica?', options:['Los sólidos en reposo','Los líquidos en reposo y en movimiento','Los gases nobles','La electricidad'], correct:1, exp:'<b>Respuesta correcta: b.</b> La hidráulica es la rama de la física que estudia el comportamiento de los líquidos, tanto en reposo como en movimiento.'},
+{type:'tf', q:'La palabra "hidráulica" viene del griego y significa "conducción del agua".', correct:true, exp:'<b>Verdadero.</b> Viene de <em>hydro</em> (agua) e <em>icos</em> (relativo a).'},
+{type:'mc', q:'La Hidrostática estudia:', options:['Líquidos en movimiento','Líquidos en reposo','Sólidos calientes','Gases en expansión'], correct:1, exp:'<b>Respuesta correcta: b) Líquidos en reposo.</b> Justo lo que veremos en el siguiente tema.'},
+{type:'mc', q:'La Hidrodinámica estudia:', options:['Líquidos en reposo','Líquidos en movimiento','La fricción del aire','Los imanes'], correct:1, exp:'<b>Respuesta correcta: b) Líquidos en movimiento.</b> Como el agua que corre por una tubería.'},
+{type:'tf', q:'La hidráulica aplicada se usa solo en la industria automotriz.', correct:false, exp:'<b>Falso.</b> Se usa también en el sector agrícola, urbano, industrial y en la generación de energía.'},
+{type:'mc', q:'¿Cuál de estos es un ejemplo de hidráulica aplicada?', options:['Riego agrícola','Una canción','Un examen','Un libro'], correct:0, exp:'<b>Respuesta correcta: a) Riego agrícola.</b> Usa los principios del agua para regar cultivos de manera eficiente.'},
+{type:'tf', q:'Repaso — El agua es un ejemplo de fluido.', correct:true, exp:'<b>Verdadero.</b> El agua es un líquido, y los líquidos (junto con los gases) son fluidos.'},
+{type:'mc', q:'¿En qué se divide el estudio teórico de la hidráulica?', options:['Física y química','Hidrostática e Hidrodinámica','Sólidos y gases','Norte y sur'], correct:1, exp:'<b>Respuesta correcta: b.</b> Hidrostática (líquidos en reposo) e Hidrodinámica (líquidos en movimiento).'}
+]);
+
+/* ===== 1.2.1 HIDROSTÁTICA ===== */
+initQuiz('qz-hidrostatica','score-hidrostatica','a3',[
+{type:'mc', q:'La cohesión es la fuerza que une:', options:['Moléculas de diferente sustancia','Moléculas del mismo líquido','Sólidos con líquidos','Gases con sólidos'], correct:1, exp:'<b>Respuesta correcta: b.</b> La cohesión mantiene unidas las moléculas de un mismo líquido, como en una gota de agua.'},
+{type:'mc', q:'La adhesión es la fuerza que une:', options:['Moléculas del mismo líquido','Moléculas de diferente tipo','Solo gases','Solo sólidos'], correct:1, exp:'<b>Respuesta correcta: b.</b> La adhesión ocurre entre moléculas de sustancias distintas, como el agua y el vidrio.'},
+{type:'tf', q:'La capilaridad permite que el agua suba por el tallo de una planta.', correct:true, exp:'<b>Verdadero.</b> Gracias a la cohesión y adhesión, el agua asciende por tubos muy delgados como los del tallo.'},
+{type:'mc', q:'¿Qué propiedad hace que se formen burbujas de jabón?', options:['Viscosidad','Capilaridad','Tensión superficial','Densidad'], correct:2, exp:'<b>Respuesta correcta: c.</b> La tensión superficial permite que la superficie del líquido se estire sin romperse.'},
+{type:'tf', q:'La miel es menos viscosa que el agua.', correct:false, exp:'<b>Falso.</b> La miel es mucho más viscosa: le cuesta más trabajo fluir que al agua.'},
+{type:'mc', q:'¿Qué propiedad explica que una gota de agua forme una bolita sobre una hoja?', options:['Cohesión','Adhesión','Viscosidad','Presión'], correct:0, exp:'<b>Respuesta correcta: a) Cohesión.</b> Las moléculas de agua se atraen entre sí formando esa forma semiesférica.'},
+{type:'mc', q:'Repaso — ¿Cuál rama de la hidráulica estudia los líquidos en reposo?', options:['Hidrodinámica','Hidrostática','Termodinámica','Óptica'], correct:1, exp:'<b>Respuesta correcta: b) Hidrostática.</b>'},
+{type:'tf', q:'La viscosidad mide qué tan fácil o difícil fluye un líquido.', correct:true, exp:'<b>Verdadero.</b> A mayor viscosidad, más le cuesta al líquido moverse (como la miel comparada con el agua).'}
+]);
+
+/* ===== DENSIDAD ===== */
+initQuiz('qz-densidad','score-densidad','a4',[
+{type:'mc', q:'La fórmula de la densidad es:', options:['ρ=F/A','ρ=m/V','ρ=m·g','ρ=V/m'], correct:1, exp:'<b>Respuesta correcta: b) ρ=m/V.</b> La densidad relaciona la masa y el volumen de una sustancia.'},
+{type:'mc', q:'Si un objeto tiene mayor densidad que el agua:', options:['Flota','Se hunde','Se evapora','Se congela'], correct:1, exp:'<b>Respuesta correcta: b) Se hunde.</b> Un objeto más denso que el agua se hunde en ella.'},
+{type:'tf', q:'El peso específico se calcula como Pe = ρ·g.', correct:true, exp:'<b>Verdadero.</b> El peso específico es la densidad multiplicada por la gravedad.'},
+{type:'mc', q:'3 m³ de agua equivalen a:', options:['300 litros','3000 litros','30 litros','30 000 litros'], correct:1, exp:'<b>Respuesta correcta: b) 3000 litros.</b> Cada metro cúbico equivale a 1000 litros.'},
+{type:'tf', q:'La densidad del hielo es mayor que la del agua líquida.', correct:false, exp:'<b>Falso.</b> El hielo es menos denso (920 kg/m³) que el agua líquida (1000 kg/m³), por eso flota.'},
+{type:'mc', q:'¿Por qué el aceite flota sobre el agua?', options:['Es más caliente','Tiene menor densidad','Tiene mayor densidad','Es transparente'], correct:1, exp:'<b>Respuesta correcta: b.</b> El aceite tiene menor densidad que el agua, así que queda flotando arriba.'},
+{type:'tf', q:'Repaso — La tensión superficial permite que se formen burbujas de jabón.', correct:true, exp:'<b>Verdadero.</b> La resistencia de la superficie del líquido permite estirarse sin romperse.'},
+{type:'mc', q:'Las unidades de la densidad en el Sistema Internacional son:', options:['N/m²','kg/m³','m/s','N·m'], correct:1, exp:'<b>Respuesta correcta: b) kg/m³.</b> Masa entre volumen.'}
+]);
+
+/* ===== PRESIÓN ===== */
+initQuiz('qz-presion','score-presion','a5',[
+{type:'mc', q:'La fórmula de la presión es:', options:['P=F/A','P=m/V','P=ρgh','P=F·A'], correct:0, exp:'<b>Respuesta correcta: a) P=F/A.</b> Presión es fuerza entre área.'},
+{type:'mc', q:'La presión hidrostática depende de:', options:['El color del líquido','La densidad y la profundidad','La temperatura del aire','El tamaño del recipiente'], correct:1, exp:'<b>Respuesta correcta: b.</b> P=ρgh: depende de la densidad del líquido y la profundidad.'},
+{type:'tf', q:'A mayor profundidad en una alberca, mayor es la presión.', correct:true, exp:'<b>Verdadero.</b> Por eso sientes más presión en los oídos entre más te sumerges.'},
+{type:'mc', q:'¿Por qué es más fácil clavar una tachuela con la punta que con la cabeza?', options:['La punta pesa menos','La punta concentra la fuerza en un área menor','La cabeza es más dura','No hay diferencia'], correct:1, exp:'<b>Respuesta correcta: b.</b> Al concentrar la misma fuerza en un área más pequeña, la presión aumenta.'},
+{type:'tf', q:'La presión atmosférica aumenta conforme subes una montaña.', correct:false, exp:'<b>Falso.</b> La presión atmosférica disminuye con la altura, por eso cuesta más respirar en la cima.'},
+{type:'mc', q:'Torricelli midió la presión atmosférica utilizando:', options:['Agua','Mercurio','Aceite','Aire comprimido'], correct:1, exp:'<b>Respuesta correcta: b) Mercurio.</b> Su experimento mostró una columna de 76 cm de mercurio.'},
+{type:'mc', q:'Repaso — ¿Qué fórmula se usa para calcular la densidad?', options:['ρ=m/V','ρ=F/A','ρ=V·g','ρ=m·A'], correct:0, exp:'<b>Respuesta correcta: a) ρ=m/V.</b>'},
+{type:'tf', q:'La unidad de presión en el Sistema Internacional es el pascal (Pa).', correct:true, exp:'<b>Verdadero.</b> 1 Pa = 1 N/m².'}
+]);
+
+/* ===== PASCAL ===== */
+initQuiz('qz-pascal','score-pascal','a1',[
+{type:'mc', q:'El principio de Pascal dice que la presión en un fluido cerrado:', options:['Se pierde con la distancia','Se transmite igual en todas direcciones','Solo actúa hacia abajo','Se cancela'], correct:1, exp:'<b>Respuesta correcta: b.</b> La presión se transmite con la misma intensidad a todo el fluido.'},
+{type:'mc', q:'¿Qué aparato funciona con el principio de Pascal?', options:['Termómetro','Gato hidráulico','Brújula','Barómetro'], correct:1, exp:'<b>Respuesta correcta: b) Gato hidráulico.</b> Usa un pistón pequeño para mover uno grande.'},
+{type:'tf', q:'En una prensa hidráulica, el pistón pequeño necesita más fuerza que el grande.', correct:false, exp:'<b>Falso.</b> Es al revés: el pistón pequeño necesita poca fuerza para mover el grande, que carga mucho más peso.'},
+{type:'mc', q:'La fórmula del principio de Pascal es:', options:['F₁A₂=F₂A₁','P=F/A','E=ρVg','v=√(2gh)'], correct:0, exp:'<b>Respuesta correcta: a) F₁A₂=F₂A₁.</b>'},
+{type:'tf', q:'Los frenos hidráulicos de un carro funcionan con el principio de Pascal.', correct:true, exp:'<b>Verdadero.</b> El líquido de frenos transmite la presión que aplicas en el pedal hasta las llantas.'},
+{type:'mc', q:'Si el pistón grande tiene mayor área, entonces:', options:['Necesita más fuerza que el pequeño','Puede levantar más peso con poca fuerza en el pistón chico','No se mueve','Pierde presión'], correct:1, exp:'<b>Respuesta correcta: b.</b> Esa es la ventaja de la prensa hidráulica: multiplicar la fuerza.'},
+{type:'tf', q:'Repaso — La presión se calcula como P=F/A.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'¿Qué gana el pistón grande respecto al pequeño, según el principio de Pascal?', options:['Menos presión','Más fuerza','Menos temperatura','Menos volumen'], correct:1, exp:'<b>Respuesta correcta: b) Más fuerza.</b> Al tener mayor área, produce más fuerza con la misma presión.'}
+]);
+
+/* ===== ARQUÍMEDES ===== */
+initQuiz('qz-arquimedes','score-arquimedes','a2',[
+{type:'mc', q:'El principio de Arquímedes dice que un cuerpo sumergido recibe:', options:['Una fuerza hacia abajo','Un empuje hacia arriba','Ninguna fuerza','Solo presión atmosférica'], correct:1, exp:'<b>Respuesta correcta: b.</b> Recibe un empuje hacia arriba igual al peso del líquido desalojado.'},
+{type:'mc', q:'La fórmula del empuje es:', options:['E=ρVg','E=F/A','E=m/V','E=√(2gh)'], correct:0, exp:'<b>Respuesta correcta: a) E=ρVg.</b>'},
+{type:'tf', q:'El empuje es igual al peso del líquido desalojado.', correct:true, exp:'<b>Verdadero.</b> Esa es justo la esencia del principio de Arquímedes.'},
+{type:'mc', q:'Un barco de acero flota porque:', options:['El acero es liviano','Desaloja un gran volumen de agua','No tiene peso','Flota siempre cualquier metal'], correct:1, exp:'<b>Respuesta correcta: b.</b> Su forma hueca desaloja mucha agua, generando un empuje mayor que su peso.'},
+{type:'tf', q:'Un objeto se hunde si su densidad es menor que la del líquido.', correct:false, exp:'<b>Falso.</b> Un objeto flota si es menos denso que el líquido; se hunde si es más denso.'},
+{type:'mc', q:'¿Qué principio explica por qué flota un salvavidas?', options:['Pascal','Arquímedes','Bernoulli','Torricelli'], correct:1, exp:'<b>Respuesta correcta: b) Arquímedes.</b>'},
+{type:'mc', q:'Repaso — ¿Qué aparato es un ejemplo del principio de Pascal?', options:['Termómetro','Gato hidráulico','Barómetro','Manómetro'], correct:1, exp:'<b>Respuesta correcta: b) Gato hidráulico.</b>'},
+{type:'tf', q:'Entre más volumen de agua desaloje un cuerpo, mayor será el empuje que reciba.', correct:true, exp:'<b>Verdadero.</b> El empuje es directamente proporcional al volumen desalojado.'}
+]);
+
+/* ===== HIDRODINÁMICA ===== */
+initQuiz('qz-hidrodinamica','score-hidrodinamica','a3',[
+{type:'mc', q:'El flujo se calcula como:', options:['F=m/t','F=V/t','F=A·v','F=ρ·g'], correct:0, exp:'<b>Respuesta correcta: a) F=m/t.</b> Masa entre tiempo.'},
+{type:'mc', q:'El gasto se calcula como:', options:['Q=m/t','Q=V/t','Q=F/A','Q=ρg'], correct:1, exp:'<b>Respuesta correcta: b) Q=V/t.</b> Volumen entre tiempo.'},
+{type:'tf', q:'La ecuación de continuidad dice que A₁v₁=A₂v₂.', correct:true, exp:'<b>Verdadero.</b> El gasto se mantiene constante en todo el tubo.'},
+{type:'mc', q:'Si el área de un tubo disminuye, la velocidad del fluido:', options:['Disminuye','Aumenta','No cambia','Se detiene'], correct:1, exp:'<b>Respuesta correcta: b) Aumenta.</b> Para mantener el mismo gasto, el fluido debe moverse más rápido.'},
+{type:'tf', q:'Al tapar parcialmente una manguera con el dedo, el agua sale más lenta.', correct:false, exp:'<b>Falso.</b> El agua sale más rápido, porque el área se reduce.'},
+{type:'mc', q:'El gasto también se puede calcular con la fórmula:', options:['Q=Av','Q=ρgh','Q=F/A','Q=mg'], correct:0, exp:'<b>Respuesta correcta: a) Q=Av.</b> Área por velocidad.'},
+{type:'tf', q:'Repaso — El empuje de Arquímedes es igual al peso del líquido desalojado.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'¿Qué rama de la hidráulica estudia el agua en movimiento?', options:['Hidrostática','Hidrodinámica','Termodinámica','Electrostática'], correct:1, exp:'<b>Respuesta correcta: b) Hidrodinámica.</b>'}
+]);
+
+/* ===== BERNOULLI ===== */
+initQuiz('qz-bernoulli','score-bernoulli','a4',[
+{type:'mc', q:'Según Bernoulli, si la velocidad de un fluido aumenta, la presión:', options:['Aumenta','Disminuye','No cambia','Se duplica'], correct:1, exp:'<b>Respuesta correcta: b) Disminuye.</b> La velocidad y la presión se relacionan de forma inversa.'},
+{type:'tf', q:'La ecuación de Bernoulli dice que la energía total de un fluido en movimiento permanece constante.', correct:true, exp:'<b>Verdadero.</b> Esa es la esencia del teorema.'},
+{type:'mc', q:'¿Qué fenómeno explica el principio de Bernoulli?', options:['Por qué flota un barco','Por qué vuela un avión','Por qué sale agua de una llave','Por qué se derrite el hielo'], correct:1, exp:'<b>Respuesta correcta: b.</b> El aire más rápido arriba del ala reduce la presión y genera sustentación.'},
+{type:'mc', q:'La fórmula de Bernoulli incluye:', options:['Presión, velocidad y altura','Solo masa','Solo temperatura','Solo volumen'], correct:0, exp:'<b>Respuesta correcta: a.</b> P + ½ρv² + ρgh = constante.'},
+{type:'tf', q:'En el ala de un avión, el aire de arriba se mueve más lento que el de abajo.', correct:false, exp:'<b>Falso.</b> El aire de arriba se mueve más rápido, generando menor presión.'},
+{type:'mc', q:'¿Qué principio usa Bernoulli como base?', options:['Conservación de la energía','Ley de la gravedad','Ley de Ohm','Principio de Newton'], correct:0, exp:'<b>Respuesta correcta: a.</b> Bernoulli se basa en la conservación de la energía mecánica.'},
+{type:'mc', q:'Repaso — ¿Qué ecuación indica que A₁v₁=A₂v₂?', options:['Ecuación de continuidad','Principio de Pascal','Principio de Arquímedes','Ley de Boyle'], correct:0, exp:'<b>Respuesta correcta: a) Ecuación de continuidad.</b>'},
+{type:'tf', q:'Bernoulli descubrió que la presión y velocidad de un fluido están relacionadas.', correct:true, exp:'<b>Verdadero.</b>'}
+]);
+
+/* ===== TORRICELLI ===== */
+initQuiz('qz-torricelli','score-torricelli','a5',[
+{type:'mc', q:'El teorema de Torricelli calcula:', options:['La densidad de un sólido','La velocidad de salida de un líquido por un orificio','La presión atmosférica en la Luna','El volumen de un gas'], correct:1, exp:'<b>Respuesta correcta: b.</b>'},
+{type:'mc', q:'La fórmula de Torricelli es:', options:['v=√(2gh)','P=F/A','E=ρVg','Q=Av'], correct:0, exp:'<b>Respuesta correcta: a) v=√(2gh).</b>'},
+{type:'tf', q:'A mayor profundidad del orificio, mayor será la velocidad de salida del líquido.', correct:true, exp:'<b>Verdadero.</b> La velocidad depende directamente de la profundidad h.'},
+{type:'mc', q:'El teorema de Torricelli es un caso particular de:', options:['Pascal','Arquímedes','Bernoulli','Newton'], correct:2, exp:'<b>Respuesta correcta: c) Bernoulli.</b> Se obtiene al simplificar la ecuación de Bernoulli para un orificio.'},
+{type:'tf', q:'La velocidad de salida del agua no depende de la profundidad del orificio.', correct:false, exp:'<b>Falso.</b> Sí depende: a mayor profundidad, mayor velocidad de salida.'},
+{type:'mc', q:'Si un agujero está muy cerca de la superficie del agua, el chorro saldrá:', options:['Con mucha fuerza','Con poca fuerza','Hacia arriba','No saldrá'], correct:1, exp:'<b>Respuesta correcta: b.</b> A menor profundidad, menor velocidad de salida.'},
+{type:'tf', q:'Repaso — Según Bernoulli, si la velocidad de un fluido aumenta, la presión disminuye.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'¿Qué variable NO aparece en la fórmula de Torricelli (v=√(2gh))?', options:['Gravedad','Profundidad','Densidad','Ninguna, solo aparecen gravedad y profundidad'], correct:2, exp:'<b>Respuesta correcta: c) Densidad.</b> La fórmula de Torricelli solo usa la gravedad y la profundidad.'}
+]);
+</script>
+</body>
+</html>

@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matemáticas IV — Funciones y Relaciones</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f0f4f8;--surface:#fff;--border:#c0d0e0;
+  --ink:#061828;--muted:#3a5a78;
+  --a1:#1a4fc4;--a2:#c41a1a;--a3:#1a9a5c;--a4:#b8860b;--a5:#7a1ac4;
+  --a1l:#e8eef9;--a2l:#fdeaea;--a3l:#e3f4e8;--a4l:#fff8e1;--a5l:#f0e8fb;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;line-height:1.7;}
+
+.hero{background:var(--ink);color:#f0f6ff;padding:56px 48px 48px;position:relative;overflow:hidden;}
+.hero::after{content:'📈';font-size:220px;position:absolute;right:20px;bottom:-30px;line-height:1;pointer-events:none;opacity:.06;}
+.hero-top{display:flex;align-items:center;gap:16px;margin-bottom:28px;}
+.unit-badge{background:var(--a1);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;padding:4px 14px;border-radius:4px;}
+.subject-tag{font-size:12px;font-weight:500;color:rgba(240,246,255,0.45);letter-spacing:2px;text-transform:uppercase;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,8vw,5rem);line-height:.92;letter-spacing:1px;margin-bottom:16px;}
+.hero h1 span{color:#5cb8f8;}
+.hero-desc{max-width:640px;font-size:15px;color:rgba(240,246,255,0.6);margin-bottom:32px;}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;}
+.pill{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:6px 16px;font-size:13px;font-weight:500;}
+.pill-dot{width:8px;height:8px;border-radius:50%;}
+
+.nav-strip{background:var(--a1);display:flex;overflow-x:auto;position:sticky;top:0;z-index:10;}
+.nav-strip a{color:rgba(255,255,255,.75);text-decoration:none;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:12px 20px;white-space:nowrap;border-right:1px solid rgba(255,255,255,.15);transition:all .2s;}
+.nav-strip a:hover{background:rgba(255,255,255,.12);color:#fff;}
+
+.wrap{max-width:960px;margin:0 auto;padding:0 28px 100px;}
+
+.sec-head{display:flex;align-items:flex-start;margin:56px 0 24px;border-left:5px solid var(--a1);padding-left:18px;}
+.sec-head.red{border-color:var(--a2);} .sec-head.green{border-color:var(--a3);} .sec-head.gold{border-color:var(--a4);} .sec-head.purple{border-color:var(--a5);}
+.sec-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;line-height:1;color:var(--a1);margin-right:14px;flex-shrink:0;}
+.sec-head.red .sec-num{color:var(--a2);} .sec-head.green .sec-num{color:var(--a3);} .sec-head.gold .sec-num{color:var(--a4);} .sec-head.purple .sec-num{color:var(--a5);}
+.sec-info h2{font-family:'Bebas Neue',sans-serif;font-size:1.85rem;letter-spacing:.5px;line-height:1.1;}
+.sec-info p{font-size:13px;color:var(--muted);font-weight:500;}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px 26px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.card-label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+
+.concept-box{border-radius:12px;padding:18px 22px;margin:12px 0;text-align:center;}
+.concept-box.blue{background:linear-gradient(135deg,#061828,#1a4fc4);}
+.concept-box.red{background:linear-gradient(135deg,#2a0a0a,#c41a1a);}
+.concept-box.green{background:linear-gradient(135deg,#0a2a18,#1a9a5c);}
+.concept-box.gold{background:linear-gradient(135deg,#2a1800,#b8860b);}
+.concept-box.purple{background:linear-gradient(135deg,#1a0a2a,#7a1ac4);}
+.concept-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:1px;color:#fff;margin-bottom:6px;}
+.concept-def{font-size:14px;color:rgba(255,255,255,.85);line-height:1.65;}
+
+.tip{border-radius:10px;padding:13px 16px;font-size:13.5px;margin-top:14px;display:flex;gap:10px;align-items:flex-start;color:var(--ink);}
+.tip.blue{background:rgba(26,79,196,.08);border-left:3px solid var(--a1);}
+.tip.red{background:rgba(196,26,26,.08);border-left:3px solid var(--a2);}
+.tip.green{background:rgba(26,154,92,.08);border-left:3px solid var(--a3);}
+.tip.gold{background:rgba(184,134,11,.08);border-left:3px solid var(--a4);}
+.tip.purple{background:rgba(122,26,196,.08);border-left:3px solid var(--a5);}
+.tip-ico{font-size:18px;flex-shrink:0;margin-top:1px;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;}
+@media(max-width:600px){.two-col,.three-col,.char-grid,.cw-clues{grid-template-columns:1fr;}}
+
+.mini-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;color:var(--ink);}
+.mini-card .mc-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.mini-card .mc-val{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.5px;}
+.mini-card .mc-body{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.55;}
+
+.char-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;}
+.char-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;border-left:4px solid var(--a1);}
+.char-card.red{border-color:var(--a2);}.char-card.green{border-color:var(--a3);}.char-card.gold{border-color:var(--a4);}.char-card.purple{border-color:var(--a5);}
+.char-card .cc-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.5px;margin-bottom:6px;}
+.char-card .cc-title.blue{color:var(--a1);}.char-card .cc-title.red{color:var(--a2);}.char-card .cc-title.green{color:var(--a3);}.char-card .cc-title.gold{color:var(--a4);}.char-card .cc-title.purple{color:var(--a5);}
+.char-card .cc-body{font-size:13px;line-height:1.6;color:var(--ink);}
+.char-card .cc-ex{font-size:12px;margin-top:8px;padding:6px 10px;border-radius:6px;font-style:italic;}
+.char-card .cc-ex.blue{background:var(--a1l);color:var(--a1);}.char-card .cc-ex.red{background:var(--a2l);color:var(--a2);}
+.char-card .cc-ex.green{background:var(--a3l);color:var(--a3);}.char-card .cc-ex.gold{background:var(--a4l);color:var(--a4);}
+.char-card .cc-ex.purple{background:var(--a5l);color:var(--a5);}
+
+.stab{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;color:var(--ink);}
+.stab th{text-align:left;padding:9px 12px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-bottom:2px solid;background:rgba(0,0,0,.02);}
+.stab.blue th{color:var(--a1);border-color:var(--a1);}
+.stab.red th{color:var(--a2);border-color:var(--a2);}
+.stab.green th{color:var(--a3);border-color:var(--a3);}
+.stab.gold th{color:var(--a4);border-color:var(--a4);}
+.stab.purple th{color:var(--a5);border-color:var(--a5);}
+.stab td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;color:var(--ink);}
+.stab tr:last-child td{border-bottom:none;}
+.stab tr:nth-child(even) td{background:rgba(0,0,0,.015);}
+
+.formula-box{background:var(--ink);border-radius:12px;padding:20px 24px;margin:14px 0;text-align:center;}
+.formula-box .f-label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(240,246,255,.45);margin-bottom:8px;}
+.formula-box .f-eq{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:1px;color:#5cb8f8;}
+.formula-box .f-note{font-size:12px;color:rgba(240,246,255,.6);margin-top:6px;}
+
+.solved{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.solved-head{display:flex;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid var(--border);}
+.solved-badge{font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:1.5px;padding:3px 10px;border-radius:4px;color:#fff;flex-shrink:0;}
+.bg-blue{background:var(--a1);}.bg-red{background:var(--a2);}.bg-green{background:var(--a3);}.bg-gold{background:var(--a4);}.bg-purple{background:var(--a5);}
+.solved-title{font-weight:700;font-size:14px;color:var(--ink);}
+.solved-body{padding:18px 20px;}
+.paso-grid{display:flex;flex-direction:column;gap:8px;}
+.paso{display:flex;gap:12px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 14px;}
+.paso-num{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;line-height:1;flex-shrink:0;width:28px;}
+.paso-body .p-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;}
+.paso-body .p-op{font-size:14px;font-weight:600;color:var(--ink);}
+.paso-body .p-note{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.5;}
+.resultado-box{border-radius:10px;padding:12px 16px;margin-top:12px;display:flex;gap:10px;align-items:center;}
+.resultado-box.blue{background:rgba(26,79,196,.08);border:1px solid rgba(26,79,196,.2);}
+.resultado-box.red{background:rgba(196,26,26,.08);border:1px solid rgba(196,26,26,.2);}
+.resultado-box.green{background:rgba(26,154,92,.08);border:1px solid rgba(26,154,92,.2);}
+.resultado-box.gold{background:rgba(184,134,11,.08);border:1px solid rgba(184,134,11,.2);}
+.resultado-box.purple{background:rgba(122,26,196,.08);border:1px solid rgba(122,26,196,.2);}
+.res-ico{font-size:22px;flex-shrink:0;}
+.res-body .res-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+.res-body .res-val{font-size:14px;font-weight:700;color:var(--ink);}
+
+.bubbles{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+.bubble{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;}
+.bubble .b-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.bubble .b-main{font-weight:600;font-size:14px;margin-bottom:3px;color:var(--ink);}
+.bubble .b-sub{font-size:12.5px;color:var(--muted);}
+
+.wb-section{background:var(--ink);color:#f0f6ff;border-radius:16px;padding:32px;margin-top:60px;}
+.wb-title{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:1px;margin-bottom:6px;}
+.wb-title span{color:#5cb8f8;}
+.wb-sub{color:rgba(240,246,255,.5);font-size:13.5px;margin-bottom:28px;}
+.wb-group{margin-bottom:28px;}
+.wb-group-title{font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:2px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:12px;}
+.wb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.wb-word{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 12px;}
+.wb-word .en{font-weight:700;font-size:13.5px;margin-bottom:2px;color:#fff;}
+.wb-word .es{font-size:12px;color:rgba(240,246,255,.55);}
+
+footer{text-align:center;padding:28px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--border);margin-top:20px;}
+
+/* ═══ QUIZ INTERACTIVO ═══ */
+.quiz-box{background:var(--surface);border:2px dashed var(--border);border-radius:14px;padding:20px 22px;margin:8px 0 32px;}
+.quiz-box.blue{border-color:var(--a1);}.quiz-box.red{border-color:var(--a2);}
+.quiz-box.green{border-color:var(--a3);}.quiz-box.gold{border-color:var(--a4);}
+.quiz-box.purple{border-color:var(--a5);}
+.quiz-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.quiz-head .qz-ico{font-size:1.5rem;}
+.quiz-head h4{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.5px;}
+.quiz-head span.qz-sub{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;}
+.quiz-score{font-size:12px;font-weight:700;margin-bottom:14px;color:var(--muted);}
+.qz-question{background:var(--bg);border-radius:10px;padding:14px 16px;margin-bottom:10px;}
+.qz-question:last-child{margin-bottom:0;}
+.qz-qtext{font-weight:600;font-size:13.5px;margin-bottom:10px;display:flex;gap:8px;align-items:flex-start;color:var(--ink);}
+.qz-qtext .qz-num{font-family:'Bebas Neue',sans-serif;flex-shrink:0;font-size:1.05rem;line-height:1.3;}
+.qz-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:middle;}
+.qz-tag.english{background:#0a7a90 !important;}
+.qz-opts{display:flex;flex-direction:column;gap:6px;}
+.qz-tf-opts{display:flex;gap:8px;}
+.qz-opt{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 13px;font-size:13px;cursor:pointer;text-align:left;transition:all .15s;font-family:inherit;color:var(--ink);}
+.qz-tf-opts .qz-opt{flex:1;text-align:center;font-weight:600;}
+.qz-opt:hover:not(.disabled){background:var(--a1l);border-color:var(--a1);}
+.qz-opt.correct{background:rgba(26,154,92,.18);border-color:var(--a3);font-weight:700;color:#0a4a2a;}
+.qz-opt.incorrect{background:rgba(196,26,26,.18);border-color:var(--a2);font-weight:700;color:#7a1414;}
+.qz-opt.disabled{cursor:default;}
+.qz-explain{font-size:12.5px;margin-top:9px;padding:9px 13px;border-radius:8px;background:rgba(0,0,0,.04);display:none;line-height:1.5;color:var(--ink);}
+.qz-explain.show{display:block;}
+.qz-explain b{color:var(--a3);}
+
+/* ═══ EJERCICIOS SIN RESOLVER ═══ */
+.unsolved-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.unsolved-item{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:10px;}
+.unsolved-item:last-child{margin-bottom:0;}
+.unsolved-q{font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:8px;}
+.unsolved-toggle{border:none;background:none;color:var(--a1);font-weight:700;font-size:12px;cursor:pointer;padding:0;text-decoration:underline;font-family:inherit;}
+.unsolved-answer{display:none;margin-top:9px;padding:9px 13px;background:rgba(0,0,0,.04);border-radius:8px;font-size:13px;color:var(--ink);}
+.unsolved-answer.show{display:block;}
+
+/* ═══ CRUCIGRAMA ═══ */
+.cw-wrap{overflow-x:auto;padding:6px 0 10px;}
+.cw-grid{border-collapse:collapse;margin:0 auto;}
+.cw-grid td{width:30px;height:30px;border:1px solid var(--border);text-align:center;padding:0;position:relative;background:#fff;}
+.cw-grid td.block{border:none;background:transparent;}
+.cw-grid td input{width:100%;height:100%;border:none;text-align:center;font-weight:700;font-size:15px;text-transform:uppercase;background:transparent;color:var(--ink);font-family:inherit;}
+.cw-grid td input:focus{outline:2px solid var(--a5);background:var(--a5l);}
+.cw-num{position:absolute;top:1px;left:2px;font-size:8px;color:var(--muted);font-weight:700;pointer-events:none;}
+.cw-clues{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:22px;}
+.cw-clue-col h5{font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:1.5px;margin-bottom:10px;color:var(--a5);border-bottom:1px solid var(--border);padding-bottom:6px;}
+.cw-clue-col ol{padding-left:18px;font-size:13px;line-height:1.85;color:var(--ink);}
+.cw-btns{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
+.cw-btn{border:none;border-radius:100px;padding:11px 22px;font-weight:700;font-size:13px;color:#fff;background:var(--a5);cursor:pointer;}
+.cw-btn.secondary{background:var(--muted);}
+.cw-btn:hover{opacity:.88;}
+.cw-result{margin-top:12px;font-size:13px;font-weight:700;color:var(--ink);}
+
+/* ═══ SOPA DE LETRAS PROGRESIVA ═══ */
+.ws-progress{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:10px;}
+.ws-target{background:var(--a5l);color:var(--a5);padding:8px 16px;border-radius:100px;display:inline-block;font-weight:700;margin-bottom:14px;font-size:13px;}
+.ws-wrap{overflow-x:auto;}
+.ws-grid{border-collapse:collapse;margin:0 auto;}
+.ws-grid td{width:32px;height:32px;padding:0;}
+.ws-cell-btn{width:100%;height:100%;border:1px solid var(--border);background:#fff;font-weight:700;font-size:13px;color:var(--ink);cursor:pointer;font-family:inherit;border-radius:4px;}
+.ws-cell-btn.selected{background:var(--a5l);color:var(--a5);border-color:var(--a5);}
+.ws-cell-btn.found{background:#e3f4e8;color:#0a4a2a;border-color:var(--a3);}
+.ws-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.ws-btn{border:none;border-radius:100px;padding:10px 20px;font-weight:700;font-size:13px;color:#fff;background:var(--a5);cursor:pointer;}
+.ws-btn.secondary{background:var(--muted);}
+.ws-btn:hover{opacity:.88;}
+.ws-define-box{margin-top:16px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.ws-define-box textarea{width:100%;min-height:60px;border:1px solid var(--border);border-radius:8px;padding:9px;font-family:inherit;font-size:13px;resize:vertical;color:var(--ink);}
+.ws-answer-reveal{display:none;margin-top:10px;padding:10px 12px;background:rgba(26,154,92,.1);border-radius:8px;font-size:13px;color:var(--ink);}
+.ws-answer-reveal.show{display:block;}
+
+/* ═══ PLANO CARTESIANO INTERACTIVO ═══ */
+.plane-wrap{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;margin-top:14px;}
+.plane-svg-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px;flex-shrink:0;}
+.plane-controls{flex:1;min-width:230px;display:flex;flex-direction:column;gap:10px;}
+.plane-form{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.plane-form input{width:70px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;}
+.plane-form label{font-size:12px;font-weight:700;color:var(--muted);}
+.plane-btn{border:none;border-radius:100px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;color:#fff;}
+.plane-btn:hover{opacity:.88;}
+.plane-points{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:13px;max-height:160px;overflow-y:auto;}
+.plane-points .pp-item{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--border);}
+.plane-points .pp-item:last-child{border-bottom:none;}
+.plane-points .pp-remove{color:var(--a2);cursor:pointer;font-weight:700;}
+.cw-svg{cursor:crosshair;}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="unit-badge">UNIDAD I-II</div>
+    <div class="subject-tag">Matemáticas IV · Funciones, Relaciones y Polinomios</div>
+  </div>
+  <h1>MATEMÁTICAS IV<br><span>FUNCIONES Y RELACIONES</span></h1>
+  <p class="hero-desc">Una función es como una máquina: metes un número y siempre obtienes el mismo resultado. Esta versión trae preguntas completamente nuevas en cada tema, algunas en inglés para que también practiques vocabulario matemático, ejercicios sin resolver para que tú mismo hagas el procedimiento, un crucigrama y una sopa de letras progresiva que cambia cada vez que encuentras una palabra.</p>
+  <div class="hero-pills">
+    <div class="pill"><div class="pill-dot" style="background:#5cb8f8"></div>1.1 Funciones y relaciones</div>
+    <div class="pill"><div class="pill-dot" style="background:#ff8fa0"></div>Intervalos y formas de representar</div>
+    <div class="pill"><div class="pill-dot" style="background:#86efac"></div>1.2 Tipos de funciones</div>
+    <div class="pill"><div class="pill-dot" style="background:#fcd45c"></div>Operaciones y composición</div>
+    <div class="pill"><div class="pill-dot" style="background:#c4b5fd"></div>Inversa, constante, valor absoluto</div>
+    <div class="pill"><div class="pill-dot" style="background:#5cb8f8"></div>1.3-1.4 Grados 0 a 4</div>
+    <div class="pill"><div class="pill-dot" style="background:#ff8fa0"></div>2.1-2.4 Ceros y división sintética</div>
+    <div class="pill"><div class="pill-dot" style="background:#0a7a90"></div>🇬🇧 English questions</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-strip">
+  <a href="#funciones">1.1 Funciones y relaciones</a>
+  <a href="#intervalos">Intervalos y representación</a>
+  <a href="#tipos">1.2 Tipos de funciones</a>
+  <a href="#operaciones">Operaciones y composición</a>
+  <a href="#especiales">Funciones especiales</a>
+  <a href="#grados">1.3-1.4 Grados 0 a 4</a>
+  <a href="#ceros">2.1-2.4 Ceros y división sintética</a>
+  <a href="#crucigrama">Crucigrama</a>
+  <a href="#sopa">Sopa de letras</a>
+  <a href="#retos">Retos</a>
+  <a href="#glosario">Glosario</a>
+</div>
+
+<div class="wrap">
+
+<!-- ═══════════════════════════════════
+     1.1 FUNCIONES Y RELACIONES
+═══════════════════════════════════ -->
+<div id="funciones">
+  <div class="sec-head blue">
+    <div class="sec-num">1.1</div>
+    <div class="sec-info">
+      <h2>Diferencia entre funciones y relaciones</h2>
+      <p>No toda relación es una función — aquí aprenderás a distinguirlas</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">Definiciones básicas</div>
+    <div class="concept-box blue">
+      <div class="concept-title">RELACIÓN</div>
+      <div class="concept-def">Correspondencia entre un conjunto D y un conjunto E, donde cada elemento de D se asocia con <strong>uno o más</strong> elementos de E.</div>
+    </div>
+    <div class="concept-box green">
+      <div class="concept-title">FUNCIÓN</div>
+      <div class="concept-def">Es una relación especial: a cada elemento de D le corresponde <strong>un único</strong> elemento de E. ¡Nunca dos!</div>
+    </div>
+    <div class="tip blue">
+      <span class="tip-ico">🍎</span>
+      <span><strong>Ejemplo fácil:</strong> "cada persona tiene una sola edad" → es función. "Cada persona puede tener varios autos" → es solo una relación, no función, porque una persona podría asociarse con más de una marca.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">Dominio, contradominio y regla de correspondencia</div>
+    <table class="stab blue">
+      <tr><th>Término</th><th>Qué es</th></tr>
+      <tr><td>Dominio (D)</td><td>Conjunto de partida; todos los valores de "x" que puede tomar la función.</td></tr>
+      <tr><td>Contradominio</td><td>Conjunto de llegada; incluye todos los valores posibles de f(x).</td></tr>
+      <tr><td>Regla de correspondencia</td><td>La fórmula que relaciona x con y, ej. f(x)=3x−2.</td></tr>
+    </table>
+    <div class="tip blue">
+      <span class="tip-ico">🔑</span>
+      <span><strong>Prueba de la recta vertical:</strong> si trazas una línea vertical sobre la gráfica y esta toca la curva en más de un punto, entonces NO es una función.</span>
+    </div>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-blue">EJEMPLO FÁCIL — RESUELTO</div>
+      <div class="solved-title">🎯 ¿Es función? f(x)=3x−2, con dominio A={−1, 0, 1, 2}</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a1)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a1)">Sustituir cada valor</div><div class="p-op">f(−1)=3(−1)−2=−5 · f(0)=−2 · f(1)=1 · f(2)=4</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a1)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a1)">Verificar</div><div class="p-op">Cada x tiene un único resultado, ninguno se repite con distinto valor</div></div></div>
+      </div>
+      <div class="resultado-box blue"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">Sí es una función. f(1)=1</div></div></div>
+    </div>
+  </div>
+
+  <div class="unsolved-card">
+    <div class="card-label" style="color:var(--a1)">✍️ Ejercicios sin resolver — ahora te toca a ti</div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">1. Determina si el conjunto {(1,4), (2,5), (3,4), (2,7)} es una función. Muestra tu razonamiento completo.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u1-1')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u1-1">No es función (el elemento 2 aparece con dos imágenes distintas: 5 y 7).</div>
+    </div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">2. Si f(x) = 5x − 3, encuentra f(4) mostrando tu procedimiento completo.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u1-2')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u1-2">f(4) = 17</div>
+    </div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">3. Inventa tu propio ejemplo de una relación que NO sea función, y explica por qué no lo es.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u1-3')">Ver una pista</button>
+      <div class="unsolved-answer" id="u1-3">Pista: busca que algún elemento del dominio se repita asociado con dos valores distintos del contradominio.</div>
+    </div>
+  </div>
+
+  <div class="quiz-box blue" id="box-funciones">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Funciones y relaciones (incluye preguntas en inglés)</span></div>
+    <div class="quiz-score" id="score-funciones"></div>
+    <div class="qz-container" id="qz-funciones"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     INTERVALOS Y FORMAS DE REPRESENTAR
+═══════════════════════════════════ -->
+<div id="intervalos">
+  <div class="sec-head red">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Intervalos y formas de representar una función</h2>
+      <p>Cómo describir un rango de números y cómo mostrar una función</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">Tipos de intervalos</div>
+    <table class="stab red">
+      <tr><th>Tipo</th><th>Notación</th><th>Significado</th></tr>
+      <tr><td>Abierto</td><td>(a,b)</td><td>a &lt; x &lt; b (no incluye los extremos)</td></tr>
+      <tr><td>Cerrado</td><td>[a,b]</td><td>a ≤ x ≤ b (incluye ambos extremos)</td></tr>
+      <tr><td>Semiabierto</td><td>[a,b) ó (a,b]</td><td>Incluye solo uno de los extremos</td></tr>
+      <tr><td>Infinito</td><td>(a,∞) ó (−∞,a)</td><td>No tiene límite en un extremo</td></tr>
+    </table>
+    <div class="tip red">
+      <span class="tip-ico">♾️</span>
+      <span><strong>Ojo:</strong> el símbolo ∞ (infinito) NO es un número real, es solo una forma de indicar que no hay límite.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">3 formas de representar una función</div>
+    <div class="three-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a2)">1. Gráfica</div><div class="mc-body">El conjunto de puntos (x,y) del plano que pertenecen a la función.</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a2)">2. Fórmula</div><div class="mc-body">La expresión algebraica, ej. f(x)=3x−2.</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a2)">3. Tabla de valores</div><div class="mc-body">Pocos valores de x y sus correspondientes de y, fáciles de leer.</div></div>
+    </div>
+  </div>
+
+  <div class="unsolved-card">
+    <div class="card-label" style="color:var(--a2)">✍️ Ejercicios sin resolver — ahora te toca a ti</div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">1. Escribe en notación de intervalo: "todos los números mayores que −2 y menores o iguales a 6".</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u2-1')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u2-1">(−2, 6]</div>
+    </div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">2. Representa la función f(x) = 2x − 1 con una tabla de valores usando x = {−2, −1, 0, 1, 2}. Muestra cada sustitución.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u2-2')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u2-2">f(−2)=−5, f(−1)=−3, f(0)=−1, f(1)=1, f(2)=3</div>
+    </div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">3. Explica con tus propias palabras la diferencia entre un intervalo abierto y uno cerrado, con un ejemplo de cada uno.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u2-3')">Ver una pista</button>
+      <div class="unsolved-answer" id="u2-3">Pista: piensa en si los extremos "cuentan" o no como parte del conjunto.</div>
+    </div>
+  </div>
+
+  <div class="quiz-box red" id="box-intervalos">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Intervalos y formas de representar una función (incluye preguntas en inglés)</span></div>
+    <div class="quiz-score" id="score-intervalos"></div>
+    <div class="qz-container" id="qz-intervalos"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     1.2 TIPOS DE FUNCIONES
+═══════════════════════════════════ -->
+<div id="tipos">
+  <div class="sec-head green">
+    <div class="sec-num">1.2</div>
+    <div class="sec-info">
+      <h2>Tipos de funciones</h2>
+      <p>Creciente/decreciente, continua/discontinua, inyectiva/sobreyectiva/biyectiva</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">Crecientes y decrecientes</div>
+    <div class="two-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a3)">Creciente</div><div class="mc-val">f(a) &lt; f(b)</div><div class="mc-body">Si a &lt; b, entonces f(a) &lt; f(b). La gráfica "sube" de izquierda a derecha.</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a3)">Decreciente</div><div class="mc-val">f(a) &gt; f(b)</div><div class="mc-body">Si a &lt; b, entonces f(a) &gt; f(b). La gráfica "baja" de izquierda a derecha.</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">Continuas y discontinuas</div>
+    <div class="concept-def">Una función es <strong>continua</strong> si su gráfica no tiene interrupciones, saltos ni oscilaciones raras — se puede dibujar sin levantar el lápiz del papel. Si no cumple esto, es <strong>discontinua</strong>.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">Inyectivas, sobreyectivas y biyectivas</div>
+    <div class="char-grid">
+      <div class="char-card green"><div class="cc-title green">INYECTIVA (uno-a-uno)</div><div class="cc-body">f(a)≠f(b) siempre que a≠b. Ningún valor de y se repite.</div><div class="cc-ex green">Se comprueba con la "prueba de la recta horizontal": si toca la gráfica solo una vez, es inyectiva.</div></div>
+      <div class="char-card blue"><div class="cc-title blue">SOBREYECTIVA</div><div class="cc-body">Todo elemento del conjunto de llegada tiene al menos un elemento del dominio que le corresponde.</div></div>
+      <div class="char-card gold"><div class="cc-title gold">BIYECTIVA</div><div class="cc-body">Es inyectiva y sobreyectiva al mismo tiempo.</div></div>
+    </div>
+    <div class="tip green">
+      <span class="tip-ico">📏</span>
+      <span><strong>Ejemplo fácil:</strong> f(x)=x³ es inyectiva porque cada resultado es único (nunca se repite un valor de y para dos x distintas). En cambio f(x)=x² NO es inyectiva, porque f(2)=4 y f(−2)=4: dos valores de x dan el mismo resultado.</span>
+    </div>
+  </div>
+
+  <div class="unsolved-card">
+    <div class="card-label" style="color:var(--a3)">✍️ Ejercicios sin resolver — ahora te toca a ti</div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">1. Determina si f(x) = x² + 1 es creciente, decreciente, o ninguna, en el intervalo (0, ∞). Justifica con al menos dos valores.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u3-1')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u3-1">Es creciente en (0, ∞).</div>
+    </div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">2. Aplica la prueba de la recta horizontal a f(x) = x³ y explica con tus palabras si es inyectiva.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u3-2')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u3-2">Sí es inyectiva: cualquier recta horizontal la corta en un solo punto.</div>
+    </div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">3. Da un ejemplo de una función biyectiva y explica, en tus propias palabras, por qué cumple ambas condiciones.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u3-3')">Ver una pista</button>
+      <div class="unsolved-answer" id="u3-3">Pista: una función lineal como f(x)=x+3 suele ser un buen ejemplo — revisa por qué es inyectiva y por qué es sobreyectiva sobre los reales.</div>
+    </div>
+  </div>
+
+  <div class="quiz-box green" id="box-tipos">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Tipos de funciones (incluye preguntas en inglés)</span></div>
+    <div class="quiz-score" id="score-tipos"></div>
+    <div class="qz-container" id="qz-tipos"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     OPERACIONES Y COMPOSICIÓN
+═══════════════════════════════════ -->
+<div id="operaciones">
+  <div class="sec-head gold">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Operaciones con funciones y composición</h2>
+      <p>Cómo sumar, restar, multiplicar, dividir y combinar funciones</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a4)">Operaciones básicas</div>
+    <table class="stab gold">
+      <tr><th>Operación</th><th>Fórmula</th></tr>
+      <tr><td>Suma</td><td>(f+g)(x) = f(x)+g(x)</td></tr>
+      <tr><td>Resta</td><td>(f−g)(x) = f(x)−g(x)</td></tr>
+      <tr><td>Producto</td><td>(f·g)(x) = f(x)·g(x)</td></tr>
+      <tr><td>Cociente</td><td>(f/g)(x) = f(x)/g(x), con g(x)≠0</td></tr>
+    </table>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-gold">EJEMPLO FÁCIL — RESUELTO</div>
+      <div class="solved-title">➕ Si f(x)=x+3 y g(x)=2x, encuentra (f+g)(x) y (f·g)(x)</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a4)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a4)">Suma</div><div class="p-op">(f+g)(x) = (x+3)+(2x) = 3x+3</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a4)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a4)">Producto</div><div class="p-op">(f·g)(x) = (x+3)(2x) = 2x²+6x</div></div></div>
+      </div>
+      <div class="resultado-box gold"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">(f+g)(x)=3x+3 · (f·g)(x)=2x²+6x</div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a4)">Composición de funciones</div>
+    <div class="formula-box">
+      <div class="f-label">Composición</div>
+      <div class="f-eq">(f∘g)(x) = f(g(x))</div>
+      <div class="f-note">Primero se aplica g, y el resultado se mete dentro de f</div>
+    </div>
+    <div class="tip gold">
+      <span class="tip-ico">🎁</span>
+      <span><strong>Ejemplo fácil:</strong> imagina que g(x) es "envolver un regalo" y f(x) es "meterlo en una bolsa". Primero envuelves (g), y ese resultado lo metes en la bolsa (f). Si f(x)=x+1 y g(x)=2x, entonces (f∘g)(x)=f(2x)=2x+1.</span>
+    </div>
+  </div>
+
+  <div class="unsolved-card">
+    <div class="card-label" style="color:var(--a4)">✍️ Ejercicios sin resolver — ahora te toca a ti</div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">1. Si f(x) = x − 4 y g(x) = x², encuentra (f+g)(x), (f·g)(x) y (f∘g)(x). Muestra todo tu procedimiento.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u4-1')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u4-1">(f+g)(x) = x² + x − 4 &nbsp;·&nbsp; (f·g)(x) = x³ − 4x² &nbsp;·&nbsp; (f∘g)(x) = x² − 4</div>
+    </div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">2. Encuentra el dominio de (f/g)(x) si f(x) = x + 1 y g(x) = x − 5.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u4-2')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u4-2">Todos los reales excepto x = 5.</div>
+    </div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">3. Si f(x) = 2x y g(x) = x + 3, calcula (g∘f)(1) mostrando cada paso.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u4-3')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u4-3">(g∘f)(1) = 5</div>
+    </div>
+  </div>
+
+  <div class="quiz-box gold" id="box-operaciones">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Operaciones y composición de funciones (incluye preguntas en inglés)</span></div>
+    <div class="quiz-score" id="score-operaciones"></div>
+    <div class="qz-container" id="qz-operaciones"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     FUNCIONES ESPECIALES
+═══════════════════════════════════ -->
+<div id="especiales">
+  <div class="sec-head purple">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Función inversa, constante, identidad, valor absoluto y traslaciones</h2>
+      <p>Casos especiales de funciones que verás una y otra vez</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">Función inversa</div>
+    <div class="concept-def">Se denota f⁻¹. Los puntos (a,b) de f se convierten en (b,a) en f⁻¹. Su gráfica es el "espejo" de f respecto a la diagonal y=x.</div>
+    <div class="tip purple">
+      <span class="tip-ico">🔄</span>
+      <span><strong>Ejemplo fácil:</strong> si f(2)=5, entonces f⁻¹(5)=2. Es "deshacer" lo que hizo la función original.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">Otras funciones especiales</div>
+    <div class="char-grid">
+      <div class="char-card purple"><div class="cc-title purple">CONSTANTE</div><div class="cc-body">f(x)=c para cualquier x. Su gráfica es una recta horizontal.</div><div class="cc-ex purple">f(x)=7 → siempre da 7, sin importar x.</div></div>
+      <div class="char-card blue"><div class="cc-title blue">IDENTIDAD</div><div class="cc-body">f(x)=x. El resultado es siempre igual a la entrada.</div><div class="cc-ex blue">f(5)=5, f(−2)=−2.</div></div>
+      <div class="char-card green"><div class="cc-title green">VALOR ABSOLUTO</div><div class="cc-body">f(x)=|x|: x si x≥0, −x si x&lt;0. Nunca da negativo.</div><div class="cc-ex green">f(−4)=4, f(4)=4.</div></div>
+      <div class="char-card gold"><div class="cc-title gold">ESCALONADA</div><div class="cc-body">Definida a trozos; su gráfica parece una escalera.</div><div class="cc-ex gold">f(x)=3 si −2≤x&lt;2; f(x)=1 si 2≤x&lt;4...</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">Traslaciones (desplazamientos) de una función</div>
+    <table class="stab purple">
+      <tr><th>Para obtener</th><th>Se desplaza y=f(x)</th></tr>
+      <tr><td>y = f(x) + c</td><td>c unidades hacia arriba</td></tr>
+      <tr><td>y = f(x) − c</td><td>c unidades hacia abajo</td></tr>
+      <tr><td>y = f(x − c)</td><td>c unidades hacia la derecha</td></tr>
+      <tr><td>y = f(x + c)</td><td>c unidades hacia la izquierda</td></tr>
+    </table>
+    <div class="tip purple">
+      <span class="tip-ico">➡️</span>
+      <span><strong>Ejemplo fácil:</strong> si f(x)=x/2 pasa por el origen, entonces f(x)=x/2+5 es la misma recta, pero movida 5 unidades hacia arriba (cruza el eje Y en 5, no en 0).</span>
+    </div>
+  </div>
+
+  <div class="unsolved-card">
+    <div class="card-label" style="color:var(--a5)">✍️ Ejercicios sin resolver — ahora te toca a ti</div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">1. Si f(4) = 10, encuentra f⁻¹(10) y explica por qué.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u5-1')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u5-1">f⁻¹(10) = 4</div>
+    </div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">2. Describe con tus palabras cómo se transforma la gráfica de f(x) para obtener f(x) + 4, y para obtener f(x − 2).</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u5-2')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u5-2">f(x)+4 se desplaza 4 unidades hacia arriba; f(x−2) se desplaza 2 unidades hacia la derecha.</div>
+    </div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">3. Escribe la función valor absoluto por partes (a trozos) y evalúa f(−7) mostrando tu procedimiento.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u5-3')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u5-3">f(x)=x si x≥0, f(x)=−x si x&lt;0. f(−7)=−(−7)=7.</div>
+    </div>
+  </div>
+
+  <div class="quiz-box purple" id="box-especiales">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Funciones especiales y traslaciones (incluye preguntas en inglés)</span></div>
+    <div class="quiz-score" id="score-especiales"></div>
+    <div class="qz-container" id="qz-especiales"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     PLANO CARTESIANO INTERACTIVO #1
+═══════════════════════════════════ -->
+<div id="plano1">
+  <div class="sec-head blue">
+    <div class="sec-num">🧮</div>
+    <div class="sec-info">
+      <h2>Plano cartesiano interactivo — Practica graficando</h2>
+      <p>Usa este plano para graficar los puntos de tus tablas de valores</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">Grafica tus puntos</div>
+    <div class="plane-wrap">
+      <div class="plane-svg-box">
+        <svg id="plane1-svg" class="cw-svg" width="420" height="420" viewBox="0 0 420 420"></svg>
+      </div>
+      <div class="plane-controls">
+        <div class="plane-form">
+          <label>x:</label><input type="text" id="plane1-x" placeholder="ej. -2">
+          <label>y:</label><input type="text" id="plane1-y" placeholder="ej. 4">
+        </div>
+        <div class="plane-form">
+          <button class="plane-btn" style="background:var(--a1)" onclick="addPoint('plane1', parseCoordG(document.getElementById('plane1-x').value), parseCoordG(document.getElementById('plane1-y').value))">➕ Graficar punto</button>
+          <button class="plane-btn" style="background:var(--a2)" onclick="clearPoints('plane1')">🗑️ Limpiar</button>
+        </div>
+        <div class="plane-points" id="plane1-list"><div style="color:var(--muted);font-style:italic">Aún no has graficado ningún punto.</div></div>
+      </div>
+    </div>
+    <div class="tip blue">
+      <span class="tip-ico">✏️</span>
+      <span><strong>Practica:</strong> grafica los puntos de la función f(x)=3x−2 con x={−1,0,1,2}: deben ser (−1,−5), (0,−2), (1,1), (2,4). Únelos mentalmente: ¿qué figura forman?</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     1.3-1.4 GRADOS 0 A 4
+═══════════════════════════════════ -->
+<div id="grados">
+  <div class="sec-head red">
+    <div class="sec-num">1.3</div>
+    <div class="sec-info">
+      <h2>Funciones de grado cero, uno, dos, tres y cuatro</h2>
+      <p>De la recta horizontal más simple hasta los polinomios más complejos</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">Función polinomial general</div>
+    <div class="formula-box">
+      <div class="f-label">Forma general</div>
+      <div class="f-eq">f(x) = aₙxⁿ + ... + a₂x² + a₁x + a₀</div>
+      <div class="f-note">El grado es la potencia más alta de x con coeficiente distinto de cero</div>
+    </div>
+    <table class="stab red">
+      <tr><th>Grado</th><th>Nombre</th><th>Forma</th><th>Gráfica</th></tr>
+      <tr><td>0</td><td>Constante</td><td>f(x)=c</td><td>Recta horizontal</td></tr>
+      <tr><td>1</td><td>Lineal</td><td>f(x)=ax+b</td><td>Recta inclinada</td></tr>
+      <tr><td>2</td><td>Cuadrática</td><td>f(x)=ax²+bx+c</td><td>Parábola</td></tr>
+      <tr><td>3</td><td>Cúbica</td><td>f(x)=ax³+bx²+cx+d</td><td>Forma de "S"</td></tr>
+      <tr><td>4</td><td>Cuarto grado</td><td>f(x)=ax⁴+bx³+cx²+dx+e</td><td>Forma de "W" o "M"</td></tr>
+    </table>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-red">EJEMPLO FÁCIL — RESUELTO</div>
+      <div class="solved-title">📊 Dominio y rango de f(x)=x²−2x−3</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a2)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a2)">Dominio</div><div class="p-op">Como es un polinomio, el dominio son TODOS los reales</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a2)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a2)">Rango</div><div class="p-op">Es una parábola que abre hacia arriba; su valor mínimo de y es −4</div></div></div>
+      </div>
+      <div class="resultado-box red"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">Dominio = (−∞,∞) · Rango = [−4,∞)</div></div></div>
+    </div>
+  </div>
+
+  <div class="tip red">
+    <span class="tip-ico">📐</span>
+    <span><strong>Pendiente y razón de cambio:</strong> en una función lineal f(x)=ax+b, "a" es la pendiente y también se interpreta como razón de cambio: cuánto cambia "y" por cada unidad que cambia "x". Es la misma idea que viste en Matemáticas III.</span>
+  </div>
+
+  <div class="unsolved-card">
+    <div class="card-label" style="color:var(--a2)">✍️ Ejercicios sin resolver — ahora te toca a ti</div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">1. Identifica el grado y el nombre de: h(x) = 7x⁴ − x² + 2.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u6-1')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u6-1">Grado 4, función de cuarto grado.</div>
+    </div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">2. Encuentra el dominio de f(x) = −x² + 5x − 1, y explica si tiene alguna restricción.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u6-2')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u6-2">Dominio = todos los números reales (−∞, ∞); no tiene restricciones, como todo polinomio.</div>
+    </div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">3. Escribe tu propio ejemplo de una función cúbica y evalúala en x = 2, mostrando el procedimiento.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u6-3')">Ver una pista</button>
+      <div class="unsolved-answer" id="u6-3">Pista: cualquier función de la forma f(x)=ax³+bx²+cx+d con a≠0 funciona. Sustituye x=2 con cuidado en el orden de operaciones.</div>
+    </div>
+  </div>
+
+  <div class="quiz-box red" id="box-grados">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Funciones de grado 0, 1, 2, 3 y 4 (incluye preguntas en inglés)</span></div>
+    <div class="quiz-score" id="score-grados"></div>
+    <div class="qz-container" id="qz-grados"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     2.1-2.4 CEROS Y DIVISIÓN SINTÉTICA
+═══════════════════════════════════ -->
+<div id="ceros">
+  <div class="sec-head green">
+    <div class="sec-num">2.1</div>
+    <div class="sec-info">
+      <h2>Ceros y raíces de funciones, y división sintética</h2>
+      <p>Dónde la gráfica de una función cruza el eje X</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">¿Qué son los ceros o raíces?</div>
+    <div class="concept-box green">
+      <div class="concept-title">CEROS O RAÍCES</div>
+      <div class="concept-def">Son los valores de x donde la gráfica de f(x) corta al eje X. Encontrarlos significa resolver la ecuación f(x)=0.</div>
+    </div>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-green">EJEMPLO FÁCIL — RESUELTO</div>
+      <div class="solved-title">🎯 Ceros de la función cuadrática f(x)=x²−x−6</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a3)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a3)">Igualar a cero</div><div class="p-op">x²−x−6=0</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a3)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a3)">Factorizar</div><div class="p-op">(x−3)(x+2)=0</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a3)">3</div><div class="paso-body"><div class="p-label" style="color:var(--a3)">Resolver cada factor</div><div class="p-op">x−3=0 → x=3 &nbsp;·&nbsp; x+2=0 → x=−2</div></div></div>
+      </div>
+      <div class="resultado-box green"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">Las raíces son x=3 y x=−2 (ahí la gráfica cruza el eje X)</div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">División sintética</div>
+    <div class="concept-def" style="margin-bottom:10px">Es un método rápido para dividir un polinomio f(x) entre un binomio (x−r). Se usan solo los coeficientes del polinomio.</div>
+    <div class="tip green">
+      <span class="tip-ico">➗</span>
+      <span><strong>Regla clave:</strong> si al dividir el residuo da 0, entonces "r" ES una raíz del polinomio. Los números que quedan antes del residuo son los coeficientes del cociente.</span>
+    </div>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-green">EJEMPLO FÁCIL — RESUELTO</div>
+      <div class="solved-title">➗ Dividir x²+5x+6 entre x−1 (división sintética)</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a3)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a3)">Coeficientes y valor de r</div><div class="p-op">Coeficientes: 1, 5, 6 &nbsp;·&nbsp; r=1 (porque es x−1)</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a3)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a3)">Bajar el primer coeficiente</div><div class="p-op">Se baja el 1 tal cual</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a3)">3</div><div class="paso-body"><div class="p-label" style="color:var(--a3)">Multiplicar y sumar</div><div class="p-op">1×1=1, se suma a 5 → 6. Luego 6×1=6, se suma a 6 → 12 (residuo)</div></div></div>
+      </div>
+      <div class="resultado-box green"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">Cociente = x+6 · Residuo = 12</div></div></div>
+    </div>
+  </div>
+
+  <div class="unsolved-card">
+    <div class="card-label" style="color:var(--a3)">✍️ Ejercicios sin resolver — ahora te toca a ti</div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">1. Encuentra los ceros de f(x) = x² − 7x + 10 por factorización, mostrando cada paso.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u7-1')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u7-1">x = 2 y x = 5</div>
+    </div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">2. Divide x³ − 4x² + x + 6 entre (x − 3) usando división sintética. ¿Es 3 una raíz del polinomio?</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u7-2')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u7-2">Cociente: x² − x − 2, residuo 0 → sí, 3 es una raíz.</div>
+    </div>
+    <div class="unsolved-item">
+      <div class="unsolved-q">3. Encuentra los ceros de f(x) = x² − 16.</div>
+      <button class="unsolved-toggle" onclick="toggleUnsolved('u7-3')">Mostrar solo la respuesta final</button>
+      <div class="unsolved-answer" id="u7-3">x = 4 y x = −4</div>
+    </div>
+  </div>
+
+  <div class="quiz-box green" id="box-ceros">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Ceros, raíces y división sintética (incluye preguntas en inglés)</span></div>
+    <div class="quiz-score" id="score-ceros"></div>
+    <div class="qz-container" id="qz-ceros"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     PLANO CARTESIANO INTERACTIVO #2
+═══════════════════════════════════ -->
+<div id="plano2">
+  <div class="sec-head purple">
+    <div class="sec-num">🧮</div>
+    <div class="sec-info">
+      <h2>Segundo plano interactivo — Practica graficando parábolas</h2>
+      <p>Grafica los puntos de una tabla de valores y observa la forma de la curva</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">Ejemplo para practicar: f(x) = x² − x − 6</div>
+    <table class="stab purple">
+      <tr><th>x</th><th>−3</th><th>−2</th><th>−1</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr>
+      <tr><td>f(x)</td><td>6</td><td>0</td><td>−4</td><td>−6</td><td>−6</td><td>−4</td><td>0</td><td>6</td></tr>
+    </table>
+    <div class="plane-wrap">
+      <div class="plane-svg-box">
+        <svg id="plane2-svg" class="cw-svg" width="420" height="420" viewBox="0 0 420 420"></svg>
+      </div>
+      <div class="plane-controls">
+        <div class="plane-form">
+          <label>x:</label><input type="text" id="plane2-x" placeholder="ej. -3">
+          <label>y:</label><input type="text" id="plane2-y" placeholder="ej. 6">
+        </div>
+        <div class="plane-form">
+          <button class="plane-btn" style="background:var(--a5)" onclick="addPoint('plane2', parseCoordG(document.getElementById('plane2-x').value), parseCoordG(document.getElementById('plane2-y').value))">➕ Graficar punto</button>
+          <button class="plane-btn" style="background:var(--a2)" onclick="clearPoints('plane2')">🗑️ Limpiar</button>
+        </div>
+        <div class="plane-points" id="plane2-list"><div style="color:var(--muted);font-style:italic">Aún no has graficado ningún punto.</div></div>
+      </div>
+    </div>
+    <div class="tip purple">
+      <span class="tip-ico">📈</span>
+      <span><strong>Practica:</strong> grafica los 8 puntos de la tabla de arriba, uno por uno. Al terminar, notarás que forman una <strong>parábola</strong> que corta al eje X exactamente en x=−2 y x=3 — ¡las raíces que calculamos arriba!</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     CRUCIGRAMA
+═══════════════════════════════════ -->
+<div id="crucigrama">
+  <div class="sec-head purple">
+    <div class="sec-num">✏️</div>
+    <div class="sec-info">
+      <h2>Crucigrama de repaso</h2>
+      <p>Vocabulario de funciones, relaciones y polinomios</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">Completa el crucigrama con las definiciones</div>
+    <div class="cw-wrap"><div id="cw-container"></div></div>
+    <div class="cw-btns">
+      <button class="cw-btn" onclick="checkCrossword('cw-container','cw-result')">✅ Revisar respuestas</button>
+      <button class="cw-btn secondary" onclick="buildCrossword('cw-container', CW_WORDS)">🔄 Reiniciar</button>
+    </div>
+    <div class="cw-result" id="cw-result"></div>
+    <div class="cw-clues" id="cw-clues"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SOPA DE LETRAS PROGRESIVA
+═══════════════════════════════════ -->
+<div id="sopa">
+  <div class="sec-head blue">
+    <div class="sec-num">🔤</div>
+    <div class="sec-info">
+      <h2>Sopa de letras progresiva</h2>
+      <p>Encuentra una palabra, defínela, y la sopa de letras cambia para la siguiente</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">Instrucciones</div>
+    <div class="concept-def" style="color:var(--ink);margin-bottom:6px">Haz clic en las letras, en orden (horizontal o vertical, de izquierda a derecha o de arriba hacia abajo, o al revés), hasta formar la palabra escondida. Después escribe tu propia definición antes de ver la correcta. Al terminar, aparecerá una sopa de letras nueva con la siguiente palabra.</div>
+    <div class="ws-progress" id="ws-progress"></div>
+    <div class="ws-target" id="ws-target"></div>
+    <div class="ws-wrap"><div id="ws-container"></div></div>
+    <div class="ws-btns">
+      <button class="ws-btn" onclick="wsCheck()">✅ Verificar selección</button>
+      <button class="ws-btn secondary" onclick="wsBuild()">🔄 Nueva sopa (misma palabra)</button>
+    </div>
+    <div class="ws-define-box" id="ws-define-area" style="display:none">
+      <div class="card-label" style="color:var(--a5);margin-bottom:8px">¡Encontraste la palabra <b id="ws-define-word"></b>! Ahora escribe tu propia definición:</div>
+      <textarea id="ws-user-def" placeholder="Escribe aquí tu definición..."></textarea>
+      <div class="cw-btns">
+        <button class="cw-btn" onclick="wsRevealDef()">👀 Ver definición correcta</button>
+        <button class="cw-btn secondary" onclick="wsNext()">➡️ Siguiente palabra</button>
+      </div>
+      <div class="ws-answer-reveal" id="ws-answer-reveal"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     RETOS FINALES
+═══════════════════════════════════ -->
+<div id="retos">
+  <div class="sec-head blue">
+    <div class="sec-num">🏆</div>
+    <div class="sec-info">
+      <h2>Retos de repaso</h2>
+      <p>Usa los planos interactivos de arriba para comprobar tus respuestas</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="bubbles">
+      <div class="bubble blue"><div class="b-label">🔵 Reto 1 — Función o relación</div><div class="b-main">Da un ejemplo de tu vida diaria que sea una función, y otro que sea solo una relación (no función). Explica por qué.</div></div>
+      <div class="bubble green"><div class="b-label">🟢 Reto 2 — Operaciones</div><div class="b-main">Si f(x)=x+2 y g(x)=x−2, encuentra (f+g)(x), (f·g)(x) y (f∘g)(x).</div></div>
+      <div class="bubble gold"><div class="b-label">🟡 Reto 3 — Grado del polinomio</div><div class="b-main">Identifica el grado de estas funciones: f(x)=5, g(x)=3x−1, h(x)=x²+2x, p(x)=x³−x.</div></div>
+      <div class="bubble purple"><div class="b-label">🟣 Reto 4 — BOSS LEVEL: Ceros y división sintética</div><div class="b-main">Encuentra los ceros de f(x)=x²+x−12 por factorización, y comprueba tu resultado usando división sintética con uno de los ceros encontrados.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WORD BANK / GLOSARIO -->
+<div id="glosario" class="wb-section">
+  <div class="wb-title">GLOSARIO DE <span>TÉRMINOS</span></div>
+  <p class="wb-sub">Matemáticas IV · Copia: término → definición → tu propio ejemplo</p>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#5cb8f8">🔗 FUNCIONES Y RELACIONES</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Relación</div><div class="es">Correspondencia entre dos conjuntos; un elemento puede tener varios pares.</div></div>
+      <div class="wb-word"><div class="en">Función</div><div class="es">Relación donde cada x tiene un único y.</div></div>
+      <div class="wb-word"><div class="en">Dominio</div><div class="es">Conjunto de partida de una función.</div></div>
+      <div class="wb-word"><div class="en">Contradominio</div><div class="es">Conjunto de llegada de una función.</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#ff8fa0">📊 TIPOS DE FUNCIONES</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Creciente</div><div class="es">Sube de izquierda a derecha.</div></div>
+      <div class="wb-word"><div class="en">Decreciente</div><div class="es">Baja de izquierda a derecha.</div></div>
+      <div class="wb-word"><div class="en">Inyectiva</div><div class="es">Cada resultado es único (uno-a-uno).</div></div>
+      <div class="wb-word"><div class="en">Biyectiva</div><div class="es">Inyectiva y sobreyectiva a la vez.</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#86efac">🧮 OPERACIONES Y POLINOMIOS</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Composición</div><div class="es">(f∘g)(x)=f(g(x)).</div></div>
+      <div class="wb-word"><div class="en">Función inversa</div><div class="es">f⁻¹; "deshace" lo que hace f.</div></div>
+      <div class="wb-word"><div class="en">Grado de un polinomio</div><div class="es">La potencia más alta de x con coeficiente distinto de cero.</div></div>
+      <div class="wb-word"><div class="en">Ceros o raíces</div><div class="es">Valores donde f(x)=0.</div></div>
+      <div class="wb-word"><div class="en">División sintética</div><div class="es">Método rápido para dividir entre (x−r).</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#0a7a90">🇬🇧 ENGLISH / VOCABULARY</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Domain / Range</div><div class="es">Dominio / Rango.</div></div>
+      <div class="wb-word"><div class="en">Slope</div><div class="es">Pendiente.</div></div>
+      <div class="wb-word"><div class="en">Root / Zero</div><div class="es">Raíz / Cero de una función.</div></div>
+      <div class="wb-word"><div class="en">Remainder</div><div class="es">Residuo.</div></div>
+      <div class="wb-word"><div class="en">Injective / Surjective / Bijective</div><div class="es">Inyectiva / Sobreyectiva / Biyectiva.</div></div>
+    </div>
+  </div>
+
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 18px;font-size:13px;color:rgba(240,246,255,.65);margin-top:4px">
+    🎯 <strong style="color:#fff">Tarea:</strong><br>
+    1. Resuelve todos los "Ejercicios sin resolver" de cada tema en tu cuaderno, mostrando el procedimiento completo, y compara solo al final con la respuesta oculta.<br>
+    2. Completa el crucigrama y la sopa de letras completa (las 8 palabras), escribiendo tu propia definición de cada una antes de revisarla.<br>
+    3. Usa el plano interactivo para graficar 5 puntos de una función lineal de tu elección.<br>
+    4. Encuentra los ceros de f(x)=x²−4 y verifica graficando en el segundo plano interactivo.
+  </div>
+</div>
+
+</div><!-- /wrap -->
+<footer>Matemáticas IV · Funciones, Relaciones y Polinomios</footer>
+
+<script>
+/* ═══ QUIZ ENGINE ═══ */
+function initQuiz(containerId, scoreId, colorClass, questions){
+  const container = document.getElementById(containerId);
+  const scoreEl = document.getElementById(scoreId);
+  let answered = 0, correct = 0;
+  const total = questions.length;
+  scoreEl.textContent = `Progreso: 0 / ${total} respondidas`;
+
+  questions.forEach((qz, i) => {
+    const qDiv = document.createElement('div');
+    qDiv.className = 'qz-question';
+
+    const qText = document.createElement('div');
+    qText.className = 'qz-qtext';
+    let tag = qz.type === 'tf'
+      ? '<span class="qz-tag" style="background:var(--'+colorClass+')">V / F</span>'
+      : '<span class="qz-tag" style="background:var(--'+colorClass+')">OPCIÓN MÚLTIPLE</span>';
+    if(qz.english){ tag += '<span class="qz-tag english">🇬🇧 ENGLISH</span>'; }
+    qText.innerHTML = `<span class="qz-num">${i+1}.</span><span>${qz.q} ${tag}</span>`;
+    qDiv.appendChild(qText);
+
+    const optsDiv = document.createElement('div');
+    optsDiv.className = qz.type === 'tf' ? 'qz-tf-opts' : 'qz-opts';
+
+    const explainDiv = document.createElement('div');
+    explainDiv.className = 'qz-explain';
+    explainDiv.innerHTML = qz.exp;
+
+    const opts = qz.type === 'tf' ? ['Verdadero / True', 'Falso / False'] : qz.options;
+    const correctIdx = qz.type === 'tf' ? (qz.correct ? 0 : 1) : qz.correct;
+
+    opts.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'qz-opt';
+      btn.textContent = qz.type === 'tf' ? opt : String.fromCharCode(97 + idx) + ') ' + opt;
+      btn.onclick = () => {
+        if (qDiv.dataset.done) return;
+        qDiv.dataset.done = '1';
+        answered++;
+        if (idx === correctIdx) correct++;
+        Array.from(optsDiv.children).forEach((b, bi) => {
+          b.classList.add('disabled');
+          if (bi === correctIdx) b.classList.add('correct');
+          else if (bi === idx) b.classList.add('incorrect');
+        });
+        explainDiv.classList.add('show');
+        scoreEl.textContent = `Progreso: ${answered} / ${total} respondidas · ✅ ${correct} correctas`;
+      };
+      optsDiv.appendChild(btn);
+    });
+
+    qDiv.appendChild(optsDiv);
+    qDiv.appendChild(explainDiv);
+    container.appendChild(qDiv);
+  });
+}
+
+/* ═══ EJERCICIOS SIN RESOLVER ═══ */
+function toggleUnsolved(id){
+  document.getElementById(id).classList.toggle('show');
+}
+
+/* ═══ PLANOS CARTESIANOS INTERACTIVOS (REUTILIZABLE) ═══ */
+const PLANE_SIZE = 420;
+const PLANE_RANGE = 10;
+const PLANE_SCALE = PLANE_SIZE / (PLANE_RANGE * 2);
+const PLANE_ORIGIN = PLANE_SIZE / 2;
+const planeStore = {};
+
+function gridToPx(gx, gy){
+  return { px: PLANE_ORIGIN + gx * PLANE_SCALE, py: PLANE_ORIGIN - gy * PLANE_SCALE };
+}
+function pxToGrid(px, py){
+  return { gx: (px - PLANE_ORIGIN) / PLANE_SCALE, gy: (PLANE_ORIGIN - py) / PLANE_SCALE };
+}
+function formatNum(n){ return Number.isInteger(n) ? n : Math.round(n * 100) / 100; }
+function parseCoordG(str){
+  str = (str || '').trim();
+  if (str.includes('/')){
+    const parts = str.split('/');
+    if (parts.length === 2){
+      const num = parseFloat(parts[0]), den = parseFloat(parts[1]);
+      if (!isNaN(num) && !isNaN(den) && den !== 0) return num / den;
+    }
+    return NaN;
+  }
+  return parseFloat(str);
+}
+
+function buildPlane(id){
+  planeStore[id] = planeStore[id] || [];
+  const svg = document.getElementById(id + '-svg');
+  svg.innerHTML = '';
+  const ns = 'http://www.w3.org/2000/svg';
+
+  for (let i = -PLANE_RANGE; i <= PLANE_RANGE; i++){
+    const isAxis = (i === 0);
+    const p1 = gridToPx(i, -PLANE_RANGE), p2 = gridToPx(i, PLANE_RANGE);
+    const vline = document.createElementNS(ns, 'line');
+    vline.setAttribute('x1', p1.px); vline.setAttribute('y1', p1.py);
+    vline.setAttribute('x2', p2.px); vline.setAttribute('y2', p2.py);
+    vline.setAttribute('stroke', isAxis ? '#061828' : '#dde6ef');
+    vline.setAttribute('stroke-width', isAxis ? 2 : 1);
+    svg.appendChild(vline);
+
+    const q1 = gridToPx(-PLANE_RANGE, i), q2 = gridToPx(PLANE_RANGE, i);
+    const hline = document.createElementNS(ns, 'line');
+    hline.setAttribute('x1', q1.px); hline.setAttribute('y1', q1.py);
+    hline.setAttribute('x2', q2.px); hline.setAttribute('y2', q2.py);
+    hline.setAttribute('stroke', isAxis ? '#061828' : '#dde6ef');
+    hline.setAttribute('stroke-width', isAxis ? 2 : 1);
+    svg.appendChild(hline);
+  }
+
+  const labelX = document.createElementNS(ns, 'text');
+  labelX.setAttribute('x', PLANE_SIZE - 12); labelX.setAttribute('y', PLANE_ORIGIN - 8);
+  labelX.setAttribute('font-size', '13'); labelX.setAttribute('font-weight', '700'); labelX.textContent = 'X';
+  svg.appendChild(labelX);
+  const labelY = document.createElementNS(ns, 'text');
+  labelY.setAttribute('x', PLANE_ORIGIN + 8); labelY.setAttribute('y', 14);
+  labelY.setAttribute('font-size', '13'); labelY.setAttribute('font-weight', '700'); labelY.textContent = 'Y';
+  svg.appendChild(labelY);
+
+  planeStore[id].forEach(pt => drawPointOn(id, pt.x, pt.y));
+
+  svg.onclick = function(e){
+    const rect = svg.getBoundingClientRect();
+    const scaleX = PLANE_SIZE / rect.width, scaleY = PLANE_SIZE / rect.height;
+    const px = (e.clientX - rect.left) * scaleX, py = (e.clientY - rect.top) * scaleY;
+    const g = pxToGrid(px, py);
+    const gx = Math.round(g.gx), gy = Math.round(g.gy);
+    if (Math.abs(gx) <= PLANE_RANGE && Math.abs(gy) <= PLANE_RANGE) addPoint(id, gx, gy);
+  };
+}
+
+function drawPointOn(id, x, y){
+  const svg = document.getElementById(id + '-svg');
+  const ns = 'http://www.w3.org/2000/svg';
+  const p = gridToPx(x, y);
+  const circle = document.createElementNS(ns, 'circle');
+  circle.setAttribute('cx', p.px); circle.setAttribute('cy', p.py);
+  circle.setAttribute('r', 5); circle.setAttribute('fill', '#1a4fc4');
+  svg.appendChild(circle);
+  const label = document.createElementNS(ns, 'text');
+  label.setAttribute('x', p.px + 8); label.setAttribute('y', p.py - 8);
+  label.setAttribute('font-size', '12'); label.setAttribute('font-weight', '700');
+  label.setAttribute('fill', '#1a4fc4');
+  label.textContent = `(${formatNum(x)}, ${formatNum(y)})`;
+  svg.appendChild(label);
+}
+
+function addPoint(id, x, y){
+  if (isNaN(x) || isNaN(y)){
+    alert('Escribe valores numéricos válidos para x y y.');
+    return;
+  }
+  planeStore[id] = planeStore[id] || [];
+  planeStore[id].push({x, y});
+  buildPlane(id);
+  renderPointsList(id);
+}
+
+function removePoint(id, idx){
+  planeStore[id].splice(idx, 1);
+  buildPlane(id);
+  renderPointsList(id);
+}
+
+function clearPoints(id){
+  planeStore[id] = [];
+  buildPlane(id);
+  renderPointsList(id);
+}
+
+function renderPointsList(id){
+  const listDiv = document.getElementById(id + '-list');
+  const pts = planeStore[id] || [];
+  if (pts.length === 0){
+    listDiv.innerHTML = '<div style="color:var(--muted);font-style:italic">Aún no has graficado ningún punto.</div>';
+    return;
+  }
+  listDiv.innerHTML = '';
+  pts.forEach((pt, idx) => {
+    const item = document.createElement('div');
+    item.className = 'pp-item';
+    item.innerHTML = `<span>P${idx+1} (${formatNum(pt.x)}, ${formatNum(pt.y)})</span><span class="pp-remove" onclick="removePoint('${id}',${idx})">✕</span>`;
+    listDiv.appendChild(item);
+  });
+}
+
+buildPlane('plane1');
+buildPlane('plane2');
+
+/* ===== 1.1 FUNCIONES Y RELACIONES (PREGUNTAS NUEVAS) ===== */
+initQuiz('qz-funciones','score-funciones','a1',[
+{type:'mc', q:'¿Cuál de los siguientes conjuntos de pares ordenados NO es una función?', options:['{(1,2),(2,3),(3,4)}','{(1,2),(1,5),(2,3)}','{(0,0),(1,1),(2,4)}','{(−1,3),(0,3),(1,3)}'], correct:1, exp:'<b>Respuesta correcta: b.</b> El elemento 1 tiene dos imágenes distintas (2 y 5), así que no cumple la definición de función.'},
+{type:'mc', q:'El conjunto de partida de una función se llama:', options:['Dominio','Contradominio','Rango','Imagen'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'En una función, un elemento del dominio puede tener dos imágenes distintas.', correct:false, exp:'<b>Falso.</b> Cada elemento del dominio debe tener una única imagen.'},
+{type:'mc', q:"In English, the 'domain' of a function refers to:", english:true, options:['The set of all possible output values','The set of all possible input values','The graph of the function','The slope of the function'], correct:1, exp:'<b>Correct answer: b.</b> "Domain" = "dominio" (input values); "range" = "rango" (output values).'},
+{type:'mc', q:'¿Qué diagrama se usa comúnmente para representar relaciones y funciones mediante flechas?', options:['Diagrama sagital','Diagrama de pastel','Histograma','Diagrama de dispersión'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'Toda relación es también una función.', correct:false, exp:'<b>Falso.</b> Es al revés: toda función es una relación, pero no toda relación es función.'},
+{type:'mc', q:'Si f(x) = 2x + 1, ¿cuánto vale f(3)?', options:['7','6','5','8'], correct:0, exp:'<b>Respuesta correcta: a.</b> f(3)=2(3)+1=7.'},
+{type:'mc', q:"Which English term describes checking if a relation is a function using a vertical line?", english:true, options:['Vertical Line Test','Horizontal Line Test','Midpoint Test','Slope Test'], correct:0, exp:'<b>Correct answer: a.</b> The "Vertical Line Test" = "prueba de la recta vertical".'}
+]);
+
+/* ===== INTERVALOS Y REPRESENTACIÓN (PREGUNTAS NUEVAS) ===== */
+initQuiz('qz-intervalos','score-intervalos','a2',[
+{type:'mc', q:'El intervalo [2, 7) incluye:', options:['Todos los números entre 2 y 7, incluyendo el 2 pero no el 7','Solo los enteros 2,3,4,5,6,7','Todos los números mayores que 7','Solo el número 2'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'El intervalo (−∞, 5] representa todos los números reales menores o iguales a 5.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'¿Cuál de estas NO es una forma válida de representar una función?', options:['Tabla de valores','Fórmula','Gráfica','Adivinanza'], correct:3, exp:'<b>Respuesta correcta: d.</b> Una función se representa con gráfica, fórmula o tabla de valores, no con adivinanzas.'},
+{type:'mc', q:"How do you say 'intervalo cerrado' in English?", english:true, options:['Closed interval','Open interval','Half interval','Infinite interval'], correct:0, exp:'<b>Correct answer: a.</b>'},
+{type:'tf', q:'∞ (infinito) es un número real muy grande.', correct:false, exp:'<b>Falso.</b> ∞ no es un número real, es solo notación para indicar que no hay límite.'},
+{type:'mc', q:'El intervalo (−3, 3) se llama:', options:['Abierto','Cerrado','Semiabierto','Vacío'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'¿Qué representa mejor una tabla de valores de una función?', options:['Unos cuantos pares (x, f(x)) representativos','Todos los infinitos valores de x','Solo el dominio','Solo el rango'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:"Which English word corresponds to 'gráfica' of a function?", english:true, options:['Graph','Chart type','Table','Domain'], correct:0, exp:'<b>Correct answer: a.</b> "Graph" = "gráfica".'}
+]);
+
+/* ===== 1.2 TIPOS DE FUNCIONES (PREGUNTAS NUEVAS) ===== */
+initQuiz('qz-tipos','score-tipos','a3',[
+{type:'mc', q:'Si f(a) < f(b) siempre que a < b, la función es:', options:['Creciente','Decreciente','Constante','Inyectiva'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'Una función inyectiva puede repetir el mismo valor de salida para dos entradas distintas.', correct:false, exp:'<b>Falso.</b> En una función inyectiva, cada salida es única.'},
+{type:'mc', q:'La prueba para saber si una función es inyectiva gráficamente es:', options:['La prueba de la recta horizontal','La prueba de la recta vertical','La prueba del origen','La prueba de la pendiente'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:"In English, a function that is both injective and surjective is called:", english:true, options:['Bijective','Continuous','Constant','Linear'], correct:0, exp:'<b>Correct answer: a.</b> "Bijective" = "biyectiva".'},
+{type:'tf', q:'f(x) = x² es inyectiva en todo su dominio (todos los reales).', correct:false, exp:'<b>Falso.</b> f(2)=4 y f(−2)=4, así que no es inyectiva en todos los reales.'},
+{type:'mc', q:'Una función continua se puede dibujar:', options:['Sin levantar el lápiz del papel','Solo con regla','Con saltos bruscos','Solo en puntos aislados'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'Si f(a) > f(b) siempre que a < b, la función es:', options:['Decreciente','Creciente','Sobreyectiva','Par'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:"What is the English word for 'sobreyectiva'?", english:true, options:['Surjective','Injective','Subjective','Objective'], correct:0, exp:'<b>Correct answer: a.</b>'}
+]);
+
+/* ===== OPERACIONES Y COMPOSICIÓN (PREGUNTAS NUEVAS) ===== */
+initQuiz('qz-operaciones','score-operaciones','a4',[
+{type:'mc', q:'(f − g)(x) se define como:', options:['f(x) − g(x)','g(x) − f(x)','f(x) · g(x)','f(g(x))'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'Si f(x) = x² y g(x) = x + 1, ¿cuánto vale (f+g)(2)?', options:['7','6','5','4'], correct:0, exp:'<b>Respuesta correcta: a.</b> f(2)=4, g(2)=3, entonces (f+g)(2)=4+3=7.'},
+{type:'tf', q:'(f/g)(x) no está definida donde g(x) = 0.', correct:true, exp:'<b>Verdadero.</b> No se puede dividir entre cero.'},
+{type:'mc', q:"How do you read '(f∘g)(x)' in English?", english:true, options:['f composed with g of x','f divided by g of x','f times g of x','f minus g of x'], correct:0, exp:'<b>Correct answer: a.</b> "f composed with g" = "f compuesta con g".'},
+{type:'mc', q:'Si f(x) = x + 1 y g(x) = 3x, ¿cuánto vale (f∘g)(2)?', options:['7','6','9','3'], correct:0, exp:'<b>Respuesta correcta: a.</b> g(2)=6, entonces f(6)=7.'},
+{type:'tf', q:'(f∘g)(x) siempre es igual a (g∘f)(x).', correct:false, exp:'<b>Falso.</b> La composición generalmente NO es conmutativa.'},
+{type:'mc', q:'El producto de dos funciones (f·g)(x) se calcula:', options:['Multiplicando f(x) por g(x)','Sumando f(x) y g(x)','Dividiendo f(x) entre g(x)','Restando f(x) menos g(x)'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:"What is the English term for 'composición de funciones'?", english:true, options:['Function composition','Function operation','Function domain','Function inverse'], correct:0, exp:'<b>Correct answer: a.</b>'}
+]);
+
+/* ===== FUNCIONES ESPECIALES (PREGUNTAS NUEVAS) ===== */
+initQuiz('qz-especiales','score-especiales','a5',[
+{type:'mc', q:'La función inversa de f se escribe:', options:['f⁻¹','f²',"f'",'1/f siempre'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'Si f(3) = 8, entonces f⁻¹(8) = 3.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'La gráfica de una función constante f(x) = c es:', options:['Una recta horizontal','Una recta vertical','Una parábola','Un solo punto'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:"In English, 'función identidad' is called:", english:true, options:['Identity function','Constant function','Inverse function','Absolute value function'], correct:0, exp:'<b>Correct answer: a.</b>'},
+{type:'tf', q:'La función valor absoluto nunca da resultados negativos.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'Para desplazar la gráfica de f(x) 3 unidades hacia la derecha, se escribe:', options:['f(x−3)','f(x+3)','f(x)−3','f(x)+3'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'¿Cuál es la forma de la gráfica de f(x) = |x|?', options:['Una V','Una recta','Un círculo','Una parábola que abre hacia abajo'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:"What is the English word for 'valor absoluto'?", english:true, options:['Absolute value','Total value','Real value','Positive value'], correct:0, exp:'<b>Correct answer: a.</b>'}
+]);
+
+/* ===== 1.3-1.4 GRADOS 0 A 4 (PREGUNTAS NUEVAS) ===== */
+initQuiz('qz-grados','score-grados','a2',[
+{type:'mc', q:'Una función de grado 2 se llama:', options:['Cuadrática','Lineal','Cúbica','Constante'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'El grado de f(x) = 5x³ − 2x + 1 es:', options:['3','5','2','1'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'Una función constante tiene grado 1.', correct:false, exp:'<b>Falso.</b> Una función constante tiene grado 0.'},
+{type:'mc', q:"In English, a 'función cúbica' is called:", english:true, options:['Cubic function','Quadratic function','Constant function','Linear function'], correct:0, exp:'<b>Correct answer: a.</b>'},
+{type:'mc', q:'El dominio de cualquier función polinomial es:', options:['Todos los números reales','Solo positivos','Solo enteros','Ningún número'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'La gráfica de una función de grado 4 puede tener forma de "W" o "M".', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'En f(x) = ax + b, la letra "a" representa:', options:['La pendiente','El grado','El dominio','El rango'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:"What is the English word for 'pendiente' (in a linear function)?", english:true, options:['Slope','Degree','Domain','Range'], correct:0, exp:'<b>Correct answer: a.</b>'}
+]);
+
+/* ===== 2.1-2.4 CEROS Y DIVISIÓN SINTÉTICA (PREGUNTAS NUEVAS) ===== */
+initQuiz('qz-ceros','score-ceros','a3',[
+{type:'mc', q:'Los ceros de una función son los valores donde:', options:['f(x)=0','f(x)=1','x=0','f(0)=x'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'Al factorizar x² − 9, obtenemos:', options:['(x−3)(x+3)','(x−9)(x+1)','(x−3)²','(x+9)(x−1)'], correct:0, exp:'<b>Respuesta correcta: a.</b> Es una diferencia de cuadrados.'},
+{type:'tf', q:'En la división sintética, si el residuo es distinto de cero, entonces "r" NO es una raíz del polinomio.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:"In English, 'raíces de un polinomio' are called:", english:true, options:['Roots of a polynomial','Branches of a polynomial','Leaves of a polynomial','Degrees of a polynomial'], correct:0, exp:'<b>Correct answer: a.</b>'},
+{type:'mc', q:'Los ceros de f(x) = (x−4)(x+5) son:', options:['x=4 y x=−5','x=−4 y x=5','x=4 y x=5','x=−4 y x=−5'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'La división sintética solo funciona para dividir entre binomios de la forma (x−r).', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'Si al dividir un polinomio entre (x−2) el residuo es 0, entonces:', options:['2 es una raíz del polinomio','2 no tiene relación con el polinomio','El polinomio no existe','Hay un error en la división'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:"What is the English term for 'residuo' in synthetic division?", english:true, options:['Remainder','Quotient','Divisor','Dividend'], correct:0, exp:'<b>Correct answer: a.</b>'}
+]);
+
+/* ═══ CRUCIGRAMA ═══ */
+const CW_WORDS = [
+  {word:'FUNCION',   row:2,  col:0, dir:'H', num:1, clue:'Relación donde cada elemento del dominio tiene un único correspondiente.'},
+  {word:'DOMINIO',   row:1,  col:5, dir:'V', num:2, clue:'Conjunto de partida de una función.'},
+  {word:'RANGO',     row:5,  col:0, dir:'H', num:3, clue:'Conjunto de valores de salida que sí toma la función.'},
+  {word:'GRADO',     row:7,  col:0, dir:'H', num:4, clue:'La potencia más alta de x en un polinomio con coeficiente distinto de cero.'},
+  {word:'RAIZ',      row:9,  col:0, dir:'H', num:5, clue:'Valor de x donde f(x)=0.'},
+  {word:'INVERSA',   row:11, col:0, dir:'H', num:6, clue:'Función que "deshace" lo que hace la función original; se denota f⁻¹.'},
+  {word:'CONTINUA',  row:13, col:0, dir:'H', num:7, clue:'Función cuya gráfica no tiene saltos ni interrupciones.'},
+];
+
+function buildCrossword(containerId, words){
+  let maxRow=0, maxCol=0, minRow=0, minCol=0;
+  words.forEach(w=>{
+    for(let i=0;i<w.word.length;i++){
+      const r = w.dir==='H'? w.row : w.row+i;
+      const c = w.dir==='H'? w.col+i : w.col;
+      maxRow=Math.max(maxRow,r); maxCol=Math.max(maxCol,c);
+      minRow=Math.min(minRow,r); minCol=Math.min(minCol,c);
+    }
+  });
+  const rows = maxRow-minRow+1, cols = maxCol-minCol+1;
+  const grid = Array.from({length:rows},()=>Array(cols).fill(null));
+  const numbers = {};
+  words.forEach(w=>{
+    numbers[(w.row-minRow)+','+(w.col-minCol)] = w.num;
+    for(let i=0;i<w.word.length;i++){
+      const r = (w.dir==='H'? w.row : w.row+i) - minRow;
+      const c = (w.dir==='H'? w.col+i : w.col) - minCol;
+      grid[r][c] = w.word[i];
+    }
+  });
+  let html = '<table class="cw-grid"><tbody>';
+  for(let r=0;r<rows;r++){
+    html+='<tr>';
+    for(let c=0;c<cols;c++){
+      if(grid[r][c]===null){
+        html+='<td class="block"></td>';
+      } else {
+        const num = numbers[r+','+c];
+        html += `<td>${num? `<span class="cw-num">${num}</span>`:''}<input maxlength="1" data-letter="${grid[r][c]}" oninput="this.value=this.value.toUpperCase()"></td>`;
+      }
+    }
+    html+='</tr>';
+  }
+  html+='</tbody></table>';
+  document.getElementById(containerId).innerHTML = html;
+
+  const across = words.filter(w=>w.dir==='H').sort((a,b)=>a.num-b.num);
+  const down = words.filter(w=>w.dir==='V').sort((a,b)=>a.num-b.num);
+  let cluesHtml = '<div class="cw-clue-col"><h5>HORIZONTALES</h5><ol>';
+  across.forEach(w=> cluesHtml += `<li><b>${w.num}.</b> ${w.clue} (${w.word.length} letras)</li>`);
+  cluesHtml += '</ol></div><div class="cw-clue-col"><h5>VERTICALES</h5><ol>';
+  down.forEach(w=> cluesHtml += `<li><b>${w.num}.</b> ${w.clue} (${w.word.length} letras)</li>`);
+  cluesHtml += '</ol></div>';
+  document.getElementById('cw-clues').innerHTML = cluesHtml;
+  document.getElementById('cw-result').textContent = '';
+}
+
+function checkCrossword(containerId, resultId){
+  const inputs = document.querySelectorAll('#'+containerId+' input');
+  let correct=0, total=inputs.length;
+  inputs.forEach(inp=>{
+    const val = inp.value.trim().toUpperCase();
+    if(val === inp.dataset.letter){
+      inp.style.background = '#e3f4e8'; inp.style.color='#0a4a2a';
+      correct++;
+    } else if(val !== ''){
+      inp.style.background = '#fdeaea'; inp.style.color='#7a1414';
+    } else {
+      inp.style.background = '#fff'; inp.style.color='var(--ink)';
+    }
+  });
+  document.getElementById(resultId).textContent = `Resultado: ${correct} / ${total} letras correctas`;
+}
+
+buildCrossword('cw-container', CW_WORDS);
+
+/* ═══ SOPA DE LETRAS PROGRESIVA ═══ */
+const WS_WORDS = [
+  {word:'FUNCION',   clue:'Relación donde cada elemento del dominio tiene un único correspondiente en el contradominio.'},
+  {word:'DOMINIO',   clue:'Conjunto de partida de una función; todos los valores posibles de x.'},
+  {word:'RANGO',     clue:'Conjunto de valores de salida que realmente toma la función.'},
+  {word:'GRADO',     clue:'La potencia más alta de x en un polinomio, con coeficiente distinto de cero.'},
+  {word:'RAIZ',      clue:'Valor de x donde la función vale cero (f(x)=0); también se llama cero de la función.'},
+  {word:'INVERSA',   clue:'Función que "deshace" lo que hace la función original; se denota f⁻¹.'},
+  {word:'CONTINUA',  clue:'Función cuya gráfica se puede dibujar sin levantar el lápiz del papel.'},
+  {word:'INYECTIVA', clue:'Función uno-a-uno: nunca repite el mismo valor de salida para dos entradas distintas.'},
+];
+let wsIndex = 0;
+let wsGrid = [];
+let wsSelected = [];
+let wsFoundCount = 0;
+const WS_SIZE = 9;
+
+function wsBuild(){
+  const w = WS_WORDS[wsIndex].word;
+  const size = WS_SIZE;
+  let grid = Array.from({length:size},()=>Array(size).fill(null));
+  const horizontal = Math.random() < 0.5;
+  if(horizontal){
+    const row = Math.floor(Math.random()*size);
+    const col = Math.floor(Math.random()*(size-w.length+1));
+    for(let i=0;i<w.length;i++) grid[row][col+i] = w[i];
+  } else {
+    const col = Math.floor(Math.random()*size);
+    const row = Math.floor(Math.random()*(size-w.length+1));
+    for(let i=0;i<w.length;i++) grid[row+i][col] = w[i];
+  }
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  for(let r=0;r<size;r++){
+    for(let c=0;c<size;c++){
+      if(grid[r][c] === null) grid[r][c] = letters[Math.floor(Math.random()*letters.length)];
+    }
+  }
+  wsGrid = grid;
+  wsSelected = [];
+  renderWsGrid();
+  document.getElementById('ws-target').textContent = `🔎 Encuentra una palabra de ${w.length} letras`;
+  document.getElementById('ws-progress').textContent = `Palabra ${wsIndex+1} de ${WS_WORDS.length} · Encontradas: ${wsFoundCount}`;
+  document.getElementById('ws-define-area').style.display = 'none';
+  document.getElementById('ws-answer-reveal').classList.remove('show');
+  document.getElementById('ws-user-def').value = '';
+}
+
+function renderWsGrid(){
+  const size = WS_SIZE;
+  let html = '<table class="ws-grid"><tbody>';
+  for(let r=0;r<size;r++){
+    html += '<tr>';
+    for(let c=0;c<size;c++){
+      html += `<td><button class="ws-cell-btn" id="ws-${r}-${c}" onclick="wsClick(${r},${c})">${wsGrid[r][c]}</button></td>`;
+    }
+    html += '</tr>';
+  }
+  html += '</tbody></table>';
+  document.getElementById('ws-container').innerHTML = html;
+}
+
+function wsClick(r,c){
+  const key = r+','+c;
+  const idx = wsSelected.indexOf(key);
+  const btn = document.getElementById(`ws-${r}-${c}`);
+  if(btn.classList.contains('found')) return;
+  if(idx >= 0){
+    wsSelected.splice(idx,1);
+    btn.classList.remove('selected');
+  } else {
+    wsSelected.push(key);
+    btn.classList.add('selected');
+  }
+}
+
+function wsCheck(){
+  const w = WS_WORDS[wsIndex].word;
+  const letters = wsSelected.map(k=>{
+    const [r,c] = k.split(',').map(Number);
+    return wsGrid[r][c];
+  }).join('');
+  if(letters === w || letters === w.split('').reverse().join('')){
+    wsSelected.forEach(k=>{
+      const [r,c] = k.split(',').map(Number);
+      const btn = document.getElementById(`ws-${r}-${c}`);
+      btn.classList.add('found');
+      btn.classList.remove('selected');
+    });
+    wsFoundCount++;
+    document.getElementById('ws-progress').textContent = `Palabra ${wsIndex+1} de ${WS_WORDS.length} · Encontradas: ${wsFoundCount}`;
+    document.getElementById('ws-define-area').style.display = 'block';
+    document.getElementById('ws-define-word').textContent = w;
+  } else if(letters.length === 0){
+    alert('Primero haz clic en las letras que forman la palabra.');
+  } else {
+    alert('Esa selección no forma la palabra correcta. Vuelve a intentarlo: haz clic en las letras en orden, en línea recta (horizontal o vertical).');
+    wsSelected.forEach(k=>{
+      const [r,c] = k.split(',').map(Number);
+      document.getElementById(`ws-${r}-${c}`).classList.remove('selected');
+    });
+    wsSelected = [];
+  }
+}
+
+function wsRevealDef(){
+  const el = document.getElementById('ws-answer-reveal');
+  el.textContent = 'Definición correcta: ' + WS_WORDS[wsIndex].clue;
+  el.classList.add('show');
+}
+
+function wsNext(){
+  wsIndex++;
+  if(wsIndex >= WS_WORDS.length){
+    document.getElementById('ws-container').innerHTML = '<div class="resultado-box purple"><div class="res-ico">🎉</div><div class="res-body"><div class="res-label">¡Felicidades!</div><div class="res-val">Encontraste las '+WS_WORDS.length+' palabras de la sopa de letras.</div></div></div>';
+    document.getElementById('ws-target').textContent = '';
+    document.getElementById('ws-define-area').style.display = 'none';
+    document.getElementById('ws-progress').textContent = `Completado: ${wsFoundCount} / ${WS_WORDS.length}`;
+    return;
+  }
+  wsBuild();
+}
+
+wsBuild();
+</script>
+</body>
+</html>

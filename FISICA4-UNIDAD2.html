@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Física 4 — Unidad II: Calor y Temperatura</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f0f4f8;--surface:#fff;--border:#c0d0e0;
+  --ink:#061828;--muted:#3a5a78;
+  --a1:#1a4fc4;--a2:#c41a1a;--a3:#1a9a5c;--a4:#b8860b;--a5:#7a1ac4;
+  --a1l:#e8eef9;--a2l:#fdeaea;--a3l:#e3f4e8;--a4l:#fff8e1;--a5l:#f0e8fb;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;line-height:1.7;}
+
+.hero{background:var(--ink);color:#f0f6ff;padding:56px 48px 48px;position:relative;overflow:hidden;}
+.hero::after{content:'🌡️';font-size:220px;position:absolute;right:20px;bottom:-30px;line-height:1;pointer-events:none;opacity:.06;}
+.hero-top{display:flex;align-items:center;gap:16px;margin-bottom:28px;}
+.unit-badge{background:var(--a1);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;padding:4px 14px;border-radius:4px;}
+.subject-tag{font-size:12px;font-weight:500;color:rgba(240,246,255,0.45);letter-spacing:2px;text-transform:uppercase;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,8vw,5rem);line-height:.92;letter-spacing:1px;margin-bottom:16px;}
+.hero h1 span{color:#5cb8f8;}
+.hero-desc{max-width:600px;font-size:15px;color:rgba(240,246,255,0.6);margin-bottom:32px;}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;}
+.pill{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:6px 16px;font-size:13px;font-weight:500;}
+.pill-dot{width:8px;height:8px;border-radius:50%;}
+
+.nav-strip{background:var(--a1);display:flex;overflow-x:auto;position:sticky;top:0;z-index:10;}
+.nav-strip a{color:rgba(255,255,255,.75);text-decoration:none;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:12px 20px;white-space:nowrap;border-right:1px solid rgba(255,255,255,.15);transition:all .2s;}
+.nav-strip a:hover{background:rgba(255,255,255,.12);color:#fff;}
+
+.wrap{max-width:960px;margin:0 auto;padding:0 28px 100px;}
+
+.sec-head{display:flex;align-items:flex-start;margin:56px 0 24px;border-left:5px solid var(--a1);padding-left:18px;}
+.sec-head.red{border-color:var(--a2);} .sec-head.green{border-color:var(--a3);} .sec-head.gold{border-color:var(--a4);} .sec-head.purple{border-color:var(--a5);}
+.sec-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;line-height:1;color:var(--a1);margin-right:14px;flex-shrink:0;}
+.sec-head.red .sec-num{color:var(--a2);} .sec-head.green .sec-num{color:var(--a3);} .sec-head.gold .sec-num{color:var(--a4);} .sec-head.purple .sec-num{color:var(--a5);}
+.sec-info h2{font-family:'Bebas Neue',sans-serif;font-size:1.85rem;letter-spacing:.5px;line-height:1.1;}
+.sec-info p{font-size:13px;color:var(--muted);font-weight:500;}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px 26px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.card-label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+
+.concept-box{border-radius:12px;padding:18px 22px;margin:12px 0;text-align:center;}
+.concept-box.blue{background:linear-gradient(135deg,#061828,#1a4fc4);}
+.concept-box.red{background:linear-gradient(135deg,#2a0a0a,#c41a1a);}
+.concept-box.green{background:linear-gradient(135deg,#0a2a18,#1a9a5c);}
+.concept-box.gold{background:linear-gradient(135deg,#2a1800,#b8860b);}
+.concept-box.purple{background:linear-gradient(135deg,#1a0a2a,#7a1ac4);}
+.concept-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:1px;color:#fff;margin-bottom:6px;}
+.concept-def{font-size:14px;color:rgba(255,255,255,.85);line-height:1.65;}
+
+.tip{border-radius:10px;padding:13px 16px;font-size:13.5px;margin-top:14px;display:flex;gap:10px;align-items:flex-start;}
+.tip.blue{background:rgba(26,79,196,.08);border-left:3px solid var(--a1);}
+.tip.red{background:rgba(196,26,26,.08);border-left:3px solid var(--a2);}
+.tip.green{background:rgba(26,154,92,.08);border-left:3px solid var(--a3);}
+.tip.gold{background:rgba(184,134,11,.08);border-left:3px solid var(--a4);}
+.tip.purple{background:rgba(122,26,196,.08);border-left:3px solid var(--a5);}
+.tip-ico{font-size:18px;flex-shrink:0;margin-top:1px;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;}
+@media(max-width:600px){.two-col,.three-col,.char-grid{grid-template-columns:1fr;}}
+
+.mini-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.mini-card .mc-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.mini-card .mc-val{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.5px;}
+.mini-card .mc-body{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.55;}
+
+.char-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;}
+.char-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;border-left:4px solid var(--a1);}
+.char-card.red{border-color:var(--a2);}.char-card.green{border-color:var(--a3);}.char-card.gold{border-color:var(--a4);}.char-card.purple{border-color:var(--a5);}
+.char-card .cc-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.5px;margin-bottom:6px;}
+.char-card .cc-title.blue{color:var(--a1);}.char-card .cc-title.red{color:var(--a2);}.char-card .cc-title.green{color:var(--a3);}.char-card .cc-title.gold{color:var(--a4);}.char-card .cc-title.purple{color:var(--a5);}
+.char-card .cc-body{font-size:13px;line-height:1.6;}
+
+.stab{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+.stab th{text-align:left;padding:9px 12px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-bottom:2px solid;background:rgba(0,0,0,.02);}
+.stab.blue th{color:var(--a1);border-color:var(--a1);}
+.stab.red th{color:var(--a2);border-color:var(--a2);}
+.stab.green th{color:var(--a3);border-color:var(--a3);}
+.stab.gold th{color:var(--a4);border-color:var(--a4);}
+.stab.purple th{color:var(--a5);border-color:var(--a5);}
+.stab td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.stab tr:last-child td{border-bottom:none;}
+.stab tr:nth-child(even) td{background:rgba(0,0,0,.015);}
+
+.formula-box{background:var(--ink);border-radius:12px;padding:20px 24px;margin:14px 0;text-align:center;}
+.formula-box .f-label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(240,246,255,.45);margin-bottom:8px;}
+.formula-box .f-eq{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:1px;color:#5cb8f8;}
+.formula-box .f-note{font-size:12px;color:rgba(240,246,255,.6);margin-top:6px;}
+
+.solved{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.solved-head{display:flex;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid var(--border);}
+.solved-badge{font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:1.5px;padding:3px 10px;border-radius:4px;color:#fff;flex-shrink:0;}
+.bg-blue{background:var(--a1);}.bg-red{background:var(--a2);}.bg-green{background:var(--a3);}.bg-gold{background:var(--a4);}.bg-purple{background:var(--a5);}
+.solved-title{font-weight:700;font-size:14px;}
+.solved-body{padding:18px 20px;}
+.paso-grid{display:flex;flex-direction:column;gap:8px;}
+.paso{display:flex;gap:12px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 14px;}
+.paso-num{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;line-height:1;flex-shrink:0;width:28px;}
+.paso-body .p-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;}
+.paso-body .p-op{font-size:14px;font-weight:600;}
+.resultado-box{border-radius:10px;padding:12px 16px;margin-top:12px;display:flex;gap:10px;align-items:center;}
+.resultado-box.blue{background:rgba(26,79,196,.08);border:1px solid rgba(26,79,196,.2);}
+.resultado-box.red{background:rgba(196,26,26,.08);border:1px solid rgba(196,26,26,.2);}
+.resultado-box.green{background:rgba(26,154,92,.08);border:1px solid rgba(26,154,92,.2);}
+.resultado-box.gold{background:rgba(184,134,11,.08);border:1px solid rgba(184,134,11,.2);}
+.resultado-box.purple{background:rgba(122,26,196,.08);border:1px solid rgba(122,26,196,.2);}
+.res-ico{font-size:22px;flex-shrink:0;}
+.res-body .res-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+.res-body .res-val{font-size:14px;font-weight:700;}
+
+.bubbles{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+.bubble{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;}
+.bubble .b-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.bubble .b-main{font-weight:600;font-size:14px;margin-bottom:3px;}
+
+.wb-section{background:var(--ink);color:#f0f6ff;border-radius:16px;padding:32px;margin-top:60px;}
+.wb-title{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:1px;margin-bottom:6px;}
+.wb-title span{color:#5cb8f8;}
+.wb-sub{color:rgba(240,246,255,.5);font-size:13.5px;margin-bottom:28px;}
+.wb-group{margin-bottom:28px;}
+.wb-group-title{font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:2px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:12px;}
+.wb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.wb-word{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 12px;}
+.wb-word .en{font-weight:700;font-size:13.5px;margin-bottom:2px;}
+.wb-word .es{font-size:12px;color:rgba(240,246,255,.55);}
+
+footer{text-align:center;padding:28px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--border);margin-top:20px;}
+
+/* ═══ QUIZ INTERACTIVO ═══ */
+.quiz-box{background:var(--surface);border:2px dashed var(--border);border-radius:14px;padding:20px 22px;margin:8px 0 32px;}
+.quiz-box.blue{border-color:var(--a1);}.quiz-box.red{border-color:var(--a2);}
+.quiz-box.green{border-color:var(--a3);}.quiz-box.gold{border-color:var(--a4);}
+.quiz-box.purple{border-color:var(--a5);}
+.quiz-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.quiz-head .qz-ico{font-size:1.5rem;}
+.quiz-head h4{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.5px;}
+.quiz-head span.qz-sub{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;}
+.quiz-score{font-size:12px;font-weight:700;margin-bottom:14px;color:var(--muted);}
+.qz-question{background:var(--bg);border-radius:10px;padding:14px 16px;margin-bottom:10px;}
+.qz-question:last-child{margin-bottom:0;}
+.qz-qtext{font-weight:600;font-size:13.5px;margin-bottom:10px;display:flex;gap:8px;align-items:flex-start;}
+.qz-qtext .qz-num{font-family:'Bebas Neue',sans-serif;flex-shrink:0;font-size:1.05rem;line-height:1.3;}
+.qz-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:middle;}
+.qz-tag.english{background:#0a5cad !important;}
+.qz-opts{display:flex;flex-direction:column;gap:6px;}
+.qz-tf-opts{display:flex;gap:8px;}
+.qz-opt{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 13px;font-size:13px;cursor:pointer;text-align:left;transition:all .15s;font-family:inherit;color:var(--ink);}
+.qz-tf-opts .qz-opt{flex:1;text-align:center;font-weight:600;}
+.qz-opt:hover:not(.disabled){background:var(--a1l);border-color:var(--a1);}
+.qz-opt.correct{background:rgba(26,154,92,.18);border-color:var(--a3);font-weight:700;color:#0a4a2a;}
+.qz-opt.incorrect{background:rgba(196,26,26,.18);border-color:var(--a2);font-weight:700;color:#7a1414;}
+.qz-opt.disabled{cursor:default;}
+.qz-explain{font-size:12.5px;margin-top:9px;padding:9px 13px;border-radius:8px;background:rgba(0,0,0,.04);display:none;line-height:1.5;}
+.qz-explain.show{display:block;}
+.qz-explain b{color:var(--a3);}
+
+/* ═══ CRUCIGRAMA ═══ */
+.cw-box{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:20px 22px;margin:14px 0;}
+.cw-head{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+.cw-head .cw-ico{font-size:1.4rem;}
+.cw-head h5{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.5px;}
+.cw-layout{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start;}
+.cw-grid-wrap{overflow-x:auto;flex-shrink:0;}
+table.cw-table{border-collapse:collapse;}
+.cw-cell{width:26px;height:26px;border:1px solid var(--ink);padding:0;position:relative;background:#fff;}
+.cw-empty{width:26px;height:26px;border:none;background:transparent;}
+.cw-input{width:100%;height:100%;border:none;text-align:center;font-weight:700;text-transform:uppercase;font-size:13px;background:transparent;font-family:inherit;}
+.cw-input:focus{outline:2px solid var(--a1);}
+.cw-input.cw-correct{background:rgba(26,154,92,.28);}
+.cw-input.cw-incorrect{background:rgba(196,26,26,.28);}
+.cw-num{position:absolute;top:0;left:1px;font-size:7px;color:var(--muted);font-weight:700;}
+.cw-clues{flex:1;min-width:220px;}
+.cw-clue-group{margin-bottom:12px;}
+.cw-clue-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.cw-clue{font-size:12.5px;margin-bottom:6px;line-height:1.5;}
+.cw-clue b{color:var(--a1);}
+.cw-check-btn{border:none;border-radius:100px;padding:9px 20px;font-size:13px;font-weight:700;cursor:pointer;color:#fff;background:var(--a3);margin-top:10px;}
+.cw-check-btn:hover{opacity:.88;}
+.cw-result{font-size:13px;font-weight:700;margin-top:10px;display:none;}
+.cw-result.show{display:block;}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="unit-badge">UNIDAD II</div>
+    <div class="subject-tag">Física 4 · Calor y Temperatura</div>
+  </div>
+  <h1>FÍSICA 4<br><span>UNIDAD II</span></h1>
+  <p class="hero-desc">En esta unidad estudiarás el calor y la temperatura: las escalas para medirla, cómo se transmite y produce el calor, la dilatación térmica, la calorimetría, los cambios de fase y el equilibrio térmico. Cada tema tiene ejemplos fáciles, ejercicios desglosados paso a paso, un crucigrama, y algunas preguntas en inglés para que practiques el vocabulario científico.</p>
+  <div class="hero-pills">
+    <div class="pill"><div class="pill-dot" style="background:#5cb8f8"></div>2.1 Escalas de temperatura</div>
+    <div class="pill"><div class="pill-dot" style="background:#ff8fa0"></div>El calor</div>
+    <div class="pill"><div class="pill-dot" style="background:#86efac"></div>Dilatación térmica</div>
+    <div class="pill"><div class="pill-dot" style="background:#fcd45c"></div>Calorimetría</div>
+    <div class="pill"><div class="pill-dot" style="background:#c4b5fd"></div>Cambios de fase</div>
+    <div class="pill"><div class="pill-dot" style="background:#5cb8f8"></div>2.2 Equilibrio y cambio climático</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-strip">
+  <a href="#escalas">2.1 Escalas de temperatura</a>
+  <a href="#calor">El calor</a>
+  <a href="#dilatacion">Dilatación térmica</a>
+  <a href="#calorimetria">Calorimetría</a>
+  <a href="#cambiofase">Cambios de fase</a>
+  <a href="#equilibrio">2.2 Equilibrio y clima</a>
+  <a href="#retos">Retos</a>
+  <a href="#glosario">Glosario</a>
+</div>
+
+<div class="wrap">
+
+<!-- ═══════════════════════════════════
+     2.1 ESCALAS DE TEMPERATURA
+═══════════════════════════════════ -->
+<div id="escalas">
+  <div class="sec-head blue">
+    <div class="sec-num">2.1</div>
+    <div class="sec-info">
+      <h2>Escalas de temperatura</h2>
+      <p>Las 4 formas de medir qué tan caliente o frío está algo</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">¿Qué es la temperatura?</div>
+    <div class="concept-box blue">
+      <div class="concept-title">TEMPERATURA</div>
+      <div class="concept-def">Es la magnitud física que indica qué tan caliente o frío se encuentra un cuerpo o sustancia. Es independiente de la cantidad de materia que tiene un cuerpo.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">Las 4 escalas</div>
+    <table class="stab blue">
+      <tr><th>Escala</th><th>Creador</th><th>Puntos de referencia</th></tr>
+      <tr><td>Celsius (°C)</td><td>Anders Celsius, 1742</td><td>Congelación=0, ebullición del agua=100</td></tr>
+      <tr><td>Fahrenheit (°F)</td><td>Gabriel Fahrenheit, 1724</td><td>Fusión=32, ebullición=212 (mezcla agua-sal)</td></tr>
+      <tr><td>Kelvin (K)</td><td>William Thomson, 1848</td><td>Escala absoluta; el 0 es la ausencia total de energía térmica</td></tr>
+      <tr><td>Rankine (°R)</td><td>William Rankine, 1859</td><td>Solidificación=491.7, ebullición=671.7</td></tr>
+    </table>
+    <div class="tip blue">
+      <span class="tip-ico">🌡️</span>
+      <span><strong>Ejemplo fácil:</strong> Celsius y Fahrenheit sí pueden dar valores negativos; Kelvin y Rankine nunca, porque parten del "cero absoluto" (ausencia total de energía térmica).</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">Fórmulas de conversión</div>
+    <div class="two-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a1)">Celsius ↔ Fahrenheit</div><div class="mc-body">°F = 9/5 °C + 32<br>°C = 5/9 (°F − 32)</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a1)">Celsius ↔ Kelvin</div><div class="mc-body">K = °C + 273<br>°C = K − 273</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a1)">Fahrenheit ↔ Rankine</div><div class="mc-body">°R = °F + 460</div></div>
+    </div>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-blue">EJERCICIO DESGLOSADO</div>
+      <div class="solved-title">🌡️ Convertir 20°C a grados Fahrenheit</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a1)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a1)">Identificar la fórmula</div><div class="p-op">°F = 9/5 °C + 32</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a1)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a1)">Sustituir °C=20</div><div class="p-op">°F = 9/5 (20) + 32</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a1)">3</div><div class="paso-body"><div class="p-label" style="color:var(--a1)">Multiplicar y sumar</div><div class="p-op">°F = 36 + 32</div></div></div>
+      </div>
+      <div class="resultado-box blue"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">°F = 68°F</div></div></div>
+    </div>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-blue">EJERCICIO DESGLOSADO</div>
+      <div class="solved-title">❄️ Convertir 232°C a Kelvin</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a1)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a1)">Identificar la fórmula</div><div class="p-op">K = °C + 273</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a1)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a1)">Sustituir °C=232</div><div class="p-op">K = 232 + 273</div></div></div>
+      </div>
+      <div class="resultado-box blue"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">K = 505 K</div></div></div>
+    </div>
+  </div>
+
+  <div class="quiz-box blue" id="box-escalas">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Escalas de temperatura</span></div>
+    <div class="quiz-score" id="score-escalas"></div>
+    <div class="qz-container" id="qz-escalas"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     EL CALOR
+═══════════════════════════════════ -->
+<div id="calor">
+  <div class="sec-head red">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>El calor</h2>
+      <p>La energía que fluye entre cuerpos con distinta temperatura</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">¿Qué es el calor?</div>
+    <div class="concept-box red">
+      <div class="concept-title">CALOR</div>
+      <div class="concept-def">Es el tipo de energía que fluye de un cuerpo a otro debido a una diferencia de energía interna entre ambos sistemas, hasta lograr el equilibrio.</div>
+    </div>
+    <div class="tip red">
+      <span class="tip-ico">💧</span>
+      <span><strong>Ejemplo fácil:</strong> si mezclas un litro de agua "muy caliente" con uno de agua "fría", obtienes 2 litros de agua "tibia" — el calor fluyó del agua caliente a la fría hasta que ambas tuvieron la misma energía térmica.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">Unidades de calor</div>
+    <table class="stab red">
+      <tr><th>Unidad</th><th>Sistema</th></tr>
+      <tr><td>Joule (J)</td><td>Sistema Internacional</td></tr>
+      <tr><td>Ergios</td><td>Sistema Cegesimal</td></tr>
+      <tr><td>Calorías (cal) / kilocalorías (kcal)</td><td>Uso común</td></tr>
+    </table>
+    <div class="tip red">
+      <span class="tip-ico">🔢</span>
+      <span><strong>Equivalencias:</strong> 1 cal = 4.18 J &nbsp;·&nbsp; 1 kcal = 1000 cal = 4180 J</span>
+    </div>
+  </div>
+
+  <div class="quiz-box red" id="box-calor">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: El calor</span></div>
+    <div class="quiz-score" id="score-calor"></div>
+    <div class="qz-container" id="qz-calor"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     DILATACIÓN TÉRMICA
+═══════════════════════════════════ -->
+<div id="dilatacion">
+  <div class="sec-head green">
+    <div class="sec-num">2.1.3</div>
+    <div class="sec-info">
+      <h2>Dilatación térmica</h2>
+      <p>Cómo cambian de tamaño los cuerpos al recibir calor</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">¿Qué es la dilatación térmica?</div>
+    <div class="concept-box green">
+      <div class="concept-title">DILATACIÓN TÉRMICA</div>
+      <div class="concept-def">Es el aumento en las dimensiones de un cuerpo, al recibir cierta cantidad de energía térmica externa. Puede ser lineal (1 dimensión), superficial (2 dimensiones) o volumétrica (3 dimensiones).</div>
+    </div>
+    <div class="tip green">
+      <span class="tip-ico">🚂</span>
+      <span><strong>Ejemplo fácil:</strong> por eso se dejan pequeños espacios entre los rieles de un tren — al calentarse por fricción, el metal se dilata, y sin ese espacio los rieles chocarían y se deformarían.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">Las 3 fórmulas</div>
+    <table class="stab green">
+      <tr><th>Tipo</th><th>Fórmula</th><th>Coeficiente</th></tr>
+      <tr><td>Lineal</td><td>ΔL = α · Li · ΔT</td><td>α (dado por el material)</td></tr>
+      <tr><td>Superficial</td><td>ΔA = γ · Ai · ΔT</td><td>γ = 2α</td></tr>
+      <tr><td>Volumétrica</td><td>ΔV = β · Vi · ΔT</td><td>β = 3α</td></tr>
+    </table>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-green">EJERCICIO DESGLOSADO</div>
+      <div class="solved-title">📏 Dilatación lineal de una varilla de acero de 9m, de 10°C a 22°C (α=1.2×10⁻⁵)</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a3)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a3)">Identificar la fórmula y los datos</div><div class="p-op">ΔL = αLiΔT · Li=9m · ΔT=22−10=12°C</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a3)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a3)">Sustituir</div><div class="p-op">ΔL = (1.2×10⁻⁵)(9m)(12°C)</div></div></div>
+      </div>
+      <div class="resultado-box green"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">ΔL = 0.0012 m ≈ 1.2 mm</div></div></div>
+    </div>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-green">EJERCICIO DESGLOSADO</div>
+      <div class="solved-title">🔲 Dilatación superficial de una lámina de zinc de 2m×1m, con ΔT=20°C (α=2.6×10⁻⁵)</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a3)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a3)">Calcular el área inicial y γ</div><div class="p-op">Ai = 2m × 1m = 2m² · γ = 2α = 5.2×10⁻⁵</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a3)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a3)">Sustituir en ΔA=γAiΔT</div><div class="p-op">ΔA = (5.2×10⁻⁵)(2m²)(20°C)</div></div></div>
+      </div>
+      <div class="resultado-box green"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">ΔA ≈ 0.0020 m²</div></div></div>
+    </div>
+  </div>
+
+  <div class="quiz-box green" id="box-dilatacion">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Dilatación térmica</span></div>
+    <div class="quiz-score" id="score-dilatacion"></div>
+    <div class="qz-container" id="qz-dilatacion"></div>
+  </div>
+
+  <!-- CRUCIGRAMA -->
+  <div class="cw-box" id="cw1">
+    <div class="cw-head"><span class="cw-ico">🧩</span><h5>CRUCIGRAMA — Calor y temperatura</h5></div>
+    <div class="cw-layout">
+      <div class="cw-grid-wrap" id="cw1-grid"></div>
+      <div class="cw-clues">
+        <div class="cw-clue-group">
+          <div class="cw-clue-title">Horizontales</div>
+          <div class="cw-clue"><b>1.</b> Escala de temperatura "absoluta" que no utiliza valores negativos.</div>
+          <div class="cw-clue"><b>2.</b> Tipo de energía que fluye de un cuerpo a otro por diferencia de energía interna.</div>
+          <div class="cw-clue"><b>3.</b> Cambio de fase de sólido a líquido.</div>
+          <div class="cw-clue"><b>4.</b> Procedimiento para medir el calor producido por una reacción o proceso físico.</div>
+        </div>
+        <div class="cw-clue-group">
+          <div class="cw-clue-title">Vertical</div>
+          <div class="cw-clue"><b>5.</b> Aumento en las dimensiones de un cuerpo al recibir energía térmica.</div>
+        </div>
+      </div>
+    </div>
+    <button class="cw-check-btn" onclick="checkCrossword('cw1')">✅ Revisar crucigrama</button>
+    <div class="cw-result" id="cw1-result"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     CALORIMETRÍA
+═══════════════════════════════════ -->
+<div id="calorimetria">
+  <div class="sec-head gold">
+    <div class="sec-num">2.1.4</div>
+    <div class="sec-info">
+      <h2>Calorimetría</h2>
+      <p>Cómo medir la cantidad de calor que absorbe o cede un cuerpo</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a4)">Capacidad calorífica y calor específico</div>
+    <div class="two-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a4)">Capacidad calorífica (C)</div><div class="mc-body">Relación entre el calor absorbido y el incremento de temperatura. C = Q / ΔT</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a4)">Calor específico (Ce)</div><div class="mc-body">Calor que absorbe un cuerpo POR UNIDAD DE MASA para elevar 1°C su temperatura. Ce = Q / (mΔT)</div></div>
+    </div>
+    <div class="formula-box">
+      <div class="f-label">Fórmula para calcular el calor</div>
+      <div class="f-eq">Q = m · Ce · ΔT</div>
+      <div class="f-note">Q = calor (J o cal) · m = masa (kg o g) · Ce = calor específico · ΔT = variación de temperatura</div>
+    </div>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-gold">EJERCICIO DESGLOSADO</div>
+      <div class="solved-title">🔥 Calor necesario para calentar 3500g de cobre de 20°C a 100°C (Ce=0.093 cal/g°C)</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a4)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a4)">Identificar los datos</div><div class="p-op">m=3500g · Ce=0.093 cal/g°C · ΔT=100−20=80°C</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a4)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a4)">Sustituir en Q=mCeΔT</div><div class="p-op">Q = (3500)(0.093)(80)</div></div></div>
+      </div>
+      <div class="resultado-box gold"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">Q = 26,040 calorías ≈ 26.04 kcal</div></div></div>
+    </div>
+  </div>
+
+  <div class="quiz-box gold" id="box-calorimetria">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Calorimetría</span></div>
+    <div class="quiz-score" id="score-calorimetria"></div>
+    <div class="qz-container" id="qz-calorimetria"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     CAMBIOS DE FASE
+═══════════════════════════════════ -->
+<div id="cambiofase">
+  <div class="sec-head purple">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Cambios de fase y calor latente</h2>
+      <p>Cuando el calor cambia el estado de la materia, no su temperatura</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">Los cambios de fase</div>
+    <table class="stab purple">
+      <tr><th>Cambio</th><th>De → A</th></tr>
+      <tr><td>Fusión</td><td>Sólido → Líquido</td></tr>
+      <tr><td>Vaporización</td><td>Líquido → Gas</td></tr>
+      <tr><td>Condensación</td><td>Gas → Líquido</td></tr>
+      <tr><td>Solidificación</td><td>Líquido → Sólido</td></tr>
+      <tr><td>Sublimación</td><td>Sólido → Gas (directamente)</td></tr>
+    </table>
+    <div class="tip purple">
+      <span class="tip-ico">🧊</span>
+      <span><strong>Dato clave:</strong> durante un cambio de fase, la temperatura del cuerpo NO cambia — toda la energía se usa para romper las fuerzas entre moléculas, no para calentar más.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">Calor latente</div>
+    <div class="formula-box">
+      <div class="f-label">Fórmula</div>
+      <div class="f-eq">L = Q / m &nbsp;→&nbsp; Q = L · m</div>
+      <div class="f-note">L = calor latente (fusión Lf o vaporización Lv) · Q = calor · m = masa</div>
+    </div>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-purple">EJERCICIO DESGLOSADO</div>
+      <div class="solved-title">🔨 Calor requerido para fundir 20kg de cobre (Lf=22.5 kJ/kg)</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a5)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a5)">Identificar la fórmula y los datos</div><div class="p-op">Q = Lf · m · Lf=22.5 kJ/kg · m=20kg</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a5)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a5)">Sustituir y multiplicar</div><div class="p-op">Q = (22.5)(20)</div></div></div>
+      </div>
+      <div class="resultado-box purple"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">Q = 450 kJ</div></div></div>
+    </div>
+  </div>
+
+  <div class="quiz-box purple" id="box-cambiofase">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Cambios de fase y calor latente</span></div>
+    <div class="quiz-score" id="score-cambiofase"></div>
+    <div class="qz-container" id="qz-cambiofase"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     EQUILIBRIO Y CAMBIO CLIMÁTICO
+═══════════════════════════════════ -->
+<div id="equilibrio">
+  <div class="sec-head blue">
+    <div class="sec-num">2.2</div>
+    <div class="sec-info">
+      <h2>Equilibrio térmico y cambio climático</h2>
+      <p>El calor perdido siempre es igual al calor ganado</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">Calor cedido y absorbido</div>
+    <div class="concept-def" style="margin-bottom:10px">Al aplicar la Ley de Conservación de la Energía entre dos cuerpos en contacto (uno caliente, uno frío), después de un tiempo ambos alcanzan la misma temperatura: el equilibrio térmico.</div>
+    <div class="formula-box">
+      <div class="f-label">Ley de conservación de la energía</div>
+      <div class="f-eq">Q perdido = Q ganado</div>
+      <div class="f-note">(por el cuerpo caliente) = (por el cuerpo frío)</div>
+    </div>
+  </div>
+
+  <div class="solved">
+    <div class="solved-head">
+      <div class="solved-badge bg-blue">EJERCICIO DESGLOSADO</div>
+      <div class="solved-title">🥛 Mezclar 300g de agua a 80°C con 200g de agua a 20°C, ¿cuál es la temperatura final?</div>
+    </div>
+    <div class="solved-body">
+      <div class="paso-grid">
+        <div class="paso"><div class="paso-num" style="color:var(--a1)">1</div><div class="paso-body"><div class="p-label" style="color:var(--a1)">Plantear Qperdido = Qganado</div><div class="p-op">m₁Ce(T₁−Tf) = m₂Ce(Tf−T₂)</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a1)">2</div><div class="paso-body"><div class="p-label" style="color:var(--a1)">Sustituir los datos</div><div class="p-op">300(80−Tf) = 200(Tf−20)</div></div></div>
+        <div class="paso"><div class="paso-num" style="color:var(--a1)">3</div><div class="paso-body"><div class="p-label" style="color:var(--a1)">Despejar Tf</div><div class="p-op">24000 − 300Tf = 200Tf − 4000 &nbsp;→&nbsp; 28000 = 500Tf</div></div></div>
+      </div>
+      <div class="resultado-box blue"><div class="res-ico">✅</div><div class="res-body"><div class="res-label">Resultado</div><div class="res-val">Tf = 56°C</div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">2.2 Cambio climático</div>
+    <div class="concept-def">El cambio climático incluye alteraciones como el calentamiento global, la pérdida de especies de flora y fauna, la disminución de agua dulce y el daño a la capa de ozono. Cuando la temperatura máxima rebasa sosteniblemente los 36.5°C, aumentan las muertes por calor, los incendios y los niveles de contaminación del aire.</div>
+    <div class="tip blue">
+      <span class="tip-ico">🌍</span>
+      <span><strong>Ejemplo fácil:</strong> el mismo principio del equilibrio térmico que estudiaste (el calor fluye del cuerpo caliente al frío) explica, a gran escala, por qué el calentamiento global altera los patrones climáticos en todo el planeta.</span>
+    </div>
+  </div>
+
+  <div class="quiz-box blue" id="box-equilibrio">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Equilibrio térmico y cambio climático</span></div>
+    <div class="quiz-score" id="score-equilibrio"></div>
+    <div class="qz-container" id="qz-equilibrio"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     RETOS FINALES
+═══════════════════════════════════ -->
+<div id="retos">
+  <div class="sec-head red">
+    <div class="sec-num">🏆</div>
+    <div class="sec-info">
+      <h2>Retos de repaso</h2>
+      <p>Pon en práctica lo aprendido en esta unidad</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="bubbles">
+      <div class="bubble blue"><div class="b-label">🔵 Reto 1 — Escalas de temperatura</div><div class="b-main">Convierte 15°C a Fahrenheit, Kelvin y Rankine.</div></div>
+      <div class="bubble red"><div class="b-label">🔴 Reto 2 — El calor</div><div class="b-main">Convierte 500 calorías a Joules y a kilocalorías.</div></div>
+      <div class="bubble green"><div class="b-label">🟢 Reto 3 — Dilatación</div><div class="b-main">Calcula la dilatación lineal de una barra de aluminio de 5m, si su temperatura sube de 15°C a 35°C (α=2.4×10⁻⁵).</div></div>
+      <div class="bubble gold"><div class="b-label">🟡 Reto 4 — Calorimetría</div><div class="b-main">Calcula el calor necesario para calentar 500g de agua líquida de 15°C a 90°C (Ce=1.00 cal/g°C).</div></div>
+      <div class="bubble purple"><div class="b-label">🟣 Reto 5 — BOSS LEVEL: Cambios de fase y equilibrio</div><div class="b-main">Calcula el calor necesario para fundir 5kg de oro (Lf ≈ 67 kJ/kg dado en kJ/kg). Después mezcla 400g de agua a 90°C con 100g de agua a 10°C y calcula la temperatura final de equilibrio.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WORD BANK / GLOSARIO -->
+<div id="glosario" class="wb-section">
+  <div class="wb-title">GLOSARIO DE <span>TÉRMINOS</span></div>
+  <p class="wb-sub">Física 4 · Unidad II · Copia: término → definición → tu propio ejemplo</p>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#5cb8f8">🌡️ TEMPERATURE AND HEAT / TEMPERATURA Y CALOR</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Temperature</div><div class="es">Temperatura</div></div>
+      <div class="wb-word"><div class="en">Heat</div><div class="es">Calor</div></div>
+      <div class="wb-word"><div class="en">Thermal equilibrium</div><div class="es">Equilibrio térmico</div></div>
+      <div class="wb-word"><div class="en">Scale</div><div class="es">Escala</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#86efac">📐 DILATACIÓN Y CALORIMETRÍA</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Thermal expansion</div><div class="es">Dilatación térmica</div></div>
+      <div class="wb-word"><div class="en">Specific heat</div><div class="es">Calor específico</div></div>
+      <div class="wb-word"><div class="en">Heat capacity</div><div class="es">Capacidad calorífica</div></div>
+      <div class="wb-word"><div class="en">Calorimetry</div><div class="es">Calorimetría</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#c4b5fd">🧊 PHASE CHANGES / CAMBIOS DE FASE</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Fusion / Melting</div><div class="es">Fusión</div></div>
+      <div class="wb-word"><div class="en">Vaporization</div><div class="es">Vaporización</div></div>
+      <div class="wb-word"><div class="en">Condensation</div><div class="es">Condensación</div></div>
+      <div class="wb-word"><div class="en">Solidification / Freezing</div><div class="es">Solidificación</div></div>
+      <div class="wb-word"><div class="en">Latent heat</div><div class="es">Calor latente</div></div>
+    </div>
+  </div>
+
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 18px;font-size:13px;color:rgba(240,246,255,.65);margin-top:4px">
+    🎯 <strong style="color:#fff">Tarea:</strong><br>
+    1. Convierte 25°C a las 4 escalas de temperatura (Fahrenheit, Kelvin, Rankine).<br>
+    2. Calcula la dilatación superficial de una placa de vidrio de 1.5m × 0.8m si su temperatura sube 30°C.<br>
+    3. Calcula el calor necesario para fundir 8kg de hielo y después evaporar la misma cantidad de agua resultante (usa la Tabla 3 de calor latente).<br>
+    4. Investiga y describe 3 efectos del cambio climático en tu comunidad.
+  </div>
+</div>
+
+</div><!-- /wrap -->
+<footer>Física 4 · Unidad II · Calor y Temperatura</footer>
+
+<script>
+/* ═══ QUIZ ENGINE ═══ */
+function initQuiz(containerId, scoreId, colorClass, questions){
+  const container = document.getElementById(containerId);
+  const scoreEl = document.getElementById(scoreId);
+  let answered = 0, correct = 0;
+  const total = questions.length;
+  scoreEl.textContent = `Progreso: 0 / ${total} respondidas`;
+
+  questions.forEach((qz, i) => {
+    const qDiv = document.createElement('div');
+    qDiv.className = 'qz-question';
+
+    const qText = document.createElement('div');
+    qText.className = 'qz-qtext';
+    let tag = qz.type === 'tf'
+      ? '<span class="qz-tag" style="background:var(--'+colorClass+')">V / F</span>'
+      : '<span class="qz-tag" style="background:var(--'+colorClass+')">OPCIÓN MÚLTIPLE</span>';
+    if(qz.english){ tag += '<span class="qz-tag english">🇬🇧 ENGLISH</span>'; }
+    qText.innerHTML = `<span class="qz-num">${i+1}.</span><span>${qz.q} ${tag}</span>`;
+    qDiv.appendChild(qText);
+
+    const optsDiv = document.createElement('div');
+    optsDiv.className = qz.type === 'tf' ? 'qz-tf-opts' : 'qz-opts';
+
+    const explainDiv = document.createElement('div');
+    explainDiv.className = 'qz-explain';
+    explainDiv.innerHTML = qz.exp;
+
+    const opts = qz.type === 'tf' ? (qz.english ? ['True','False'] : ['Verdadero', 'Falso']) : qz.options;
+    const correctIdx = qz.type === 'tf' ? (qz.correct ? 0 : 1) : qz.correct;
+
+    opts.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'qz-opt';
+      btn.textContent = qz.type === 'tf' ? opt : String.fromCharCode(97 + idx) + ') ' + opt;
+      btn.onclick = () => {
+        if (qDiv.dataset.done) return;
+        qDiv.dataset.done = '1';
+        answered++;
+        if (idx === correctIdx) correct++;
+        Array.from(optsDiv.children).forEach((b, bi) => {
+          b.classList.add('disabled');
+          if (bi === correctIdx) b.classList.add('correct');
+          else if (bi === idx) b.classList.add('incorrect');
+        });
+        explainDiv.classList.add('show');
+        scoreEl.textContent = `Progreso: ${answered} / ${total} respondidas · ✅ ${correct} correctas`;
+      };
+      optsDiv.appendChild(btn);
+    });
+
+    qDiv.appendChild(optsDiv);
+    qDiv.appendChild(explainDiv);
+    container.appendChild(qDiv);
+  });
+}
+
+/* ═══ CRUCIGRAMA ENGINE ═══ */
+function buildCrossword(containerId, words){
+  let maxRow=0, maxCol=0;
+  words.forEach(w=>{
+    if(w.dir==='H'){ maxRow=Math.max(maxRow,w.row); maxCol=Math.max(maxCol,w.col+w.word.length-1); }
+    else { maxRow=Math.max(maxRow,w.row+w.word.length-1); maxCol=Math.max(maxCol,w.col); }
+  });
+  const rows=maxRow+1, cols=maxCol+1;
+  const grid = Array.from({length:rows},()=>Array(cols).fill(null));
+  words.forEach(w=>{
+    for(let i=0;i<w.word.length;i++){
+      const r = w.dir==='H'? w.row : w.row+i;
+      const c = w.dir==='H'? w.col+i : w.col;
+      grid[r][c]=w.word[i];
+    }
+  });
+  let num=1;
+  const numbering={};
+  words.forEach(w=>{
+    const key=w.row+','+w.col;
+    if(!(key in numbering)){ numbering[key]=num++; }
+  });
+  const table=document.createElement('table');
+  table.className='cw-table';
+  for(let r=0;r<rows;r++){
+    const tr=document.createElement('tr');
+    for(let c=0;c<cols;c++){
+      const td=document.createElement('td');
+      if(grid[r][c]){
+        td.className='cw-cell';
+        const key=r+','+c;
+        if(key in numbering){
+          const numSpan=document.createElement('span');
+          numSpan.className='cw-num';
+          numSpan.textContent=numbering[key];
+          td.appendChild(numSpan);
+        }
+        const inp=document.createElement('input');
+        inp.maxLength=1;
+        inp.className='cw-input';
+        inp.dataset.answer=grid[r][c];
+        inp.addEventListener('input',(e)=>{ e.target.value=e.target.value.toUpperCase(); });
+        td.appendChild(inp);
+      } else {
+        td.className='cw-empty';
+      }
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  document.getElementById(containerId+'-grid').appendChild(table);
+}
+
+function checkCrossword(containerId){
+  const inputs = document.querySelectorAll('#'+containerId+' .cw-input');
+  let correct=0;
+  inputs.forEach(inp=>{
+    const val = inp.value.trim().toUpperCase();
+    inp.classList.remove('cw-correct','cw-incorrect');
+    if(val===inp.dataset.answer){ inp.classList.add('cw-correct'); correct++; }
+    else { inp.classList.add('cw-incorrect'); }
+  });
+  const resultEl = document.getElementById(containerId+'-result');
+  resultEl.classList.add('show');
+  resultEl.style.color = correct===inputs.length ? 'var(--a3)' : 'var(--a2)';
+  resultEl.textContent = correct+' / '+inputs.length+' letras correctas';
+}
+
+buildCrossword('cw1', [
+  {word:'KELVIN', row:2, col:3, dir:'H'},
+  {word:'CALOR', row:3, col:4, dir:'H'},
+  {word:'FUSION', row:7, col:2, dir:'H'},
+  {word:'CALORIMETRIA', row:8, col:2, dir:'H'},
+  {word:'DILATACION', row:0, col:5, dir:'V'}
+]);
+
+/* ===== 2.1 ESCALAS DE TEMPERATURA ===== */
+initQuiz('qz-escalas','score-escalas','a1',[
+{type:'mc', q:'La escala Celsius fue creada por:', options:['Anders Celsius','Gabriel Fahrenheit','William Thomson','William Rankine'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'20°C en la escala Fahrenheit equivale a:', options:['68°F','36°F','293°F','20°F'], correct:0, exp:'<b>Respuesta correcta: a) 68°F.</b>'},
+{type:'mc', q:'110°F en la escala Celsius equivale aproximadamente a:', options:['43.33°C','78°C','232°C','61.1°C'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'La escala Kelvin es llamada "absoluta" porque:', options:['Su punto cero representa la ausencia total de energía térmica','Siempre da valores negativos','Fue creada antes que las demás','Solo se usa en cocina'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'232°C en la escala Kelvin equivale a:', options:['505 K','232 K','-41 K','505°F'], correct:0, exp:'<b>Respuesta correcta: a) 505 K.</b>'},
+{type:'tf', q:'La escala Fahrenheit es la más utilizada en Estados Unidos.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'Which scientist created the Celsius scale in 1742?', english:true, options:['Anders Celsius','William Rankine','Gabriel Fahrenheit','William Thomson'], correct:0, exp:'<b>Correct answer: a) Anders Celsius.</b>'},
+{type:'tf', q:'The Kelvin scale never uses negative values.', english:true, correct:true, exp:'<b>True.</b> It starts at absolute zero.'}
+]);
+
+/* ===== EL CALOR ===== */
+initQuiz('qz-calor','score-calor','a2',[
+{type:'mc', q:'El calor se define como:', options:['Un tipo de energía que fluye de un cuerpo a otro debido a una diferencia de energía interna','La temperatura de un cuerpo','Una escala de medición','Un instrumento de laboratorio'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'La unidad de calor en el Sistema Internacional es:', options:['El Joule','La caloría','El ergio','El Kelvin'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'1 caloría equivale aproximadamente a:', options:['4.18 J','41.8 J','1 J','1000 J'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'1 kilocaloría equivale a:', options:['1000 calorías','100 calorías','10 calorías','1 caloría'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'Cuando dos cuerpos con diferente temperatura se ponen en contacto, el calor fluye:', options:['Del cuerpo con mayor energía al de menor, hasta el equilibrio','Del cuerpo más frío al más caliente','En ambas direcciones igual','No fluye si están en contacto'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'El calor y la temperatura son exactamente lo mismo.', correct:false, exp:'<b>Falso.</b> El calor es energía en tránsito; la temperatura es una magnitud que indica el estado térmico.'},
+{type:'mc', q:'What is the SI unit of heat?', english:true, options:['Joule','Calorie','Fahrenheit','Kelvin'], correct:0, exp:'<b>Correct answer: a) Joule.</b>'},
+{type:'tf', q:'Heat always flows from the colder body to the hotter body.', english:true, correct:false, exp:'<b>False.</b> Heat flows from the hotter body to the colder one.'}
+]);
+
+/* ===== DILATACIÓN TÉRMICA ===== */
+initQuiz('qz-dilatacion','score-dilatacion','a3',[
+{type:'mc', q:'La dilatación térmica es:', options:['El aumento en las dimensiones de un cuerpo al recibir energía térmica','La disminución de la temperatura','El cambio de estado de la materia','La producción de calor'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'La fórmula de la dilatación lineal es:', options:['ΔL=αLiΔT','ΔA=γAiΔT','ΔV=βViΔT','Q=mCeΔT'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'El coeficiente de dilatación superficial (γ) se calcula como:', options:['γ=2α','γ=3α','γ=α/2','γ=α²'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'El coeficiente de dilatación volumétrica (β) se calcula como:', options:['β=3α','β=2α','β=α/3','β=α²'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'Una varilla de acero de 9m a 10°C se calienta a 22°C (α=1.2×10⁻⁵). Su dilatación lineal es aproximadamente:', options:['1.2 mm','12 mm','0.12 mm','120 mm'], correct:0, exp:'<b>Respuesta correcta: a) 1.2 mm.</b>'},
+{type:'tf', q:'Se dejan pequeños espacios entre los rieles de un tren para permitir su dilatación térmica.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'What happens to most solid materials when they are heated?', english:true, options:['They expand','They shrink','They disappear','They become liquid immediately'], correct:0, exp:'<b>Correct answer: a) They expand.</b>'},
+{type:'tf', q:'La dilatación volumétrica ocurre en tres dimensiones.', correct:true, exp:'<b>Verdadero.</b>'}
+]);
+
+/* ===== CALORIMETRÍA ===== */
+initQuiz('qz-calorimetria','score-calorimetria','a4',[
+{type:'mc', q:'La capacidad calorífica se define como:', options:['La relación entre el calor absorbido y el incremento de temperatura','La masa de un cuerpo','La velocidad de un cuerpo','El volumen de un cuerpo'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'La fórmula de la capacidad calorífica es:', options:['C=Q/ΔT','C=QΔT','C=m/Q','C=ΔT/Q'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'El calor específico es la cantidad de energía calorífica que absorbe un cuerpo:', options:['Por unidad de masa, para elevar su temperatura un grado Celsius','Sin importar su masa','Solo en estado gaseoso','Únicamente en el agua'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'La fórmula para calcular el calor con el calor específico es:', options:['Q=mCeΔT','Q=Ce/m','Q=m/Ce','Q=ΔT/Ce'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'Para calentar 3500g de cobre de 20°C a 100°C (Ce=0.093 cal/g°C), el calor necesario es aproximadamente:', options:['26,040 calorías','3500 calorías','8 calorías','260,400 calorías'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'El calor específico del agua líquida es mayor que el del cobre.', correct:true, exp:'<b>Verdadero.</b> El agua tiene Ce=1.00 cal/g°C, mucho mayor que el cobre (0.093).'},
+{type:'mc', q:'Specific heat is the amount of heat needed to raise the temperature of a unit of mass by:', english:true, options:['One degree Celsius','One degree every hour','Ten degrees','Zero degrees'], correct:0, exp:'<b>Correct answer: a) One degree Celsius.</b>'},
+{type:'tf', q:'La capacidad calorífica y el calor específico son exactamente la misma propiedad, sin ninguna diferencia.', correct:false, exp:'<b>Falso.</b> El calor específico sí considera la masa del cuerpo; la capacidad calorífica no.'}
+]);
+
+/* ===== CAMBIOS DE FASE ===== */
+initQuiz('qz-cambiofase','score-cambiofase','a5',[
+{type:'mc', q:'El calor latente es la cantidad de calor necesaria para:', options:['Que se produzca un cambio de fase por unidad de masa','Aumentar la temperatura de un cuerpo','Medir la velocidad de un cuerpo','Calcular la dilatación lineal'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'Durante un cambio de fase, la temperatura del cuerpo:', options:['No cambia mientras dura el cambio de fase','Siempre aumenta','Siempre disminuye','Se vuelve negativa'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'El cambio de sólido a líquido se llama:', options:['Fusión','Vaporización','Condensación','Sublimación'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'El cambio de líquido a gas se llama:', options:['Vaporización','Fusión','Solidificación','Sublimación'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'Para fundir 20 kg de cobre (Lf=22.5 kJ/kg), el calor requerido es:', options:['450 kJ','22.5 kJ','20 kJ','900 kJ'], correct:0, exp:'<b>Respuesta correcta: a) 450 kJ.</b>'},
+{type:'tf', q:'El calor latente de vaporización del agua es mayor que su calor latente de fusión.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'The change from liquid to gas is called:', english:true, options:['Vaporization','Fusion','Solidification','Condensation'], correct:0, exp:'<b>Correct answer: a) Vaporization.</b>'},
+{type:'tf', q:'Durante la fusión de un cuerpo, la energía suministrada se usa para vencer las fuerzas intermoleculares, no para subir la temperatura.', correct:true, exp:'<b>Verdadero.</b>'}
+]);
+
+/* ===== EQUILIBRIO Y CAMBIO CLIMÁTICO ===== */
+initQuiz('qz-equilibrio','score-equilibrio','a1',[
+{type:'mc', q:'La ley de conservación de la energía en calorimetría se expresa como:', options:['Calor perdido = Calor ganado','Calor perdido = 0','Calor ganado = 0','Calor perdido > Calor ganado siempre'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'Cuando un cuerpo caliente y uno frío se ponen en contacto, después de un tiempo:', options:['Ambos alcanzan la misma temperatura (equilibrio térmico)','El cuerpo frío se vuelve más frío','El cuerpo caliente se vuelve más caliente','No ocurre ningún cambio'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'Al mezclar 300g de agua a 80°C con 200g de agua a 20°C, la temperatura final de la mezcla es aproximadamente:', options:['56°C','100°C','20°C','80°C'], correct:0, exp:'<b>Respuesta correcta: a) 56°C.</b>'},
+{type:'mc', q:'El cambio climático incluye alteraciones como:', options:['El calentamiento global y la pérdida de especies','Solo el aumento de lluvias','Solo el frío extremo','Ningún cambio ambiental'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'Se ha observado que cuando la temperatura máxima rebasa sostenidamente cierto umbral, aumenta la muerte por calor. Ese umbral aproximado es:', options:['36.5°C','0°C','100°C','10°C'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'La calorimetría es el procedimiento para medir el calor producido por una reacción química o un proceso físico.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'In calorimetry, heat lost by the hot body equals:', english:true, options:['Heat gained by the cold body','Zero','The mass of the object','The specific heat'], correct:0, exp:'<b>Correct answer: a) Heat gained by the cold body.</b>'},
+{type:'tf', q:'El cambio climático solo afecta el aumento de temperatura, sin relación con enfermedades o incendios.', correct:false, exp:'<b>Falso.</b> También se relaciona con más incendios y enfermedades respiratorias e infecciosas.'}
+]);
+</script>
+</body>
+</html>
