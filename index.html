@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mis materiales</title>
+<style>
+  :root { --bg:#f5f6fa; --card:#ffffff; --text:#1b2438; --muted:#6b7488; --accent:#2b4acb; --border:#e1e5ee; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#10141f; --card:#1a2030; --text:#eef1f8; --muted:#9aa4bb; --accent:#7c9bff; --border:#2a3248; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"Segoe UI", system-ui, sans-serif; background:var(--bg); color:var(--text); }
+  header { padding:40px 20px 20px; text-align:center; }
+  h1 { margin:0 0 6px; font-size:1.8rem; }
+  header p { margin:0; color:var(--muted); }
+  main { max-width:720px; margin:0 auto; padding:10px 20px 50px; }
+  input { width:100%; padding:12px 14px; margin:14px 0 18px; border:1px solid var(--border); border-radius:10px; background:var(--card); color:var(--text); font-size:1rem; }
+  a.item { display:flex; align-items:center; gap:12px; padding:14px 16px; margin-bottom:10px; background:var(--card); border:1px solid var(--border); border-radius:12px; color:var(--text); text-decoration:none; transition:transform .1s, border-color .1s; }
+  a.item:hover { transform:translateY(-1px); border-color:var(--accent); }
+  .ico { font-size:1.4rem; }
+  .name { font-weight:600; text-transform:capitalize; }
+  .file { color:var(--muted); font-size:.8rem; }
+  .msg { text-align:center; color:var(--muted); padding:30px 10px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>📚 Mis materiales</h1>
+  <p>Toca un material para abrirlo</p>
+</header>
+<main>
+  <input id="buscar" type="search" placeholder="Buscar material…">
+  <div id="lista"><p class="msg">Cargando…</p></div>
+</main>
+
+<script>
+  // Este índice lee los archivos del repositorio y arma la lista solo.
+  var USUARIO = "coheeeeens-tech";
+  var REPO = "materiales";
+  var archivos = [];
+
+  function bonito(nombre) {
+    return nombre.replace(/\.html$/i, "").replace(/[-_]+/g, " ");
+  }
+
+  function pintar(filtro) {
+    var cont = document.getElementById("lista");
+    var f = (filtro || "").toLowerCase();
+    var visibles = archivos.filter(function (a) {
+      return a.toLowerCase().indexOf(f) !== -1;
+    });
+    if (!visibles.length) {
+      cont.innerHTML = '<p class="msg">No hay materiales para mostrar.</p>';
+      return;
+    }
+    cont.innerHTML = visibles.map(function (a) {
+      return '<a class="item" href="' + encodeURI(a) + '">' +
+             '<span class="ico">📄</span>' +
+             '<span><div class="name">' + bonito(a) + '</div>' +
+             '<div class="file">' + a + '</div></span></a>';
+    }).join("");
+  }
+
+  fetch("https://api.github.com/repos/" + USUARIO + "/" + REPO + "/contents/")
+    .then(function (r) { return r.json(); })
+    .then(function (datos) {
+      archivos = datos
+        .filter(function (d) { return d.type === "file" && /\.html$/i.test(d.name) && d.name.toLowerCase() !== "index.html"; })
+        .map(function (d) { return d.name; })
+        .sort(function (a, b) { return a.localeCompare(b, "es"); });
+      pintar("");
+    })
+    .catch(function () {
+      document.getElementById("lista").innerHTML =
+        '<p class="msg">No se pudo cargar la lista. Recarga la página en un momento.</p>';
+    });
+
+  document.getElementById("buscar").addEventListener("input", function (e) {
+    pintar(e.target.value);
+  });
+</script>
+</body>
+</html>
