@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metodología de la Investigación — Unidad II (Versión 2): Marco Teórico, Instrumentos, Procesamiento y Reporte</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f0f4f8;--surface:#fff;--border:#c0d0e0;
+  --ink:#061828;--muted:#3a5a78;
+  --a1:#1a4fc4;--a2:#c41a1a;--a3:#1a9a5c;--a4:#b8860b;--a5:#7a1ac4;
+  --a1l:#e8eef9;--a2l:#fdeaea;--a3l:#e3f4e8;--a4l:#fff8e1;--a5l:#f0e8fb;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;line-height:1.7;}
+
+.hero{background:var(--ink);color:#f0f6ff;padding:56px 48px 48px;position:relative;overflow:hidden;}
+.hero::after{content:'📋';font-size:220px;position:absolute;right:20px;bottom:-30px;line-height:1;pointer-events:none;opacity:.06;}
+.hero-top{display:flex;align-items:center;gap:16px;margin-bottom:28px;}
+.unit-badge{background:var(--a1);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;padding:4px 14px;border-radius:4px;}
+.subject-tag{font-size:12px;font-weight:500;color:rgba(240,246,255,0.45);letter-spacing:2px;text-transform:uppercase;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,8vw,5rem);line-height:.92;letter-spacing:1px;margin-bottom:16px;}
+.hero h1 span{color:#5cb8f8;}
+.hero-desc{max-width:600px;font-size:15px;color:rgba(240,246,255,0.6);margin-bottom:32px;}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;}
+.pill{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:6px 16px;font-size:13px;font-weight:500;}
+.pill-dot{width:8px;height:8px;border-radius:50%;}
+
+.nav-strip{background:var(--a1);display:flex;overflow-x:auto;position:sticky;top:0;z-index:10;}
+.nav-strip a{color:rgba(255,255,255,.75);text-decoration:none;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:12px 20px;white-space:nowrap;border-right:1px solid rgba(255,255,255,.15);transition:all .2s;}
+.nav-strip a:hover{background:rgba(255,255,255,.12);color:#fff;}
+
+.wrap{max-width:960px;margin:0 auto;padding:0 28px 100px;}
+
+.sec-head{display:flex;align-items:flex-start;margin:56px 0 24px;border-left:5px solid var(--a1);padding-left:18px;}
+.sec-head.red{border-color:var(--a2);} .sec-head.green{border-color:var(--a3);} .sec-head.gold{border-color:var(--a4);} .sec-head.purple{border-color:var(--a5);}
+.sec-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;line-height:1;color:var(--a1);margin-right:14px;flex-shrink:0;}
+.sec-head.red .sec-num{color:var(--a2);} .sec-head.green .sec-num{color:var(--a3);} .sec-head.gold .sec-num{color:var(--a4);} .sec-head.purple .sec-num{color:var(--a5);}
+.sec-info h2{font-family:'Bebas Neue',sans-serif;font-size:1.85rem;letter-spacing:.5px;line-height:1.1;}
+.sec-info p{font-size:13px;color:var(--muted);font-weight:500;}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px 26px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.card-label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+
+.concept-box{border-radius:12px;padding:18px 22px;margin:12px 0;text-align:center;}
+.concept-box.blue{background:linear-gradient(135deg,#061828,#1a4fc4);}
+.concept-box.red{background:linear-gradient(135deg,#2a0a0a,#c41a1a);}
+.concept-box.green{background:linear-gradient(135deg,#0a2a18,#1a9a5c);}
+.concept-box.gold{background:linear-gradient(135deg,#2a1800,#b8860b);}
+.concept-box.purple{background:linear-gradient(135deg,#1a0a2a,#7a1ac4);}
+.concept-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:1px;color:#fff;margin-bottom:6px;}
+.concept-def{font-size:14px;color:rgba(255,255,255,.85);line-height:1.65;}
+
+.tip{border-radius:10px;padding:13px 16px;font-size:13.5px;margin-top:14px;display:flex;gap:10px;align-items:flex-start;}
+.tip.blue{background:rgba(26,79,196,.08);border-left:3px solid var(--a1);}
+.tip.red{background:rgba(196,26,26,.08);border-left:3px solid var(--a2);}
+.tip.green{background:rgba(26,154,92,.08);border-left:3px solid var(--a3);}
+.tip.gold{background:rgba(184,134,11,.08);border-left:3px solid var(--a4);}
+.tip.purple{background:rgba(122,26,196,.08);border-left:3px solid var(--a5);}
+.tip-ico{font-size:18px;flex-shrink:0;margin-top:1px;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;}
+@media(max-width:600px){.two-col,.three-col,.char-grid{grid-template-columns:1fr;}}
+
+.mini-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.mini-card .mc-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.mini-card .mc-val{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.5px;}
+.mini-card .mc-body{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.55;}
+
+.char-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;}
+.char-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;border-left:4px solid var(--a1);}
+.char-card.red{border-color:var(--a2);}.char-card.green{border-color:var(--a3);}.char-card.gold{border-color:var(--a4);}.char-card.purple{border-color:var(--a5);}
+.char-card .cc-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.5px;margin-bottom:6px;}
+.char-card .cc-title.blue{color:var(--a1);}.char-card .cc-title.red{color:var(--a2);}.char-card .cc-title.green{color:var(--a3);}.char-card .cc-title.gold{color:var(--a4);}.char-card .cc-title.purple{color:var(--a5);}
+.char-card .cc-body{font-size:13px;line-height:1.6;}
+.char-card .cc-ex{font-size:12px;margin-top:8px;padding:6px 10px;border-radius:6px;font-style:italic;}
+.char-card .cc-ex.blue{background:var(--a1l);color:var(--a1);}.char-card .cc-ex.red{background:var(--a2l);color:var(--a2);}
+.char-card .cc-ex.green{background:var(--a3l);color:var(--a3);}.char-card .cc-ex.gold{background:var(--a4l);color:var(--a4);}
+.char-card .cc-ex.purple{background:var(--a5l);color:var(--a5);}
+
+.stab{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+.stab th{text-align:left;padding:9px 12px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-bottom:2px solid;background:rgba(0,0,0,.02);}
+.stab.blue th{color:var(--a1);border-color:var(--a1);}
+.stab.red th{color:var(--a2);border-color:var(--a2);}
+.stab.green th{color:var(--a3);border-color:var(--a3);}
+.stab.gold th{color:var(--a4);border-color:var(--a4);}
+.stab.purple th{color:var(--a5);border-color:var(--a5);}
+.stab td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.stab tr:last-child td{border-bottom:none;}
+.stab tr:nth-child(even) td{background:rgba(0,0,0,.015);}
+
+.formula-box{background:var(--ink);border-radius:12px;padding:20px 24px;margin:14px 0;text-align:center;}
+.formula-box .f-label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(240,246,255,.45);margin-bottom:8px;}
+.formula-box .f-eq{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:1px;color:#5cb8f8;}
+.formula-box .f-note{font-size:12px;color:rgba(240,246,255,.6);margin-top:6px;}
+
+.bubbles{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+.bubble{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;}
+.bubble .b-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.bubble .b-main{font-weight:600;font-size:14px;margin-bottom:3px;}
+
+.wb-section{background:var(--ink);color:#f0f6ff;border-radius:16px;padding:32px;margin-top:60px;}
+.wb-title{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:1px;margin-bottom:6px;}
+.wb-title span{color:#5cb8f8;}
+.wb-sub{color:rgba(240,246,255,.5);font-size:13.5px;margin-bottom:28px;}
+.wb-group{margin-bottom:28px;}
+.wb-group-title{font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:2px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:12px;}
+.wb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.wb-word{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 12px;}
+.wb-word .en{font-weight:700;font-size:13.5px;margin-bottom:2px;}
+.wb-word .es{font-size:12px;color:rgba(240,246,255,.55);}
+
+footer{text-align:center;padding:28px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--border);margin-top:20px;}
+
+/* ═══ QUIZ INTERACTIVO ═══ */
+.quiz-box{background:var(--surface);border:2px dashed var(--border);border-radius:14px;padding:20px 22px;margin:8px 0 32px;}
+.quiz-box.blue{border-color:var(--a1);}.quiz-box.red{border-color:var(--a2);}
+.quiz-box.green{border-color:var(--a3);}.quiz-box.gold{border-color:var(--a4);}
+.quiz-box.purple{border-color:var(--a5);}
+.quiz-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.quiz-head .qz-ico{font-size:1.5rem;}
+.quiz-head h4{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.5px;}
+.quiz-head span.qz-sub{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;}
+.quiz-score{font-size:12px;font-weight:700;margin-bottom:14px;color:var(--muted);}
+.qz-question{background:var(--bg);border-radius:10px;padding:14px 16px;margin-bottom:10px;}
+.qz-question:last-child{margin-bottom:0;}
+.qz-qtext{font-weight:600;font-size:13.5px;margin-bottom:10px;display:flex;gap:8px;align-items:flex-start;}
+.qz-qtext .qz-num{font-family:'Bebas Neue',sans-serif;flex-shrink:0;font-size:1.05rem;line-height:1.3;}
+.qz-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:middle;}
+.qz-tag.english{background:#0a5cad !important;}
+.qz-tag.scenario{background:#a0522d !important;}
+.qz-opts{display:flex;flex-direction:column;gap:6px;}
+.qz-tf-opts{display:flex;gap:8px;}
+.qz-opt{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 13px;font-size:13px;cursor:pointer;text-align:left;transition:all .15s;font-family:inherit;color:var(--ink);}
+.qz-tf-opts .qz-opt{flex:1;text-align:center;font-weight:600;}
+.qz-opt:hover:not(.disabled){background:var(--a1l);border-color:var(--a1);}
+.qz-opt.correct{background:rgba(26,154,92,.18);border-color:var(--a3);font-weight:700;color:#0a4a2a;}
+.qz-opt.incorrect{background:rgba(196,26,26,.18);border-color:var(--a2);font-weight:700;color:#7a1414;}
+.qz-opt.disabled{cursor:default;}
+.qz-explain{font-size:12.5px;margin-top:9px;padding:9px 13px;border-radius:8px;background:rgba(0,0,0,.04);display:none;line-height:1.5;}
+.qz-explain.show{display:block;}
+.qz-explain b{color:var(--a3);}
+
+/* ═══ CRUCIGRAMA ═══ */
+.cw-box{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:20px 22px;margin:14px 0;}
+.cw-head{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+.cw-head .cw-ico{font-size:1.4rem;}
+.cw-head h5{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.5px;}
+.cw-layout{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start;}
+.cw-grid-wrap{overflow-x:auto;flex-shrink:0;}
+table.cw-table{border-collapse:collapse;}
+.cw-cell{width:26px;height:26px;border:1px solid var(--ink);padding:0;position:relative;background:#fff;}
+.cw-empty{width:26px;height:26px;border:none;background:transparent;}
+.cw-input{width:100%;height:100%;border:none;text-align:center;font-weight:700;text-transform:uppercase;font-size:13px;background:transparent;font-family:inherit;}
+.cw-input:focus{outline:2px solid var(--a1);}
+.cw-input.cw-correct{background:rgba(26,154,92,.28);}
+.cw-input.cw-incorrect{background:rgba(196,26,26,.28);}
+.cw-num{position:absolute;top:0;left:1px;font-size:7px;color:var(--muted);font-weight:700;}
+.cw-clues{flex:1;min-width:220px;}
+.cw-clue-group{margin-bottom:12px;}
+.cw-clue-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.cw-clue{font-size:12.5px;margin-bottom:6px;line-height:1.5;}
+.cw-clue b{color:var(--a1);}
+.cw-check-btn{border:none;border-radius:100px;padding:9px 20px;font-size:13px;font-weight:700;cursor:pointer;color:#fff;background:var(--a3);margin-top:10px;}
+.cw-check-btn:hover{opacity:.88;}
+.cw-result{font-size:13px;font-weight:700;margin-top:10px;display:none;}
+.cw-result.show{display:block;}
+
+/* ═══ SOPA DE LETRAS DINÁMICA ═══ */
+.ws-box{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:20px 22px;margin:14px 0;}
+.ws-head{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.ws-head .ws-ico{font-size:1.4rem;}
+.ws-head h5{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.5px;}
+.ws-instructions{font-size:13px;color:var(--muted);margin-bottom:14px;}
+.ws-layout{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;}
+.ws-grid-wrap{overflow-x:auto;flex-shrink:0;}
+table.ws-table{border-collapse:collapse;}
+.ws-cell{width:20px;height:20px;border:1px solid var(--border);text-align:center;font-size:10px;font-weight:700;background:#fff;}
+.ws-wordlist{flex:1;min-width:220px;}
+.ws-wordlist-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.ws-wordlist ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.ws-wordlist li{font-size:13px;font-weight:600;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:7px 10px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.ws-found-btn{border:none;border-radius:100px;padding:5px 11px;font-size:11px;font-weight:700;cursor:pointer;color:#fff;background:var(--a3);flex-shrink:0;}
+.ws-found-btn:hover{opacity:.85;}
+.ws-progress{font-size:12px;font-weight:700;color:var(--muted);margin-top:10px;}
+.ws-defs{margin-top:20px;display:flex;flex-direction:column;gap:14px;}
+.ws-def-item{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.ws-def-word{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.5px;margin-bottom:6px;color:var(--a1);}
+.ws-def-input{width:100%;min-height:55px;border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-family:inherit;font-size:13px;resize:vertical;}
+.ws-reveal-btn{border:none;border-radius:100px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;color:#fff;background:var(--a5);margin-top:8px;}
+.ws-reveal-btn:hover{opacity:.88;}
+.ws-reveal-text{font-size:12.5px;margin-top:8px;padding:8px 12px;border-radius:8px;background:var(--a5l);color:var(--a5);display:none;line-height:1.5;}
+.ws-reveal-text.show{display:block;}
+.ws-shuffle-note{font-size:11.5px;color:var(--a5);font-weight:700;margin-top:6px;}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="unit-badge">UNIDAD II · V2</div>
+    <div class="subject-tag">Metodología de la Investigación · Marco Teórico, Instrumentos, Procesamiento y Reporte</div>
+  </div>
+  <h1>METODOLOGÍA<br><span>UNIDAD II</span></h1>
+  <p class="hero-desc">Versión actualizada con preguntas completamente nuevas, casos y situaciones para resolver, dos crucigramas, una sopa de letras dinámica donde tendrás que definir cada palabra con tus propias palabras, y preguntas en inglés para que también practiques el idioma.</p>
+  <div class="hero-pills">
+    <div class="pill"><div class="pill-dot" style="background:#5cb8f8"></div>2.1-2.2 Marco teórico</div>
+    <div class="pill"><div class="pill-dot" style="background:#ff8fa0"></div>Fuentes de información</div>
+    <div class="pill"><div class="pill-dot" style="background:#86efac"></div>2.3 Selección de teorías</div>
+    <div class="pill"><div class="pill-dot" style="background:#fcd45c"></div>2.4 Instrumentos y cuestionarios</div>
+    <div class="pill"><div class="pill-dot" style="background:#c4b5fd"></div>Procesamiento y análisis</div>
+    <div class="pill"><div class="pill-dot" style="background:#5cb8f8"></div>Reporte de investigación</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-strip">
+  <a href="#marco">2.1-2.2 Marco teórico</a>
+  <a href="#fuentes">Fuentes de información</a>
+  <a href="#teorias">2.3 Selección de teorías</a>
+  <a href="#instrumento">2.4 Elaboración del instrumento</a>
+  <a href="#cuestionarios">Cuestionarios</a>
+  <a href="#likert">Escalas Likert</a>
+  <a href="#aplicacion">Aplicación del instrumento</a>
+  <a href="#procesamiento">3.1 Procesamiento</a>
+  <a href="#analisis">3.2 Análisis de resultados</a>
+  <a href="#reporte">3.3 Reporte de investigación</a>
+  <a href="#retos">Retos</a>
+  <a href="#glosario">Glosario</a>
+</div>
+
+<div class="wrap">
+
+<!-- ═══════════════════════════════════
+     2.1-2.2 FUNCIONES Y ETAPAS DEL MARCO TEÓRICO
+═══════════════════════════════════ -->
+<div id="marco">
+  <div class="sec-head blue">
+    <div class="sec-num">2.1</div>
+    <div class="sec-info">
+      <h2>Funciones y etapas del marco teórico</h2>
+      <p>Cómo se construye el sustento teórico de una investigación</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">2.2.1 Revisión de la literatura</div>
+    <div class="concept-box blue">
+      <div class="concept-title">REVISIÓN DE LA LITERATURA</div>
+      <div class="concept-def">Consiste en buscar, identificar y consultar bibliografía y materiales que proporcionen datos relevantes y útiles relacionados con el tema de investigación. Es un análisis selectivo, no se lee todo, se extrae solo lo relevante.</div>
+    </div>
+    <div class="tip blue">
+      <span class="tip-ico">🔑</span>
+      <span><strong>Ejemplo fácil:</strong> la forma correcta de revisar la literatura es usando palabras clave o descriptores. Es como buscar en Google con las palabras exactas del tema, en vez de leer libros completos al azar.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">2.2.2 Construcción del marco teórico</div>
+    <div class="char-grid">
+      <div class="char-card blue"><div class="cc-title blue">DE MAPEO</div><div class="cc-body">Ordenar la información de acuerdo con uno o varios criterios lógicos: orden cronológico, subtemas o teorías.</div><div class="cc-ex blue">Como armar un rompecabezas ordenando las piezas por color.</div></div>
+      <div class="char-card blue"><div class="cc-title blue">POR ÍNDICES (VERTEBRAR)</div><div class="cc-body">Se desarrolla un índice tentativo general y se va afinando hasta ser específico; se le llama "vertebrar" porque la teoría genera la columna vertebral del texto.</div><div class="cc-ex blue">Tema general → Tema → Subtema → Referencia.</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">Pasos para redactar el marco teórico (Morán y Alvarado, 2010)</div>
+    <table class="stab blue">
+      <tr><th>Paso</th><th>En qué consiste</th></tr>
+      <tr><td>1. Selección del tema</td><td>Definir la idea general y evitar la improvisación.</td></tr>
+      <tr><td>2. Búsqueda de la información</td><td>Usar el método de interrogatorio: generar preguntas y buscar respuestas.</td></tr>
+      <tr><td>3. Elaboración de un bosquejo</td><td>Con ideas principales y complementarias, que van al principio y al final.</td></tr>
+      <tr><td>4. Redacción del borrador</td><td>Seguir el orden del bosquejo, usar frases de enlace y leer con atención para corregir.</td></tr>
+      <tr><td>5. Redacción definitiva</td><td>Reescribir el borrador con orden y coherencia, citando apropiadamente las referencias.</td></tr>
+    </table>
+  </div>
+
+  <div class="quiz-box blue" id="box-marco">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Funciones y etapas del marco teórico</span></div>
+    <div class="quiz-score" id="score-marco"></div>
+    <div class="qz-container" id="qz-marco"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     FUENTES DE INFORMACIÓN
+═══════════════════════════════════ -->
+<div id="fuentes">
+  <div class="sec-head red">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Fuentes de información</h2>
+      <p>Materiales de apoyo para sustentar la investigación</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">Primarias, secundarias y terciarias</div>
+    <table class="stab red">
+      <tr><th>Tipo</th><th>Qué son</th><th>Ejemplos</th></tr>
+      <tr><td>Primarias</td><td>Presentan la información resultante de un trabajo original</td><td>Libros, informes técnico-científicos, periódicos, revistas, entrevistas</td></tr>
+      <tr><td>Secundarias</td><td>Remiten a documentos primarios; son análisis, crítica y reflexión</td><td>Artículos, tesis/tesinas, compilaciones, antologías, biografías</td></tr>
+      <tr><td>Terciarias</td><td>Reúnen fuentes primarias y secundarias; ofrecen una idea general</td><td>Cronologías, directorios, manuales, estadísticas, catálogos de biblioteca</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">Aspectos a considerar al revisar las fuentes (Hernández et al., 2010)</div>
+    <div class="two-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a2)">Utilidad</div><div class="mc-body">Similitud al planteamiento del problema.</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a2)">Rigor</div><div class="mc-body">Calidad del estudio (cuantitativo o cualitativo).</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a2)">Método y muestra</div><div class="mc-body">Semejanza en la recolección de datos.</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a2)">Actualidad</div><div class="mc-body">Fecha de publicación; entre más reciente, mejor.</div></div>
+    </div>
+  </div>
+
+  <div class="quiz-box red" id="box-fuentes">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Fuentes de información</span></div>
+    <div class="quiz-score" id="score-fuentes"></div>
+    <div class="qz-container" id="qz-fuentes"></div>
+  </div>
+
+  <!-- CRUCIGRAMA 1 -->
+  <div class="cw-box" id="cw1">
+    <div class="cw-head"><span class="cw-ico">🧩</span><h5>CRUCIGRAMA 1 — Marco teórico y fuentes</h5></div>
+    <div class="cw-layout">
+      <div class="cw-grid-wrap" id="cw1-grid"></div>
+      <div class="cw-clues">
+        <div class="cw-clue-group">
+          <div class="cw-clue-title">Horizontales</div>
+          <div class="cw-clue"><b>1.</b> Característica o propiedad que puede tomar distintos valores y que se mide en una investigación.</div>
+          <div class="cw-clue"><b>2.</b> Porción representativa de la población que se selecciona para un estudio.</div>
+          <div class="cw-clue"><b>3.</b> Técnica de recolección de datos basada en un conjunto de preguntas.</div>
+          <div class="cw-clue"><b>4.</b> Adjetivo que describe al marco que sustenta con literatura una investigación (marco ___).</div>
+        </div>
+        <div class="cw-clue-group">
+          <div class="cw-clue-title">Vertical</div>
+          <div class="cw-clue"><b>5.</b> Suposición que se plantea al inicio de una investigación y que se busca comprobar o refutar.</div>
+        </div>
+      </div>
+    </div>
+    <button class="cw-check-btn" onclick="checkCrossword('cw1')">✅ Revisar crucigrama</button>
+    <div class="cw-result" id="cw1-result"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     2.3 REVISIÓN Y ADOPCIÓN DE TEORÍAS
+═══════════════════════════════════ -->
+<div id="teorias">
+  <div class="sec-head green">
+    <div class="sec-num">2.3</div>
+    <div class="sec-info">
+      <h2>Revisión y adopción de teorías, autores e instituciones</h2>
+      <p>Estrategias para seleccionar la teoría que guiará tu investigación</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">Estrategias para la selección de teorías (Hernández et al., 2010)</div>
+    <div class="char-grid">
+      <div class="char-card green"><div class="cc-title green">A) TEORÍA COMPLETAMENTE DESARROLLADA</div><div class="cc-body">Abundante evidencia empírica que describe, explica y predice el fenómeno. Es la mejor estrategia si existe.</div><div class="cc-ex green">Cuidado: si el tema ya está resuelto, hay que cambiar el enfoque del estudio.</div></div>
+      <div class="char-card green"><div class="cc-title green">B) VARIAS TEORÍAS APLICABLES</div><div class="cc-body">Se elige la más objetiva, o se toman partes de varias doctrinas relacionadas con el tema.</div></div>
+      <div class="char-card green"><div class="cc-title green">C) "PIEZAS Y TROZOS" DE TEORÍAS</div><div class="cc-body">No existe una teoría general; solo hay proposiciones comprobadas en algunos estudios previos.</div></div>
+      <div class="char-card green"><div class="cc-title green">D) TEORÍAS AÚN NO INVESTIGADAS</div><div class="cc-body">Ideas vagamente relacionadas; el marco teórico se apoya en literatura orientadora aunque no sea específica.</div></div>
+    </div>
+    <div class="card" style="margin-top:0;box-shadow:none;border:1px dashed var(--border)">
+      <div class="cc-title green" style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;margin-bottom:6px">E) CENTROS DE INVESTIGACIÓN</div>
+      <div class="cc-body" style="font-size:13px">Dependencias académicas de universidades o escuelas orientadas al desarrollo de estudios formales, la formación investigativa y la transferencia del conocimiento. También marcan las pautas del marco teórico a través de reglamentos institucionales o metodologías establecidas.</div>
+    </div>
+  </div>
+
+  <div class="quiz-box green" id="box-teorias">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Revisión y adopción de teorías</span></div>
+    <div class="quiz-score" id="score-teorias"></div>
+    <div class="qz-container" id="qz-teorias"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     2.4 ELABORACIÓN DEL INSTRUMENTO
+═══════════════════════════════════ -->
+<div id="instrumento">
+  <div class="sec-head gold">
+    <div class="sec-num">2.4</div>
+    <div class="sec-info">
+      <h2>Elaboración del instrumento para la recolección de datos</h2>
+      <p>De la variable al reactivo: el camino para construir preguntas</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a4)">El tránsito de la variable al ítem</div>
+    <div class="formula-box">
+      <div class="f-label">Ruta para construir un reactivo</div>
+      <div class="f-eq">Variable → Dimensión → Indicador → Reactivo</div>
+      <div class="f-note">A partir de la variable se definen sus dimensiones, de ellas los indicadores, y con ellos se elaboran los reactivos (preguntas)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a4)">Niveles de medición</div>
+    <div class="char-grid">
+      <div class="char-card gold"><div class="cc-title gold">NOMINAL</div><div class="cc-body">Dos o más categorías, sin que ninguna represente mayor jerarquía; solo diferencian.</div><div class="cc-ex gold">El género de una persona (masculino/femenino).</div></div>
+      <div class="char-card gold"><div class="cc-title gold">ORDINAL</div><div class="cc-body">Las categorías sí indican una jerarquía, con un orden de mayor a menor.</div><div class="cc-ex gold">Muy bueno, bueno, regular, malo, muy malo.</div></div>
+      <div class="char-card gold"><div class="cc-title gold">POR INTERVALOS</div><div class="cc-body">Se establecen intervalos constantes en relación con su escala.</div><div class="cc-ex gold">Unidades de temperatura o distribución del día en horas.</div></div>
+      <div class="char-card gold"><div class="cc-title gold">DE RAZÓN</div><div class="cc-body">También hay intervalos, pero incluye el cero como valor absoluto de "no existe lo que se mide".</div><div class="cc-ex gold">Estatura, peso, ingreso mensual.</div></div>
+    </div>
+  </div>
+
+  <div class="quiz-box gold" id="box-instrumento">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Elaboración del instrumento y niveles de medición</span></div>
+    <div class="quiz-score" id="score-instrumento"></div>
+    <div class="qz-container" id="qz-instrumento"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     CUESTIONARIOS
+═══════════════════════════════════ -->
+<div id="cuestionarios">
+  <div class="sec-head purple">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Elaboración de cuestionarios</h2>
+      <p>El instrumento más usado para recabar datos de un grupo de personas</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">Preguntas cerradas vs. preguntas abiertas</div>
+    <table class="stab purple">
+      <tr><th>Tipo</th><th>Ventajas</th><th>Desventajas</th></tr>
+      <tr><td>Cerradas</td><td>Fáciles de codificar, requieren menor esfuerzo y menos tiempo, reducen la ambigüedad</td><td>Limitan las soluciones; a veces ninguna categoría refleja lo que la persona piensa</td></tr>
+      <tr><td>Abiertas</td><td>Información más amplia; útiles cuando no hay datos previos; ayudan a explicar motivos</td><td>Más difíciles de codificar; pueden tener sesgos; requieren más tiempo y esfuerzo</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">Estructura de un cuestionario</div>
+    <table class="stab purple">
+      <tr><th>Sección</th><th>Incluye</th></tr>
+      <tr><td>Portada</td><td>Nombre del cuestionario y logotipo de la institución que lo patrocina</td></tr>
+      <tr><td>Introducción</td><td>Propósito del estudio, motivaciones, agradecimiento, tiempo de respuesta, consentimiento y confidencialidad</td></tr>
+      <tr><td>Preguntas</td><td>Organizadas, numeradas página y pregunta, con agradecimiento final</td></tr>
+    </table>
+  </div>
+
+  <div class="quiz-box purple" id="box-cuestionarios">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Elaboración de cuestionarios</span></div>
+    <div class="quiz-score" id="score-cuestionarios"></div>
+    <div class="qz-container" id="qz-cuestionarios"></div>
+  </div>
+
+  <!-- CRUCIGRAMA 2 -->
+  <div class="cw-box" id="cw2">
+    <div class="cw-head"><span class="cw-ico">🧩</span><h5>CRUCIGRAMA 2 — Instrumentos y análisis</h5></div>
+    <div class="cw-layout">
+      <div class="cw-grid-wrap" id="cw2-grid"></div>
+      <div class="cw-clues">
+        <div class="cw-clue-group">
+          <div class="cw-clue-title">Horizontales</div>
+          <div class="cw-clue"><b>1.</b> Acción de expresar las cifras recolectadas en una cuadrícula o matriz de datos.</div>
+          <div class="cw-clue"><b>2.</b> Asignar un número o letra a cada alternativa de respuesta.</div>
+          <div class="cw-clue"><b>3.</b> Apellido del creador de una escala usada para medir actitudes.</div>
+        </div>
+        <div class="cw-clue-group">
+          <div class="cw-clue-title">Vertical</div>
+          <div class="cw-clue"><b>4.</b> Enfoque de análisis que diseña el esquema de operaciones y el orden en que se estudian los datos.</div>
+        </div>
+      </div>
+    </div>
+    <button class="cw-check-btn" onclick="checkCrossword('cw2')">✅ Revisar crucigrama</button>
+    <div class="cw-result" id="cw2-result"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     ESCALAS TIPO LIKERT
+═══════════════════════════════════ -->
+<div id="likert">
+  <div class="sec-head blue">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Escalas tipo Likert</h2>
+      <p>Un instrumento para medir actitudes</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a1)">Dirección positiva y negativa</div>
+    <table class="stab blue">
+      <tr><th>Valor</th><th>Dirección positiva</th><th>Dirección negativa</th></tr>
+      <tr><td>5</td><td>Muy de acuerdo</td><td>Totalmente de acuerdo</td></tr>
+      <tr><td>4</td><td>De acuerdo</td><td>De acuerdo</td></tr>
+      <tr><td>3</td><td>Ni de acuerdo ni en desacuerdo</td><td>Ni de acuerdo ni en desacuerdo</td></tr>
+      <tr><td>2</td><td>En desacuerdo</td><td>En desacuerdo</td></tr>
+      <tr><td>1</td><td>Muy en desacuerdo</td><td>Totalmente en desacuerdo</td></tr>
+    </table>
+  </div>
+
+  <div class="quiz-box blue" id="box-likert">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Escalas tipo Likert</span></div>
+    <div class="quiz-score" id="score-likert"></div>
+    <div class="qz-container" id="qz-likert"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     APLICACIÓN DEL INSTRUMENTO
+═══════════════════════════════════ -->
+<div id="aplicacion">
+  <div class="sec-head red">
+    <div class="sec-num">§</div>
+    <div class="sec-info">
+      <h2>Aplicación del instrumento</h2>
+      <p>De la prueba piloto a la recolección final de datos</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a2)">Las cuatro fases de la aplicación</div>
+    <table class="stab red">
+      <tr><th>Fase</th><th>Recomendaciones</th></tr>
+      <tr><td>Inicio</td><td>Presentación personal, cuidar la imagen, eliminar la tensión del participante</td></tr>
+      <tr><td>Desarrollo</td><td>Cumplir el orden de las preguntas, repetirlas cuando sea necesario</td></tr>
+      <tr><td>Registro</td><td>Anotar en el momento mismo, transcribir con fidelidad, revisar para llenar lagunas</td></tr>
+      <tr><td>Cierre</td><td>Conservar la cordialidad hasta el último momento, agradecer al encuestado</td></tr>
+    </table>
+  </div>
+
+  <div class="quiz-box red" id="box-aplicacion">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Aplicación del instrumento</span></div>
+    <div class="quiz-score" id="score-aplicacion"></div>
+    <div class="qz-container" id="qz-aplicacion"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     3.1 PROCESAMIENTO DE INFORMACIÓN
+═══════════════════════════════════ -->
+<div id="procesamiento">
+  <div class="sec-head green">
+    <div class="sec-num">3.1</div>
+    <div class="sec-info">
+      <h2>Procesamiento de información</h2>
+      <p>Organizar los datos recolectados antes de analizarlos</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a3)">Tabulación</div>
+    <div class="concept-def">Procesar la información permite reconocer lo más relevante y eliminar lo innecesario. La tabulación es la expresión de las cifras recolectadas por medio de una cuadrícula, llamada matriz de vaciado de datos.</div>
+  </div>
+
+  <div class="quiz-box green" id="box-procesamiento">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Procesamiento de información</span></div>
+    <div class="quiz-score" id="score-procesamiento"></div>
+    <div class="qz-container" id="qz-procesamiento"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     3.2 ANÁLISIS DE RESULTADOS
+═══════════════════════════════════ -->
+<div id="analisis">
+  <div class="sec-head gold">
+    <div class="sec-num">3.2</div>
+    <div class="sec-info">
+      <h2>Análisis de resultados</h2>
+      <p>Convertir los datos organizados en hallazgos con sentido</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a4)">¿De qué depende el análisis?</div>
+    <div class="two-col">
+      <div class="mini-card"><div class="mc-label" style="color:var(--a4)">Enfoque cuantitativo</div><div class="mc-body">Seleccionar las pruebas estadísticas apropiadas para analizar la información.</div></div>
+      <div class="mini-card"><div class="mc-label" style="color:var(--a4)">Enfoque cualitativo</div><div class="mc-body">Diseñar el esquema de análisis de datos, decidiendo el orden en que se realizan las operaciones.</div></div>
+    </div>
+  </div>
+
+  <div class="quiz-box gold" id="box-analisis">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Análisis de resultados</span></div>
+    <div class="quiz-score" id="score-analisis"></div>
+    <div class="qz-container" id="qz-analisis"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     3.3 PRESENTACIÓN DEL REPORTE DE INVESTIGACIÓN
+═══════════════════════════════════ -->
+<div id="reporte">
+  <div class="sec-head purple">
+    <div class="sec-num">3.3</div>
+    <div class="sec-info">
+      <h2>Presentación del reporte de investigación</h2>
+      <p>Cómo comunicar los resultados de todo el proceso</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label" style="color:var(--a5)">Elementos básicos del reporte</div>
+    <table class="stab purple">
+      <tr><th>Sección</th><th>Qué incluye</th></tr>
+      <tr><td>Portada</td><td>Título, autores, afiliación institucional</td></tr>
+      <tr><td>Índice</td><td>Tabla de contenido, índice de tablas y de figuras</td></tr>
+      <tr><td>Resumen</td><td>Comprensible, sencillo, informativo, preciso, conciso y específico (máx. 150 palabras, APA)</td></tr>
+      <tr><td>Introducción</td><td>Problema, justificación, objetivos, variables, marco teórico e hipótesis</td></tr>
+      <tr><td>Método</td><td>Enfoque, contexto, diseño, instrumento, muestra y procedimiento</td></tr>
+      <tr><td>Resultados</td><td>Principales hallazgos, con gráficas y tablas numeradas y tituladas</td></tr>
+      <tr><td>Discusión</td><td>Comentario de los resultados: aciertos y limitaciones</td></tr>
+      <tr><td>Referencias</td><td>Todos los recursos usados, en orden alfabético</td></tr>
+      <tr><td>Apéndices</td><td>Información detallada de instrumentos: fotos, fórmulas, tablas o gráficas</td></tr>
+    </table>
+  </div>
+
+  <div class="quiz-box purple" id="box-reporte">
+    <div class="quiz-head"><span class="qz-ico">🙋</span><h4>Preguntas para participar</h4><span class="qz-sub">Tema: Presentación del reporte de investigación</span></div>
+    <div class="quiz-score" id="score-reporte"></div>
+    <div class="qz-container" id="qz-reporte"></div>
+  </div>
+
+  <!-- SOPA DE LETRAS DINÁMICA -->
+  <div class="ws-box" id="ws1">
+    <div class="ws-head"><span class="ws-ico">🔤</span><h5>SOPA DE LETRAS DINÁMICA — Encuentra y define</h5></div>
+    <p class="ws-instructions">Busca cada palabra en la sopa de letras. Cuando la encuentres, da clic en "✓ La encontré" — <strong>toda la sopa se vuelve a generar</strong>, con nuevas posiciones y nuevas letras de relleno, para que no sirva tomarle captura de pantalla a un compañero. Después escribe, con tus propias palabras, qué significa cada palabra encontrada.</p>
+    <div class="ws-layout">
+      <div class="ws-grid-wrap" id="ws1-grid"></div>
+      <div class="ws-wordlist">
+        <div class="ws-wordlist-title">Palabras por encontrar</div>
+        <ul id="ws1-list"></ul>
+        <div class="ws-progress" id="ws1-progress"></div>
+        <div class="ws-shuffle-note">🔄 La sopa cambia de posiciones y letras cada vez que encuentras una palabra.</div>
+      </div>
+    </div>
+    <div class="ws-defs" id="ws1-defs"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     RETOS FINALES
+═══════════════════════════════════ -->
+<div id="retos">
+  <div class="sec-head blue">
+    <div class="sec-num">🏆</div>
+    <div class="sec-info">
+      <h2>Retos de repaso</h2>
+      <p>Pon en práctica lo aprendido en esta unidad</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="bubbles">
+      <div class="bubble blue"><div class="b-label">🔵 Reto 1 — Marco teórico</div><div class="b-main">Elabora un mapa vertebrar (tema general → tema → subtema → referencia) para un tema de tu elección.</div></div>
+      <div class="bubble red"><div class="b-label">🔴 Reto 2 — Fuentes de información</div><div class="b-main">Busca un artículo (fuente primaria) y un libro de texto (fuente secundaria) sobre un mismo tema, y compara qué información aporta cada uno.</div></div>
+      <div class="bubble green"><div class="b-label">🟢 Reto 3 — Instrumento</div><div class="b-main">Para la variable "hábitos de estudio", define una dimensión, un indicador y redacta un reactivo de opción múltiple.</div></div>
+      <div class="bubble gold"><div class="b-label">🟡 Reto 4 — Escala Likert</div><div class="b-main">Redacta 3 afirmaciones (una con dirección positiva y una con dirección negativa) sobre el uso de redes sociales, con su escala de 5 puntos.</div></div>
+      <div class="bubble purple"><div class="b-label">🟣 Reto 5 — BOSS LEVEL: Reporte completo</div><div class="b-main">Elabora una tabla de frecuencias ficticia con 15 respuestas para una pregunta cerrada, calcula los porcentajes, y redacta una interpretación de dos líneas.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WORD BANK / GLOSARIO -->
+<div id="glosario" class="wb-section">
+  <div class="wb-title">GLOSARIO DE <span>TÉRMINOS</span></div>
+  <p class="wb-sub">Metodología de la Investigación · Unidad II · Copia: término → definición → tu propio ejemplo</p>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#5cb8f8">📚 MARCO TEÓRICO Y FUENTES</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Marco teórico</div><div class="es">Sustento teórico que se construye a partir de la revisión de la literatura.</div></div>
+      <div class="wb-word"><div class="en">Revisión de la literatura</div><div class="es">Buscar, identificar y consultar bibliografía relevante al tema.</div></div>
+      <div class="wb-word"><div class="en">Mapeo / Vertebrar</div><div class="es">Dos métodos para organizar la construcción del marco teórico.</div></div>
+      <div class="wb-word"><div class="en">Fuente primaria/secundaria/terciaria</div><div class="es">Niveles de cercanía de una fuente con la información original.</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#fcd45c">📝 INSTRUMENTOS DE RECOLECCIÓN</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Variable, dimensión, indicador, reactivo</div><div class="es">Ruta para construir preguntas de un instrumento.</div></div>
+      <div class="wb-word"><div class="en">Codificación</div><div class="es">Asignar un número o código a cada respuesta.</div></div>
+      <div class="wb-word"><div class="en">Nivel de medición</div><div class="es">Nominal, ordinal, por intervalos o de razón.</div></div>
+      <div class="wb-word"><div class="en">Cuestionario</div><div class="es">Conjunto de preguntas sobre una o más variables.</div></div>
+      <div class="wb-word"><div class="en">Escala Likert</div><div class="es">Instrumento de afirmaciones para medir actitudes.</div></div>
+      <div class="wb-word"><div class="en">Prueba piloto</div><div class="es">Aplicación del instrumento a un grupo pequeño antes de la aplicación final.</div></div>
+    </div>
+  </div>
+
+  <div class="wb-group">
+    <div class="wb-group-title" style="color:#c4b5fd">📈 PROCESAMIENTO Y REPORTE</div>
+    <div class="wb-grid">
+      <div class="wb-word"><div class="en">Tabulación</div><div class="es">Expresión de las cifras recolectadas en una matriz de vaciado de datos.</div></div>
+      <div class="wb-word"><div class="en">Análisis cuantitativo</div><div class="es">Selección de pruebas estadísticas para analizar la información.</div></div>
+      <div class="wb-word"><div class="en">Análisis cualitativo</div><div class="es">Diseño del esquema de análisis y orden de las operaciones.</div></div>
+      <div class="wb-word"><div class="en">Reporte de investigación</div><div class="es">Documento final con portada, resumen, método, resultados, discusión y referencias.</div></div>
+    </div>
+  </div>
+
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 18px;font-size:13px;color:rgba(240,246,255,.65);margin-top:4px">
+    🎯 <strong style="color:#fff">Tarea:</strong><br>
+    1. Elabora el bosquejo de un marco teórico para un tema de tu interés, siguiendo los 5 pasos vistos en clase.<br>
+    2. Diseña un cuestionario corto (5 preguntas) con al menos una pregunta cerrada y una abierta.<br>
+    3. Construye una tabla de frecuencias ficticia para una de tus preguntas y calcula los porcentajes.<br>
+    4. Explica con tus palabras la diferencia entre el enfoque cualitativo y el cuantitativo al analizar resultados.
+  </div>
+</div>
+
+</div><!-- /wrap -->
+<footer>Metodología de la Investigación · Unidad II (Versión 2) · Marco Teórico, Instrumentos, Procesamiento y Reporte</footer>
+
+<script>
+/* ═══ QUIZ ENGINE ═══ */
+function initQuiz(containerId, scoreId, colorClass, questions){
+  const container = document.getElementById(containerId);
+  const scoreEl = document.getElementById(scoreId);
+  let answered = 0, correct = 0;
+  const total = questions.length;
+  scoreEl.textContent = `Progreso: 0 / ${total} respondidas`;
+
+  questions.forEach((qz, i) => {
+    const qDiv = document.createElement('div');
+    qDiv.className = 'qz-question';
+
+    const qText = document.createElement('div');
+    qText.className = 'qz-qtext';
+    let tag = qz.type === 'tf'
+      ? '<span class="qz-tag" style="background:var(--'+colorClass+')">V / F</span>'
+      : '<span class="qz-tag" style="background:var(--'+colorClass+')">OPCIÓN MÚLTIPLE</span>';
+    if(qz.english){ tag += '<span class="qz-tag english">🇬🇧 ENGLISH</span>'; }
+    if(qz.scenario){ tag += '<span class="qz-tag scenario">📌 SITUACIÓN</span>'; }
+    qText.innerHTML = `<span class="qz-num">${i+1}.</span><span>${qz.q} ${tag}</span>`;
+    qDiv.appendChild(qText);
+
+    const optsDiv = document.createElement('div');
+    optsDiv.className = qz.type === 'tf' ? 'qz-tf-opts' : 'qz-opts';
+
+    const explainDiv = document.createElement('div');
+    explainDiv.className = 'qz-explain';
+    explainDiv.innerHTML = qz.exp;
+
+    const opts = qz.type === 'tf' ? (qz.english ? ['True','False'] : ['Verdadero', 'Falso']) : qz.options;
+    const correctIdx = qz.type === 'tf' ? (qz.correct ? 0 : 1) : qz.correct;
+
+    opts.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'qz-opt';
+      btn.textContent = qz.type === 'tf' ? opt : String.fromCharCode(97 + idx) + ') ' + opt;
+      btn.onclick = () => {
+        if (qDiv.dataset.done) return;
+        qDiv.dataset.done = '1';
+        answered++;
+        if (idx === correctIdx) correct++;
+        Array.from(optsDiv.children).forEach((b, bi) => {
+          b.classList.add('disabled');
+          if (bi === correctIdx) b.classList.add('correct');
+          else if (bi === idx) b.classList.add('incorrect');
+        });
+        explainDiv.classList.add('show');
+        scoreEl.textContent = `Progreso: ${answered} / ${total} respondidas · ✅ ${correct} correctas`;
+      };
+      optsDiv.appendChild(btn);
+    });
+
+    qDiv.appendChild(optsDiv);
+    qDiv.appendChild(explainDiv);
+    container.appendChild(qDiv);
+  });
+}
+
+/* ═══ CRUCIGRAMA ENGINE ═══ */
+function buildCrossword(containerId, words){
+  let maxRow=0, maxCol=0;
+  words.forEach(w=>{
+    if(w.dir==='H'){ maxRow=Math.max(maxRow,w.row); maxCol=Math.max(maxCol,w.col+w.word.length-1); }
+    else { maxRow=Math.max(maxRow,w.row+w.word.length-1); maxCol=Math.max(maxCol,w.col); }
+  });
+  const rows=maxRow+1, cols=maxCol+1;
+  const grid = Array.from({length:rows},()=>Array(cols).fill(null));
+  words.forEach(w=>{
+    for(let i=0;i<w.word.length;i++){
+      const r = w.dir==='H'? w.row : w.row+i;
+      const c = w.dir==='H'? w.col+i : w.col;
+      grid[r][c]=w.word[i];
+    }
+  });
+  let num=1;
+  const numbering={};
+  words.forEach(w=>{
+    const key=w.row+','+w.col;
+    if(!(key in numbering)){ numbering[key]=num++; }
+  });
+  const table=document.createElement('table');
+  table.className='cw-table';
+  for(let r=0;r<rows;r++){
+    const tr=document.createElement('tr');
+    for(let c=0;c<cols;c++){
+      const td=document.createElement('td');
+      if(grid[r][c]){
+        td.className='cw-cell';
+        const key=r+','+c;
+        if(key in numbering){
+          const numSpan=document.createElement('span');
+          numSpan.className='cw-num';
+          numSpan.textContent=numbering[key];
+          td.appendChild(numSpan);
+        }
+        const inp=document.createElement('input');
+        inp.maxLength=1;
+        inp.className='cw-input';
+        inp.dataset.answer=grid[r][c];
+        inp.addEventListener('input',(e)=>{ e.target.value=e.target.value.toUpperCase(); });
+        td.appendChild(inp);
+      } else {
+        td.className='cw-empty';
+      }
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  document.getElementById(containerId+'-grid').appendChild(table);
+}
+
+function checkCrossword(containerId){
+  const inputs = document.querySelectorAll('#'+containerId+' .cw-input');
+  let correct=0;
+  inputs.forEach(inp=>{
+    const val = inp.value.trim().toUpperCase();
+    inp.classList.remove('cw-correct','cw-incorrect');
+    if(val===inp.dataset.answer){ inp.classList.add('cw-correct'); correct++; }
+    else { inp.classList.add('cw-incorrect'); }
+  });
+  const resultEl = document.getElementById(containerId+'-result');
+  resultEl.classList.add('show');
+  resultEl.style.color = correct===inputs.length ? 'var(--a3)' : 'var(--a2)';
+  resultEl.textContent = correct+' / '+inputs.length+' letras correctas';
+}
+
+buildCrossword('cw1', [
+  {word:'VARIABLE', row:1, col:2, dir:'H'},
+  {word:'MUESTRA', row:4, col:1, dir:'H'},
+  {word:'ENCUESTA', row:6, col:0, dir:'H'},
+  {word:'TEORICO', row:7, col:1, dir:'H'},
+  {word:'HIPOTESIS', row:0, col:5, dir:'V'}
+]);
+
+buildCrossword('cw2', [
+  {word:'TABULAR', row:2, col:4, dir:'H'},
+  {word:'CODIFICAR', row:4, col:2, dir:'H'},
+  {word:'LIKERT', row:8, col:4, dir:'H'},
+  {word:'CUALITATIVO', row:0, col:5, dir:'V'}
+]);
+
+/* ═══ SOPA DE LETRAS DINÁMICA ENGINE ═══
+   Cada vez que se encuentra una palabra, TODA la sopa se vuelve a generar
+   desde cero: nuevas posiciones aleatorias para las palabras restantes y
+   nuevas letras de relleno aleatorias, para que una captura de pantalla
+   ya no sirva de referencia a otro alumno. */
+const wsDefinitions = {
+  'ws1': {
+    'HIPOTESIS':'Suposición o explicación tentativa que se plantea para ser comprobada en una investigación.',
+    'VARIABLE':'Característica o propiedad que puede tomar distintos valores y que se mide o manipula en un estudio.',
+    'MUESTRA':'Parte representativa de la población que se selecciona para realizar un estudio.',
+    'ENCUESTA':'Técnica de recolección de datos que consiste en aplicar un conjunto de preguntas a un grupo de personas.',
+    'CODIFICACION':'Proceso de asignar un número o letra a cada respuesta para facilitar su análisis.',
+    'CUESTIONARIO':'Instrumento que consiste en un conjunto de preguntas sobre una o más variables a medir.',
+    'TABULACION':'Expresión de las cifras recolectadas por medio de una cuadrícula o matriz de datos.',
+    'DIMENSION':'Parte específica en que se divide una variable para poder medirla.'
+  }
+};
+const wsState = {};
+
+function buildWordSearch(elId, words, size){
+  const grid = Array.from({length:size},()=>Array(size).fill(null));
+  const dirs = [[0,1],[1,0],[1,1],[1,-1]];
+  words.forEach(word=>{
+    let placed=false, attempts=0;
+    while(!placed && attempts<300){
+      attempts++;
+      const dir = dirs[Math.floor(Math.random()*dirs.length)];
+      const row0 = Math.floor(Math.random()*size);
+      const col0 = Math.floor(Math.random()*size);
+      const endRow = row0+dir[0]*(word.length-1);
+      const endCol = col0+dir[1]*(word.length-1);
+      if(endRow<0||endRow>=size||endCol<0||endCol>=size) continue;
+      let ok=true;
+      for(let i=0;i<word.length;i++){
+        const r=row0+dir[0]*i, c=col0+dir[1]*i;
+        if(grid[r][c]!==null && grid[r][c]!==word[i]){ ok=false; break; }
+      }
+      if(ok){
+        for(let i=0;i<word.length;i++){
+          const r=row0+dir[0]*i, c=col0+dir[1]*i;
+          grid[r][c]=word[i];
+        }
+        placed=true;
+      }
+    }
+  });
+  const letters='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  for(let r=0;r<size;r++){
+    for(let c=0;c<size;c++){
+      if(!grid[r][c]){ grid[r][c]=letters[Math.floor(Math.random()*letters.length)]; }
+    }
+  }
+  const table=document.createElement('table');
+  table.className='ws-table';
+  for(let r=0;r<size;r++){
+    const tr=document.createElement('tr');
+    for(let c=0;c<size;c++){
+      const td=document.createElement('td');
+      td.className='ws-cell';
+      td.textContent=grid[r][c];
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  const wrap = document.getElementById(elId);
+  wrap.innerHTML='';
+  wrap.appendChild(table);
+}
+
+function ws_init(id, words, size){
+  wsState[id] = {all: words.slice(), remaining: words.slice(), found: [], size};
+  ws_render(id);
+}
+
+function ws_render(id){
+  const st = wsState[id];
+  if(st.remaining.length > 0){
+    buildWordSearch(id+'-grid', st.remaining, st.size);
+  } else {
+    document.getElementById(id+'-grid').innerHTML = '<p style="font-weight:700;color:var(--a3);padding:20px">🎉 ¡Encontraste todas las palabras!</p>';
+  }
+  const listEl = document.getElementById(id+'-list');
+  listEl.innerHTML = '';
+  st.remaining.forEach(w=>{
+    const li = document.createElement('li');
+    const span = document.createElement('span');
+    span.textContent = w;
+    const btn = document.createElement('button');
+    btn.className='ws-found-btn';
+    btn.textContent='✓ La encontré';
+    btn.onclick = ()=>ws_found(id, w);
+    li.appendChild(span);
+    li.appendChild(btn);
+    listEl.appendChild(li);
+  });
+  document.getElementById(id+'-progress').textContent = `Progreso: ${st.found.length} / ${st.all.length} palabras encontradas`;
+}
+
+function ws_found(id, word){
+  const st = wsState[id];
+  st.remaining = st.remaining.filter(w=>w!==word);
+  st.found.push(word);
+  ws_render(id); // regenera TODA la sopa: nuevas posiciones y nuevas letras
+  ws_addDefBox(id, word);
+}
+
+function ws_addDefBox(id, word){
+  if(document.getElementById(id+'-def-'+word)) return;
+  const defsWrap = document.getElementById(id+'-defs');
+  const item = document.createElement('div');
+  item.className='ws-def-item';
+  item.id = id+'-def-'+word;
+  item.innerHTML = `<div class="ws-def-word">${word}</div>
+    <textarea class="ws-def-input" placeholder="Escribe aquí tu definición con tus propias palabras..."></textarea>
+    <button class="ws-reveal-btn" onclick="toggleReveal(this)">👁️ Ver definición de referencia</button>
+    <div class="ws-reveal-text">${wsDefinitions[id][word]}</div>`;
+  defsWrap.appendChild(item);
+}
+
+function toggleReveal(btn){
+  const textEl = btn.nextElementSibling;
+  textEl.classList.toggle('show');
+  btn.textContent = textEl.classList.contains('show') ? '🙈 Ocultar definición' : '👁️ Ver definición de referencia';
+}
+
+ws_init('ws1', ['HIPOTESIS','VARIABLE','MUESTRA','ENCUESTA','CODIFICACION','CUESTIONARIO','TABULACION','DIMENSION'], 16);
+
+/* ===== 2.1-2.2 MARCO TEÓRICO — TODAS PREGUNTAS NUEVAS ===== */
+initQuiz('qz-marco','score-marco','a1',[
+{type:'mc', scenario:true, q:'Un estudiante está construyendo su marco teórico ordenando la información por orden cronológico y por subtemas. ¿Qué método está usando?', options:['De mapeo','Por índices o vertebrar','De revisión','De hipótesis'], correct:0, exp:'<b>Respuesta correcta: a.</b> El método de mapeo ordena por criterios lógicos como el orden cronológico.'},
+{type:'mc', q:'¿Cuál de los siguientes NO es uno de los 5 pasos para redactar el marco teórico según Morán y Alvarado?', options:['Selección del tema','Búsqueda de información','Aplicación del instrumento','Redacción definitiva'], correct:2, exp:'<b>Respuesta correcta: c.</b> La aplicación del instrumento pertenece a otra etapa de la investigación.'},
+{type:'tf', q:'El bosquejo del marco teórico se elabora antes de la redacción del borrador.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', scenario:true, q:'Un investigador ya escribió su marco teórico con 40 páginas, pero su compañero solo escribió 15 y ambos analizan el problema con la misma profundidad. ¿Quién tiene mejor marco teórico?', options:['Ninguno es mejor solo por la extensión, depende del contenido','El de 40 páginas siempre','El de 15 páginas siempre','Ninguno es válido'], correct:0, exp:'<b>Respuesta correcta: a.</b> La cantidad de páginas no define la calidad de un marco teórico.'},
+{type:'mc', q:'En el método vertebrar, ¿qué elemento conecta al "Tema general" con las referencias?', options:['Los temas y subtemas','Las hipótesis','La portada','El resumen'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', english:true, q:'Practice your English! What is 15 + 27?', options:['42','32','52','40'], correct:0, exp:'<b>Correct answer: a) 42.</b>'},
+{type:'tf', q:'La revisión de la literatura implica leer absolutamente todo el material encontrado, sin descartar nada.', correct:false, exp:'<b>Falso.</b> Es un análisis selectivo, no se lee todo.'},
+{type:'mc', q:'¿Qué recomienda usarse al redactar el borrador del marco teórico?', options:['Frases de enlace, como "por lo tanto" o "en conclusión"','Solo listas numeradas','Ningún tipo de conector','Solo citas textuales'], correct:0, exp:'<b>Respuesta correcta: a.</b>'}
+]);
+
+/* ===== FUENTES DE INFORMACIÓN — TODAS PREGUNTAS NUEVAS ===== */
+initQuiz('qz-fuentes','score-fuentes','a2',[
+{type:'mc', scenario:true, q:'Un investigador encuentra un artículo que resume y critica varios estudios originales sobre su tema. ¿Qué tipo de fuente es?', options:['Secundaria','Primaria','Terciaria','Ninguna de las anteriores'], correct:0, exp:'<b>Respuesta correcta: a.</b> Remite a documentos primarios y hace análisis y crítica.'},
+{type:'mc', q:'¿Cuál de estas es una fuente primaria?', options:['Un informe técnico-científico original','Una antología','Un directorio','Una cronología'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'Las fuentes terciarias incluyen catálogos de biblioteca y directorios.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', scenario:true, q:'Dos artículos tratan el mismo tema, pero uno fue publicado en 2005 y otro en 2023. Según los criterios de Hernández et al. (2010), ¿cuál conviene priorizar?', options:['El más reciente (2023)','El más antiguo (2005)','Cualquiera, la fecha no importa','Ninguno debe usarse'], correct:0, exp:'<b>Respuesta correcta: a.</b> Entre más reciente, mejor.'},
+{type:'mc', q:'¿Qué tipo de fuente son las tesis y tesinas?', options:['Secundarias','Primarias','Terciarias','No son fuentes'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', english:true, q:'Practice your English! What is the result of 8 × 7?', options:['56','54','64','48'], correct:0, exp:'<b>Correct answer: a) 56.</b>'},
+{type:'tf', q:'Las fuentes de información sirven únicamente para llenar espacio en el trabajo, sin sustentar las ideas.', correct:false, exp:'<b>Falso.</b> Sirven para justificar y reforzar las ideas e hipótesis.'},
+{type:'mc', q:'¿Qué aspecto de una fuente se relaciona con "la semejanza al método y muestra" según Hernández et al.?', options:['La recolección de datos usada en el estudio','El precio del artículo','El idioma del autor','El número de páginas'], correct:0, exp:'<b>Respuesta correcta: a.</b>'}
+]);
+
+/* ===== 2.3 REVISIÓN Y ADOPCIÓN DE TEORÍAS — TODAS PREGUNTAS NUEVAS ===== */
+initQuiz('qz-teorias','score-teorias','a3',[
+{type:'mc', scenario:true, q:'Un investigador descubre que su tema ya tiene una teoría completamente desarrollada, con abundante evidencia empírica. ¿Qué debería hacer?', options:['Adoptar esa teoría como base de su marco teórico, o cambiar el enfoque de su estudio','Ignorar la teoría existente','Inventar una teoría nueva sin fundamento','Abandonar la investigación'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'¿Cuál estrategia se usa cuando solo existen piezas sueltas de evidencia comprobada, sin una teoría general?', options:['Piezas y trozos de teorías','Teoría completamente desarrollada','Centros de investigación','Ninguna de las anteriores'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'Los centros de investigación pueden marcar las pautas del marco teórico a través de reglamentos institucionales.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', scenario:true, q:'Un estudiante encuentra varias teorías aplicables a su problema. ¿Qué estrategia debería seguir?', options:['Elegir la más objetiva o tomar partes de varias doctrinas relacionadas','Usar las 10 teorías sin ningún criterio','No usar ninguna teoría','Copiar la primera que encuentre'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'¿Qué estrategia se recomienda cuando el tema apenas tiene ideas vagamente relacionadas?', options:['Apoyarse en literatura orientadora, aunque no sea específica','Abandonar el tema de inmediato','Usar solo fuentes terciarias','No investigar más'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', english:true, q:'Practice your English! What is 100 minus 37?', options:['63','73','67','53'], correct:0, exp:'<b>Correct answer: a) 63.</b>'},
+{type:'tf', q:'Las estrategias para seleccionar teorías son siempre las mismas, sin importar cuánto se haya estudiado el tema.', correct:false, exp:'<b>Falso.</b> Dependen del grado de desarrollo del conocimiento sobre el tema.'},
+{type:'mc', q:'¿Cuál NO es una de las 5 estrategias para seleccionar teorías?', options:['Aplicación del instrumento','Teoría completamente desarrollada','Centros de investigación','Teorías aún no investigadas'], correct:0, exp:'<b>Respuesta correcta: a.</b>'}
+]);
+
+/* ===== 2.4 ELABORACIÓN DEL INSTRUMENTO — TODAS PREGUNTAS NUEVAS ===== */
+initQuiz('qz-instrumento','score-instrumento','a4',[
+{type:'mc', scenario:true, q:'Un investigador tiene la variable "satisfacción laboral" y define primero "ambiente de trabajo" como una parte de esa variable. ¿Qué elemento acaba de definir?', options:['Una dimensión','Un indicador','Un reactivo','Una hipótesis'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', scenario:true, q:'Un cuestionario pregunta "¿Cuál es tu estado civil: soltero, casado, divorciado?" ¿Qué nivel de medición está usando?', options:['Nominal','Ordinal','De intervalo','De razón'], correct:0, exp:'<b>Respuesta correcta: a.</b> Las categorías solo diferencian, sin jerarquía.'},
+{type:'tf', q:'El nivel de medición de razón incluye el cero como valor absoluto de "no existe lo que se mide".', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', scenario:true, q:'Un instrumento pregunta la estatura exacta en centímetros de cada participante. ¿Qué nivel de medición es?', options:['De razón','Nominal','Ordinal','Ninguno'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'En la codificación, ¿qué representa el número 5 en una escala típica de acuerdo?', options:['Totalmente de acuerdo','Totalmente en desacuerdo','Ni de acuerdo ni en desacuerdo','En desacuerdo'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', english:true, q:'Practice your English! What is half of 90?', options:['45','40','50','35'], correct:0, exp:'<b>Correct answer: a) 45.</b>'},
+{type:'tf', q:'El orden correcto para construir un reactivo es: reactivo, indicador, dimensión, variable.', correct:false, exp:'<b>Falso.</b> El orden correcto es variable → dimensión → indicador → reactivo.'},
+{type:'mc', q:'¿Qué nivel de medición usarías para calificar un servicio como "muy bueno, bueno, regular, malo"?', options:['Ordinal','Nominal','De razón','De intervalo'], correct:0, exp:'<b>Respuesta correcta: a.</b>'}
+]);
+
+/* ===== CUESTIONARIOS — TODAS PREGUNTAS NUEVAS ===== */
+initQuiz('qz-cuestionarios','score-cuestionarios','a5',[
+{type:'mc', scenario:true, q:'Un investigador quiere saber la opinión detallada de los participantes sobre por qué eligieron su carrera, sin limitar las respuestas. ¿Qué tipo de pregunta debe usar?', options:['Abierta','Cerrada','Dicotómica','Ninguna de las anteriores'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'¿Cuál es una desventaja de las preguntas abiertas?', options:['Son más difíciles de codificar y clasificar','Toman menos tiempo de respuesta','Reducen la ambigüedad','Requieren menor esfuerzo del encuestado'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'Las preguntas cerradas facilitan las comparaciones entre las respuestas de distintos encuestados.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', scenario:true, q:'Un cuestionario coloca la pregunta más importante hasta el final, después de 30 preguntas más. ¿Qué error de diseño está cometiendo?', options:['Las preguntas importantes nunca deben ir al final','No hay ningún error','Es la forma correcta de hacerlo','Las preguntas deben ir en orden alfabético'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'¿Qué debe incluir la introducción de un cuestionario?', options:['El propósito del estudio y una cláusula de confidencialidad','Solo el título','Las conclusiones','El marco teórico completo'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', english:true, q:'Practice your English! If a survey has 20 questions and a student already answered 12, how many are left?', options:['8','12','6','10'], correct:0, exp:'<b>Correct answer: a) 8.</b>'},
+{type:'tf', q:'Es recomendable usar un vocabulario complejo y técnico en las preguntas de un cuestionario.', correct:false, exp:'<b>Falso.</b> Se recomienda un vocabulario simple, directo y familiar.'},
+{type:'mc', q:'¿Qué elemento debe llevar la portada de un cuestionario?', options:['El nombre del cuestionario y el logotipo de la institución','Las respuestas correctas','La bibliografía','Los resultados esperados'], correct:0, exp:'<b>Respuesta correcta: a.</b>'}
+]);
+
+/* ===== ESCALAS TIPO LIKERT — TODAS PREGUNTAS NUEVAS ===== */
+initQuiz('qz-likert','score-likert','a1',[
+{type:'mc', scenario:true, q:'Una escala Likert mide la actitud hacia el uso de redes sociales con la frase "5=Muy de acuerdo... 1=Muy en desacuerdo". ¿Qué dirección tiene esta escala?', options:['Positiva','Negativa','Neutra','Ninguna'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'¿Quién propuso las escalas Likert y en qué año?', options:['Rensis Likert, en 1932','Roberto Hernández, en 2010','Robert Hooke, en 1665','Charles Coulomb, en 1785'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'Una escala Likert puede combinar reactivos de dirección positiva y negativa.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', scenario:true, q:'Un participante responde "Totalmente de acuerdo" en una escala de dirección negativa. ¿Qué valor numérico recibe?', options:['1','5','3','0'], correct:0, exp:'<b>Respuesta correcta: a.</b> En dirección negativa, estar de acuerdo se califica bajo.'},
+{type:'mc', q:'¿Cómo se obtiene la puntuación total de una escala Likert?', options:['Sumando los valores alcanzados en cada frase','Multiplicando el número de preguntas por 10','Restando los valores más altos','Promediando solo la primera pregunta'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', english:true, q:'Practice your English! What number comes after 99?', options:['100','101','98','90'], correct:0, exp:'<b>Correct answer: a) 100.</b>'},
+{type:'tf', q:'Las escalas Likert son un instrumento usado para medir hechos, no actitudes.', correct:false, exp:'<b>Falso.</b> Miden actitudes, no hechos objetivos.'},
+{type:'mc', q:'Antes de presentar los reactivos de una escala Likert se deben incluir:', options:['El objetivo de la aplicación y las instrucciones','Solo el nombre del investigador','Nada más','Los resultados finales'], correct:0, exp:'<b>Respuesta correcta: a.</b>'}
+]);
+
+/* ===== APLICACIÓN DEL INSTRUMENTO — TODAS PREGUNTAS NUEVAS ===== */
+initQuiz('qz-aplicacion','score-aplicacion','a2',[
+{type:'mc', scenario:true, q:'Antes de aplicar su cuestionario a 300 personas, un investigador lo aplica primero a 15 personas con características similares. ¿Qué está haciendo?', options:['Una prueba piloto','La aplicación final','El análisis de resultados','La codificación'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'¿Cuál es el objetivo principal de la prueba piloto?', options:['Determinar si el instrumento cumple los requisitos y es comprensible','Sustituir la aplicación final','Evitar hacer el marco teórico','Calcular directamente los resultados'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'Los sujetos a encuestar pueden sustituirse libremente si no están disponibles el día de la aplicación.', correct:false, exp:'<b>Falso.</b> No deben ser sustituidos.'},
+{type:'mc', scenario:true, q:'Un encuestador llega sin presentarse, se ve nervioso y genera tensión en el participante desde el inicio. ¿Qué fase de la aplicación está manejando mal?', options:['La fase de inicio','La fase de registro','La fase de cierre','La fase de codificación'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'En la fase de registro se recomienda:', options:['Anotar las respuestas en el momento y transcribirlas con fidelidad','Esperar varios días para anotar','Resumir libremente sin fidelidad','No revisar el cuestionario'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', english:true, q:'Practice your English! A researcher interviews 45 people in the morning and 30 in the afternoon. How many in total?', options:['75','65','85','70'], correct:0, exp:'<b>Correct answer: a) 75.</b>'},
+{type:'tf', q:'Es recomendable que el encuestador estudie y conteste previamente el cuestionario antes de aplicarlo.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'En la fase de cierre de la aplicación se recomienda:', options:['Conservar la cordialidad y agradecer al encuestado','Retirarse sin decir nada','Criticar las respuestas dadas','Omitir el agradecimiento'], correct:0, exp:'<b>Respuesta correcta: a.</b>'}
+]);
+
+/* ===== 3.1 PROCESAMIENTO DE INFORMACIÓN — TODAS PREGUNTAS NUEVAS ===== */
+initQuiz('qz-procesamiento','score-procesamiento','a3',[
+{type:'mc', scenario:true, q:'Un investigador organiza sus datos recolectados en una cuadrícula con preguntas, respuestas codificadas y número de orden. ¿Cómo se llama este proceso?', options:['Tabulación','Redacción del marco teórico','Aplicación de la escala Likert','Selección de teorías'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'¿Qué es la codificación de las alternativas de respuesta?', options:['Asignar un número o letra a cada una para facilitar su tabulación','Traducir las respuestas a otro idioma','Eliminar respuestas incorrectas','Graficar sin organizar los datos'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'El interés del investigador es una de las razones por las que se procesa la información.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', scenario:true, q:'Un investigador usa el programa SPSS para organizar y tabular los datos de 500 encuestas. ¿Qué está utilizando?', options:['Un programa estadístico','Un tipo de escala Likert','Un marco teórico','Una fuente terciaria'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'¿Qué contiene una tabla de frecuencias?', options:['Respuesta, valor, tabulación, frecuencia y porcentaje','Solo el nombre del encuestado','Solo el porcentaje','El marco teórico'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', english:true, q:'Practice your English! What is 60 divided by 5?', options:['12','10','15','6'], correct:0, exp:'<b>Correct answer: a) 12.</b>'},
+{type:'tf', q:'Procesar la información sirve para reconocer lo más relevante y eliminar lo innecesario.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', q:'El procesamiento de la información permite, antes de las conclusiones:', options:['Contrastar la realidad con la hipótesis planteada','Omitir el análisis de datos','Eliminar el marco teórico','Sustituir la muestra'], correct:0, exp:'<b>Respuesta correcta: a.</b>'}
+]);
+
+/* ===== 3.2 ANÁLISIS DE RESULTADOS — TODAS PREGUNTAS NUEVAS ===== */
+initQuiz('qz-analisis','score-analisis','a4',[
+{type:'mc', scenario:true, q:'Un investigador con datos cuantitativos selecciona pruebas estadísticas apropiadas para analizarlos. ¿Qué enfoque está usando?', options:['Cuantitativo','Cualitativo','Mixto sin definir','Ninguno'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'¿De qué factores depende el análisis de los datos según Hernández et al.?', options:['Nivel de medición, formulación de hipótesis e interés del investigador','Solo el número de encuestados','El color de las gráficas','El idioma del cuestionario'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'Eliminar datos atípicos es una recomendación propia del enfoque cuantitativo.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', scenario:true, q:'Un investigador diseña el orden en que va a analizar sus entrevistas, decidiendo qué revisar primero. ¿Qué enfoque describe mejor esta acción?', options:['Cualitativo','Cuantitativo','Estadístico inferencial','Ninguno'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'¿Qué tipo de gráficas se usan comúnmente para representar los resultados?', options:['De barras y de pastel','Solo tablas de Excel','Mapas conceptuales','Diagramas de flujo'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', english:true, q:'Practice your English! What is 9 squared (9×9)?', options:['81','72','90','99'], correct:0, exp:'<b>Correct answer: a) 81.</b>'},
+{type:'tf', q:'La conclusión de un reporte es la sección donde se presenta el problema de investigación por primera vez.', correct:false, exp:'<b>Falso.</b> Es la sección final, no la primera.'},
+{type:'mc', q:'La sección de conclusiones debe dar a conocer:', options:['Los logros obtenidos en los objetivos específicos y en el general','El marco teórico completo','El cuestionario aplicado','Los datos personales de los encuestados'], correct:0, exp:'<b>Respuesta correcta: a.</b>'}
+]);
+
+/* ===== 3.3 PRESENTACIÓN DEL REPORTE — TODAS PREGUNTAS NUEVAS ===== */
+initQuiz('qz-reporte','score-reporte','a5',[
+{type:'mc', scenario:true, q:'Un investigador entrega un documento de solo 2 páginas con lenguaje sencillo para presentarlo a directivos de una empresa, no a un comité académico. ¿Qué tipo de reporte es más probable que haya elaborado?', options:['Un resumen ejecutivo (contexto no académico)','Una tesis','Un artículo indexado con normas APA','Una ponencia en congreso académico'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'Según las normas APA, ¿cuántas palabras como máximo debe tener el resumen de un reporte?', options:['150 palabras','1000 palabras','10 palabras','No hay límite'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'tf', q:'La sección de "Método" debe incluir el enfoque, contexto, diseño, instrumento y muestra.', correct:true, exp:'<b>Verdadero.</b>'},
+{type:'mc', scenario:true, q:'Un lector quiere saber los aciertos y limitaciones de una investigación. ¿En qué sección del reporte debe buscar esa información?', options:['Discusión','Portada','Índice','Apéndices'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', q:'¿Qué contienen los apéndices de un reporte?', options:['Información detallada de los instrumentos, como fotografías, fórmulas o tablas','El resumen ejecutivo','El título del trabajo','Solo los datos personales de los autores'], correct:0, exp:'<b>Respuesta correcta: a.</b>'},
+{type:'mc', english:true, q:'Practice your English! If a report has 8 chapters and you already read 5, how many are left?', options:['3','5','2','4'], correct:0, exp:'<b>Correct answer: a) 3.</b>'},
+{type:'tf', q:'El formato de un reporte de investigación siempre es el mismo, sin importar si es académico o no académico.', correct:false, exp:'<b>Falso.</b> Depende del contexto (académico o no académico).'},
+{type:'mc', q:'El resumen de un reporte debe ser:', options:['Comprensible, sencillo, informativo, preciso, conciso y específico','Extenso y con lenguaje técnico complejo','Solo una lista de referencias','Idéntico a la introducción'], correct:0, exp:'<b>Respuesta correcta: a.</b>'}
+]);
+</script>
+</body>
+</html>
